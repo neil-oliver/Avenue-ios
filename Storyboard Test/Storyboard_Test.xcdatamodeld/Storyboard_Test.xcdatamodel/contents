@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6254" systemVersion="14A388a" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Events" representedClassName="Events" syncable="YES">
+        <attribute name="end_date_comparison_result" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="event_all_day" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="event_date_created" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="event_date_modified" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="event_end" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="event_end_date" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="event_end_time" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="event_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="event_owner" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="event_start" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="event_start_date" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="event_start_time" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="event_status" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="location_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="post_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="start_date_comparison_result" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <relationship name="locations" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Locations" inverseName="events" inverseEntity="Locations" syncable="YES"/>
+    </entity>
+    <entity name="Locations" representedClassName="Locations" syncable="YES">
+        <attribute name="distance" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="location_address" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="location_date_created" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="location_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="location_latitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="location_longitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="location_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="location_postcode" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="location_slug" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="location_town" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="post_id" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="events" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Events" inverseName="locations" inverseEntity="Events" syncable="YES"/>
+    </entity>
+    <entity name="Users" representedClassName="Users" syncable="YES">
+        <attribute name="user_date_created" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="user_email" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="user_id" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="user_logged_in" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="user_login" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="user_nicename" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="user_pass" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="user_registered" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="user_role" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="user_status" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Events" positionX="-74" positionY="-103" width="128" height="298"/>
+        <element name="Locations" positionX="-414" positionY="33" width="128" height="223"/>
+        <element name="Users" positionX="-243" positionY="63" width="128" height="195"/>
+    </elements>
+</model>
