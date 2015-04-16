@@ -7,9 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		840C548F1ADFDCAF00F98F29 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 840C548E1ADFDCAF00F98F29 /* Images.xcassets */; };
 		8416B1CD1A1E016C00106879 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8416B1CC1A1E016C00106879 /* AppDelegate.swift */; };
-		8416B1D71A1E016C00106879 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8416B1D61A1E016C00106879 /* Images.xcassets */; };
-		8416B1DA1A1E016C00106879 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8416B1D81A1E016C00106879 /* LaunchScreen.xib */; };
 		8416B1E61A1E016C00106879 /* Storyboard_TestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8416B1E51A1E016C00106879 /* Storyboard_TestTests.swift */; };
 		841D8FAD1A934A1D0087149A /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841D8FAC1A934A1D0087149A /* SettingsVC.swift */; };
 		841D8FAF1A934A700087149A /* ScanVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841D8FAE1A934A700087149A /* ScanVC.swift */; };
@@ -19,6 +18,7 @@
 		842A543A1A2DE0C20031FF58 /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842A54391A2DE0C20031FF58 /* Functions.swift */; };
 		8431B9F41A32F6EF008C9E62 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8431B9F31A32F6EF008C9E62 /* Reachability.swift */; };
 		8442955D1A274D5100B9429B /* Users.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8442955C1A274D5100B9429B /* Users.swift */; };
+		844E16D11ADFE0DD0057FAAD /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 844E16D01ADFE0DD0057FAAD /* LaunchScreen.xib */; };
 		845101081A252FDB00940488 /* Storyboard_Test.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 845101061A252FDB00940488 /* Storyboard_Test.xcdatamodeld */; };
 		8474D2F51A37064B00CE7AC8 /* cvGalleryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8474D2F41A37064B00CE7AC8 /* cvGalleryCell.swift */; };
 		849880DF1ADEB55D00188146 /* BAAClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 849880D11ADEB55D00188146 /* BAAClient.m */; };
@@ -110,11 +110,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		840C548E1ADFDCAF00F98F29 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		8416B1C71A1E016C00106879 /* Storyboard Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Storyboard Test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8416B1CB1A1E016C00106879 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8416B1CC1A1E016C00106879 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		8416B1D61A1E016C00106879 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		8416B1D91A1E016C00106879 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		8416B1DF1A1E016C00106879 /* Storyboard TestTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Storyboard TestTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8416B1E41A1E016C00106879 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8416B1E51A1E016C00106879 /* Storyboard_TestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storyboard_TestTests.swift; sourceTree = "<group>"; };
@@ -126,6 +125,7 @@
 		842A54391A2DE0C20031FF58 /* Functions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
 		8431B9F31A32F6EF008C9E62 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		8442955C1A274D5100B9429B /* Users.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Users.swift; sourceTree = "<group>"; };
+		844E16D01ADFE0DD0057FAAD /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		845101071A252FDB00940488 /* Storyboard_Test.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Storyboard_Test.xcdatamodel; sourceTree = "<group>"; };
 		8474D2F41A37064B00CE7AC8 /* cvGalleryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = cvGalleryCell.swift; sourceTree = "<group>"; };
 		849880D01ADEB55D00188146 /* BAAClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BAAClient.h; sourceTree = "<group>"; };
@@ -211,7 +211,7 @@
 		84F109F01A2607E80079F9B8 /* Events.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Events.swift; sourceTree = "<group>"; };
 		84F109F21A2607FB0079F9B8 /* Locations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Locations.swift; sourceTree = "<group>"; };
 		84F109F41A26336F0079F9B8 /* UserManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
-		84F4F70E1ADEB63600D3637A /* Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
+		84F4F70E1ADEB63600D3637A /* Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -265,9 +265,9 @@
 				84B5E3871A24F50400F637DB /* EventManager.swift */,
 				84B5E3881A24F50400F637DB /* FetchData.swift */,
 				842A54391A2DE0C20031FF58 /* Functions.swift */,
-				8416B1D61A1E016C00106879 /* Images.xcassets */,
+				840C548E1ADFDCAF00F98F29 /* Images.xcassets */,
 				842A54371A2C96CF0031FF58 /* MenuTransitionManager.swift */,
-				8416B1D81A1E016C00106879 /* LaunchScreen.xib */,
+				844E16D01ADFE0DD0057FAAD /* LaunchScreen.xib */,
 				84C0BBE01A2FCA1F00398E45 /* Main.storyboard */,
 				84BDE75F1A37B8BB0089A66D /* photos */,
 				842A54351A2AC5DD0031FF58 /* View Controllers */,
@@ -360,7 +360,7 @@
 				849880DB1ADEB55D00188146 /* BaasBox.m */,
 				849880DC1ADEB55D00188146 /* BAAUser.h */,
 				849880DD1ADEB55D00188146 /* BAAUser.m */,
-				84F4F70E1ADEB63600D3637A /* Header.h */,
+				84F4F70E1ADEB63600D3637A /* Bridging-Header.h */,
 			);
 			path = "BaasBox-iOS-SDK";
 			sourceTree = "<group>";
@@ -494,6 +494,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				84BDE79A1A37B8BB0089A66D /* Photo26.jpg in Resources */,
+				844E16D11ADFE0DD0057FAAD /* LaunchScreen.xib in Resources */,
 				84BDE7941A37B8BB0089A66D /* Photo20.jpg in Resources */,
 				84BDE7AD1A37B8BB0089A66D /* Photo7.jpg in Resources */,
 				84BDE7881A37B8BB0089A66D /* Photo1.jpg in Resources */,
@@ -504,9 +505,9 @@
 				84BDE7A31A37B8BB0089A66D /* Photo34.jpg in Resources */,
 				84BDE7A01A37B8BB0089A66D /* Photo31.jpg in Resources */,
 				84B5E3951A24F60100F637DB /* The Fleece.gpx in Resources */,
+				840C548F1ADFDCAF00F98F29 /* Images.xcassets in Resources */,
 				84BDE7A81A37B8BB0089A66D /* Photo39.jpg in Resources */,
 				84BDE7A61A37B8BB0089A66D /* Photo37.jpg in Resources */,
-				8416B1DA1A1E016C00106879 /* LaunchScreen.xib in Resources */,
 				84BDE79B1A37B8BB0089A66D /* Photo27.jpg in Resources */,
 				84BDE7A11A37B8BB0089A66D /* Photo32.jpg in Resources */,
 				84BDE78A1A37B8BB0089A66D /* Photo11.jpg in Resources */,
@@ -516,7 +517,6 @@
 				84BDE7901A37B8BB0089A66D /* Photo17.jpg in Resources */,
 				84BDE79C1A37B8BB0089A66D /* Photo28.jpg in Resources */,
 				84BDE78E1A37B8BB0089A66D /* Photo15.jpg in Resources */,
-				8416B1D71A1E016C00106879 /* Images.xcassets in Resources */,
 				84BDE79D1A37B8BB0089A66D /* Photo29.jpg in Resources */,
 				84BDE7A51A37B8BB0089A66D /* Photo36.jpg in Resources */,
 				84C0BBE11A2FCA1F00398E45 /* Main.storyboard in Resources */,
@@ -620,17 +620,6 @@
 		};
 /* End PBXTargetDependency section */
 
-/* Begin PBXVariantGroup section */
-		8416B1D81A1E016C00106879 /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				8416B1D91A1E016C00106879 /* Base */,
-			);
-			name = LaunchScreen.xib;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
-
 /* Begin XCBuildConfiguration section */
 		8416B1E71A1E016C00106879 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -714,12 +703,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "Storyboard Test/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_INSTALL_OBJC_HEADER = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "/Users/Admin/Documents/Programming/Storyboard Test/Storyboard Test/BaasBox-iOS-SDK/Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/Admin/Documents/Programming/avenue-ios/Storyboard Test/BaasBox-iOS-SDK/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -729,12 +719,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "Storyboard Test/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_INSTALL_OBJC_HEADER = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "/Users/Admin/Documents/Programming/Storyboard Test/Storyboard Test/BaasBox-iOS-SDK/Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/Admin/Documents/Programming/avenue-ios/Storyboard Test/BaasBox-iOS-SDK/Bridging-Header.h";
 			};
 			name = Release;
 		};

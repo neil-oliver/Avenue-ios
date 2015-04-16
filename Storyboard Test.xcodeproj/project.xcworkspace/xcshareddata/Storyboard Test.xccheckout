@@ -10,6 +10,8 @@
 	<string>Storyboard Test</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
+		<key>877104B716AD8B0AFB0629808A2F74E5B778F8F3</key>
+		<string>https://github.com/Nafhed/avenue-ios.git</string>
 		<key>B6CD365313347EF0ED632CC5509CDC576C662587</key>
 		<string>https://github.com/neil-oliver/Storyboard-Test.git</string>
 	</dict>
@@ -17,17 +19,27 @@
 	<string>Storyboard Test.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>B6CD365313347EF0ED632CC5509CDC576C662587</key>
+		<key>877104B716AD8B0AFB0629808A2F74E5B778F8F3</key>
 		<string>../..</string>
+		<key>B6CD365313347EF0ED632CC5509CDC576C662587</key>
+		<string>../../../Storyboard%20Test</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/neil-oliver/Storyboard-Test.git</string>
+	<string>https://github.com/Nafhed/avenue-ios.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>B6CD365313347EF0ED632CC5509CDC576C662587</string>
+	<string>877104B716AD8B0AFB0629808A2F74E5B778F8F3</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>877104B716AD8B0AFB0629808A2F74E5B778F8F3</string>
+			<key>IDESourceControlWCCName</key>
+			<string>avenue-ios</string>
+		</dict>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
