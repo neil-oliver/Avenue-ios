@@ -101,7 +101,7 @@
 
 // Password
 - (void) changeOldPassword:(NSString *)oldPassword toNewPassword:(NSString *)newPassword completion:(BAABooleanResultBlock)completionBlock;
-- (void) resetPasswordForUser:(BAAUser *)user withCompletion:(BAABooleanResultBlock)completionBlock;
+- (void) resetPasswordForUsername:(NSString *)username withCompletion:(BAABooleanResultBlock)completionBlock;
 
 // Admin
 - (void) createCollection:(NSString *)collectionName completion:(BAAObjectResultBlock)completionBlock;
@@ -153,6 +153,7 @@ extern NSString * const kAclAllPermission;
 extern NSString * const kPushNotificationMessageKey;
 extern NSString * const kPushNotificationCustomPayloadKey;
 
-
+// Authentication expired notification
+extern NSString * const kAuthenticationTokenExpiredNotification;
 
 @end

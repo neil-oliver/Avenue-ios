@@ -33,6 +33,7 @@ NSString * const kAclAllPermission = @"all";
 
 NSString * const kPushNotificationMessageKey = @"message";
 NSString * const kPushNotificationCustomPayloadKey = @"custom";
+NSString * const kAuthenticationTokenExpiredNotification = @"com.baasbox.tokenExpired";
 
 static NSString * const boundary = @"BAASBOX_BOUNDARY_STRING";
 
@@ -592,29 +593,20 @@ NSString* const BAAUserKeyForUserDefaults = @"com.baaxbox.user";
                          if (completionBlock) {
                              
                              NSHTTPURLResponse *res = (NSHTTPURLResponse*)response;
-                             NSDictionary *d = [NSJSONSerialization JSONObjectWithData:data
-                                                                               options:kNilOptions
-                                                                                 error:nil];
                              
                              if (error == nil && res.statusCode <= 201) {
-                                 
+                               
+                                 NSDictionary *d = [NSJSONSerialization JSONObjectWithData:data
+                                                                                   options:kNilOptions
+                                                                                     error:nil];
                                  id c = [file class];
                                  id newObject = [[c alloc] initWithDictionary:d[@"data"]];
                                  completionBlock(newObject, nil);
                                  
                              } else {
-                                 
-                                 NSDictionary *userInfo = @{
-                                                            NSLocalizedDescriptionKey: d[@"message"],
-                                                            NSLocalizedFailureReasonErrorKey: d[@"message"],
-                                                            NSLocalizedRecoverySuggestionErrorKey: @"Make sure that ACL roles and usernames exist on the backend."
-                                                            };
-                                 NSError *error = [NSError errorWithDomain:[BaasBox errorDomain]
-                                                                      code:[BaasBox errorCode]
-                                                                  userInfo:userInfo];
-                                 
+                                                              
                                  completionBlock(nil, error);
-                                 
+                               
                              }
                          }
                          
@@ -1101,9 +1093,9 @@ NSString* const BAAUserKeyForUserDefaults = @"com.baaxbox.user";
     
 }
 
-- (void) resetPasswordForUser:(BAAUser *)user withCompletion:(BAABooleanResultBlock)completionBlock {
+- (void) resetPasswordForUsername:(NSString *)username withCompletion:(BAABooleanResultBlock)completionBlock {
     
-    NSString *path = [NSString stringWithFormat:@"user/%@/password/reset", user.username];
+    NSString *path = [NSString stringWithFormat:@"user/%@/password/reset", username];
     [self getPath:path
        parameters:nil
           success:^(id responseObject) {
@@ -1465,7 +1457,7 @@ NSString* const BAAUserKeyForUserDefaults = @"com.baaxbox.user";
         
         [mutableRequest setValue:[NSString stringWithFormat:@"application/json; charset=%@", charset]
               forHTTPHeaderField:@"Content-Type"];
-        if ([mutableRequest.HTTPMethod isEqualToString:@"POST"] || [mutableRequest.HTTPMethod isEqualToString:@"PUT"]) {
+        if ([mutableRequest.HTTPMethod isEqualToString:@"POST"] || [mutableRequest.HTTPMethod isEqualToString:@"PUT"] || [mutableRequest.HTTPMethod isEqualToString:@"DELETE"]) {
             [mutableRequest setHTTPBody:[NSJSONSerialization dataWithJSONObject:parameters options:0 error:error]];
         }
         if ([mutableRequest.HTTPMethod isEqualToString:@"GET"]) {
@@ -1498,6 +1490,8 @@ NSString* const BAAUserKeyForUserDefaults = @"com.baaxbox.user";
                              
                              NSError *error = [BaasBox authenticationErrorForResponse:jsonObject];                            
                              failure(error);
+                             [[NSNotificationCenter defaultCenter] postNotificationName:kAuthenticationTokenExpiredNotification 
+                                                                                 object:nil];
                              return;
                              
                          }
@@ -1546,6 +1540,8 @@ NSString* const BAAUserKeyForUserDefaults = @"com.baaxbox.user";
                              
                              NSError *error = [BaasBox authenticationErrorForResponse:jsonObject];
                              failure(error);
+                             [[NSNotificationCenter defaultCenter] postNotificationName:kAuthenticationTokenExpiredNotification
+                                                                                 object:nil];
                              return;
                              
                          }
@@ -1584,6 +1580,8 @@ NSString* const BAAUserKeyForUserDefaults = @"com.baaxbox.user";
                              
                              NSError *error = [BaasBox authenticationErrorForResponse:jsonObject];
                              failure(error);
+                             [[NSNotificationCenter defaultCenter] postNotificationName:kAuthenticationTokenExpiredNotification
+                                                                                 object:nil];
                              return;
                              
                          }
@@ -1622,6 +1620,8 @@ NSString* const BAAUserKeyForUserDefaults = @"com.baaxbox.user";
                              
                              NSError *error = [BaasBox authenticationErrorForResponse:jsonObject];
                              failure(error);
+                             [[NSNotificationCenter defaultCenter] postNotificationName:kAuthenticationTokenExpiredNotification
+                                                                                 object:nil];
                              return;
                              
                          }

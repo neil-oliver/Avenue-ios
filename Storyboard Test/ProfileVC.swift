@@ -15,33 +15,30 @@ class ProfileVC: UIViewController {
         
     }
     
+    
     @IBAction func btnLogOut(sender: AnyObject) {
         
-        
-        var appDel: AppDelegate = (UIApplication.sharedApplication().delegate as AppDelegate)
-        var context:NSManagedObjectContext = appDel.managedObjectContext!
-        
-        var request = NSFetchRequest(entityName: "Users")
-        request.returnsObjectsAsFaults = false;
-        request.predicate = NSPredicate(format: "user_logged_in = true")
-        var results:NSArray = context.executeFetchRequest(request, error: nil)!
-        if results.count != 0 {
-            let usersManagedObject = results[0] as Users
-            usersManagedObject.user_logged_in = false // you can now use dot syntax instead of setValue
-            context.save(nil)
+        BAAUser.logoutWithCompletion( {(success: Bool, error: NSError!) -> () in
             
-            var loginvc:LoginVC = storyboard?.instantiateViewControllerWithIdentifier("LoginVC") as LoginVC
-            self.presentViewController(loginvc, animated: true, completion: nil)
-        }
-    
+            if (success) {
+                var loginvc:LoginVC = self.storyboard?.instantiateViewControllerWithIdentifier("LoginVC") as LoginVC
+                self.presentViewController(loginvc, animated: true, completion: nil)
+            }else {
+                
+                println("log out error \(error.localizedDescription)")
+                
+            }
+            
+        })
+        
+        
     }
+    
     @IBOutlet var lblUsername: UILabel!
     @IBOutlet var lblEmail: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        lblUsername.text = loggedInUser?.user_login as String?
-        lblEmail.text = loggedInUser?.user_email as String?
         
         // Do any additional setup after loading the view.
     }

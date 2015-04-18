@@ -37,7 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             println("Connection Type: Not connected to the Internet")
         }
         
-        BaasBox.setBaseURL("http://bethehype.co.uk/console", appCode: "1234567890")
+        BaasBox.setBaseURL("http://localhost:9000", appCode: "1234567890")
         
         return true
     }

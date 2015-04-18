@@ -24,34 +24,7 @@ class GalleryVC: UIViewController, UICollectionViewDelegateFlowLayout, UICollect
     override func viewDidLoad() {
         super.viewDidLoad()
         startConnection()
-        
-        let client = BAAClient.sharedClient()
-        
-        if client.isAuthenticated() {
-            
-            println("Logged in")
-            
-        } else {
-            
-            println("Not logged in")
-        }
-        
-        
-        client.authenticateUser("admin", password:"admin", { (success: Bool, error: NSError!) -> () in
-            
-            
-            if (success) {
-                
-                println("successful log in")
-                
-                
-            } else {
-                
-                println(error.localizedDescription)
-                
-            }
-            
-        })
+
         self.spinner.center = self.cvGallery.center
         self.cvGallery.addSubview(self.spinner)
         self.refreshControl = UIRefreshControl()
