@@ -12,7 +12,10 @@ class GalleryVC: UIViewController, UICollectionViewDelegateFlowLayout, UICollect
     
     lazy var data = NSMutableData()
     
+    let spinner = UIActivityIndicatorView()
+    
     @IBOutlet weak var cvGallery: UICollectionView!
+    
     //variable for refreshing table data
     var refreshControl:UIRefreshControl!
     
@@ -49,11 +52,8 @@ class GalleryVC: UIViewController, UICollectionViewDelegateFlowLayout, UICollect
             }
             
         })
-        
-        
-
-        
-        
+        self.spinner.center = self.cvGallery.center
+        self.cvGallery.addSubview(self.spinner)
         self.refreshControl = UIRefreshControl()
         self.refreshControl.attributedTitle = NSAttributedString(string: "Pull to refersh")
         self.refreshControl.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
@@ -123,6 +123,9 @@ class GalleryVC: UIViewController, UICollectionViewDelegateFlowLayout, UICollect
         let json = JSON(data: data)
         
         for (key, subJson) in json {
+    
+            self.spinner.startAnimating()
+            
             if let guid = subJson["guid"].string {
                 //println(guid)
                 var url: NSURL!
@@ -130,7 +133,11 @@ class GalleryVC: UIViewController, UICollectionViewDelegateFlowLayout, UICollect
                 downloadImage(url, {image, error in
                     self.downloadedImages.append(image)
                     self.cvGallery.insertItemsAtIndexPaths([NSIndexPath(forItem: self.downloadedImages.count - 1, inSection: 0)])
-                    //println(self.downloadedImages.count)
+                    //println("downloadedimages count \(self.downloadedImages.count)")
+                    //println("json count \(json.count)")
+                    if self.downloadedImages.count == json.count {
+                        self.spinner.stopAnimating()
+                    }
                 })
             }
         }
