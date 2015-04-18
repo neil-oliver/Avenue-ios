@@ -21,7 +21,39 @@ class GalleryVC: UIViewController, UICollectionViewDelegateFlowLayout, UICollect
     override func viewDidLoad() {
         super.viewDidLoad()
         startConnection()
-        //BaasBox.setBaseURL("http://localhost:9000", appCode: "1234567890")
+        
+        let client = BAAClient.sharedClient()
+        
+        if client.isAuthenticated() {
+            
+            println("Logged in")
+            
+        } else {
+            
+            println("Not logged in")
+        }
+        
+        
+        client.authenticateUser("admin", password:"admin", { (success: Bool, error: NSError!) -> () in
+            
+            
+            if (success) {
+                
+                println("successful log in")
+                
+                
+            } else {
+                
+                println(error.localizedDescription)
+                
+            }
+            
+        })
+        
+        
+
+        
+        
         self.refreshControl = UIRefreshControl()
         self.refreshControl.attributedTitle = NSAttributedString(string: "Pull to refersh")
         self.refreshControl.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
@@ -92,13 +124,13 @@ class GalleryVC: UIViewController, UICollectionViewDelegateFlowLayout, UICollect
         
         for (key, subJson) in json {
             if let guid = subJson["guid"].string {
-                println(guid)
+                //println(guid)
                 var url: NSURL!
                 url  = NSURL(string: guid)
                 downloadImage(url, {image, error in
                     self.downloadedImages.append(image)
                     self.cvGallery.insertItemsAtIndexPaths([NSIndexPath(forItem: self.downloadedImages.count - 1, inSection: 0)])
-                    println(self.downloadedImages.count)
+                    //println(self.downloadedImages.count)
                 })
             }
         }
