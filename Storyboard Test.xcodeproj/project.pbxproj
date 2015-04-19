@@ -20,6 +20,8 @@
 		8442955D1A274D5100B9429B /* Users.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8442955C1A274D5100B9429B /* Users.swift */; };
 		844E16D11ADFE0DD0057FAAD /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 844E16D01ADFE0DD0057FAAD /* LaunchScreen.xib */; };
 		845101081A252FDB00940488 /* Storyboard_Test.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 845101061A252FDB00940488 /* Storyboard_Test.xcdatamodeld */; };
+		8463C9131AE43B450074BBA7 /* Venues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8463C9121AE43B450074BBA7 /* Venues.swift */; };
+		8463C9151AE43DD70074BBA7 /* Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8463C9141AE43DD70074BBA7 /* Events.swift */; };
 		8474D2F51A37064B00CE7AC8 /* cvGalleryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8474D2F41A37064B00CE7AC8 /* cvGalleryCell.swift */; };
 		849880DF1ADEB55D00188146 /* BAAClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 849880D11ADEB55D00188146 /* BAAClient.m */; };
 		849880E01ADEB55D00188146 /* BAAFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 849880D31ADEB55D00188146 /* BAAFile.m */; };
@@ -127,6 +129,8 @@
 		8442955C1A274D5100B9429B /* Users.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Users.swift; sourceTree = "<group>"; };
 		844E16D01ADFE0DD0057FAAD /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		845101071A252FDB00940488 /* Storyboard_Test.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Storyboard_Test.xcdatamodel; sourceTree = "<group>"; };
+		8463C9121AE43B450074BBA7 /* Venues.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Venues.swift; sourceTree = "<group>"; };
+		8463C9141AE43DD70074BBA7 /* Events.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Events.swift; sourceTree = "<group>"; };
 		8474D2F41A37064B00CE7AC8 /* cvGalleryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = cvGalleryCell.swift; sourceTree = "<group>"; };
 		849880D01ADEB55D00188146 /* BAAClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BAAClient.h; sourceTree = "<group>"; };
 		849880D11ADEB55D00188146 /* BAAClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BAAClient.m; sourceTree = "<group>"; };
@@ -361,6 +365,8 @@
 				849880DC1ADEB55D00188146 /* BAAUser.h */,
 				849880DD1ADEB55D00188146 /* BAAUser.m */,
 				84F4F70E1ADEB63600D3637A /* Bridging-Header.h */,
+				8463C9121AE43B450074BBA7 /* Venues.swift */,
+				8463C9141AE43DD70074BBA7 /* Events.swift */,
 			);
 			path = "BaasBox-iOS-SDK";
 			sourceTree = "<group>";
@@ -580,11 +586,13 @@
 				84B5E38A1A24F50400F637DB /* PersistenceHelper.swift in Sources */,
 				8474D2F51A37064B00CE7AC8 /* cvGalleryCell.swift in Sources */,
 				84B5E38B1A24F50400F637DB /* LocationManager.swift in Sources */,
+				8463C9151AE43DD70074BBA7 /* Events.swift in Sources */,
 				849C0E7C1A1F777100542AAA /* ArchiveVC.swift in Sources */,
 				849C0E721A1F655B00542AAA /* EventVC.swift in Sources */,
 				849C0E761A1F65C500542AAA /* AltEventVC.swift in Sources */,
 				8416B1CD1A1E016C00106879 /* AppDelegate.swift in Sources */,
 				84F109F51A26336F0079F9B8 /* UserManager.swift in Sources */,
+				8463C9131AE43B450074BBA7 /* Venues.swift in Sources */,
 				84B5E3901A24F5AC00F637DB /* Globals.swift in Sources */,
 				842A543A1A2DE0C20031FF58 /* Functions.swift in Sources */,
 				84B5E38C1A24F50400F637DB /* EventManager.swift in Sources */,
