@@ -24,6 +24,11 @@ class LoginVC: UIViewController, NSURLConnectionDelegate {
     
     let client = BAAClient.sharedClient()
     
+    @IBAction func btnSignup(sender: AnyObject) {
+        var signupvc:SignupVC = self.storyboard?.instantiateViewControllerWithIdentifier("SignupVC") as SignupVC
+        let navigationController = UINavigationController(rootViewController: signupvc)
+        self.presentViewController(navigationController, animated: true, completion: nil)
+    }
     @IBAction func btnLogin(sender: AnyObject) {
         
         

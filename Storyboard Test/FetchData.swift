@@ -139,7 +139,7 @@ class FetchData: NSObject, NSURLConnectionDelegate {
             currentDateTime = NSDate()
             venueResultNo = venueResultNo + 1
             
-            
+            /*
             //Adds new venue information into the BAAS system, it does not check for existing venues so it will replicate.
             var newLocation : BAAVenue = BAAVenue()
             newLocation.venue_name = Venues[venueResultNo]["location_name"].string
@@ -158,9 +158,8 @@ class FetchData: NSObject, NSURLConnectionDelegate {
                     println("Error: \(error)")
                 }
             })
-                
-                
-                
+            */
+            
             //calls the venue save function
             locationMgr.addLocation(LocationID, LocationName: LocationName, LocationPostID: LocationPostID, LocationSlug: LocationSlug, LocationTown: LocationTown, LocationAddress: LocationAddress, LocationPostcode: LocationPostcode, LocationLatitude: LocationLatitude, LocationLongitude: LocationLongitude, dateTime: currentDateTime)
         }
