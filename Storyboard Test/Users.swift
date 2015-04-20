@@ -13,14 +13,14 @@ import CoreData
 class Users: NSManagedObject {
 
     @NSManaged var user_date_created: NSDate
-    @NSManaged var user_email: String
+    @NSManaged var user_email: NSString
     @NSManaged var user_id: NSNumber
     @NSManaged var user_logged_in: NSNumber
-    @NSManaged var user_login: String
-    @NSManaged var user_nicename: String
-    @NSManaged var user_pass: String
+    @NSManaged var user_login: NSString
+    @NSManaged var user_nicename: NSString
+    @NSManaged var user_pass: NSString
     @NSManaged var user_registered: NSDate
-    @NSManaged var user_role: String
+    @NSManaged var user_role: NSString
     @NSManaged var user_status: NSNumber
 
 }

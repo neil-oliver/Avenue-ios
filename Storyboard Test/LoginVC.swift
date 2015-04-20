@@ -33,6 +33,7 @@ class LoginVC: UIViewController, NSURLConnectionDelegate {
             if (success) {
                 
                 println("successful log in")
+                
                 if closeEvents.count != 0 {
                     if closeEvents[0].locations.distance < 100 {
                         var gigfoundvc:GigFoundVC = self.storyboard?.instantiateViewControllerWithIdentifier("GigFoundVC") as GigFoundVC
@@ -86,6 +87,7 @@ class LoginVC: UIViewController, NSURLConnectionDelegate {
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        /*
         if client.isAuthenticated(){
             if closeEvents.count != 0 {
                 if closeEvents[0].locations.distance < 100 {
@@ -105,6 +107,7 @@ class LoginVC: UIViewController, NSURLConnectionDelegate {
                 self.presentViewController(navigationController, animated: true, completion: nil)
             }
         }
+        */
     }
     
 }

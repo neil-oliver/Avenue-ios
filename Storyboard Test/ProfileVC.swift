@@ -41,6 +41,13 @@ class ProfileVC: UIViewController {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
+        
+        BAAUser.loadCurrentUserWithCompletion({(object:AnyObject!, error: NSError!) -> () in
+            
+            var currentUser = object as BAAUser
+            self.lblUsername.text = currentUser.username()            
+            })
+        
     }
 
     override func didReceiveMemoryWarning() {

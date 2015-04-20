@@ -9,26 +9,28 @@
 import Foundation
 import CoreLocation
 
-class BAAVenues: BAAObject {
+class BAAVenue: BAAObject {
     
-    let venue_address: NSString
-    let venue_latitude: CLLocationDegrees
-    let venue_longitude: CLLocationDegrees
-    let venue_name: NSString
-    let venue_postcode: NSString
-    let venue_slug: NSString
-    let venue_town: NSString
+    var venue_address: NSString!
+    var venue_latitude: NSNumber!
+    var venue_longitude: NSNumber!
+    var venue_name: NSString!
+    var venue_postcode: NSString!
+    var venue_slug: NSString!
+    var venue_town: NSString!
     
     
     override init!(dictionary: [NSObject : AnyObject]!) {
-        self.venue_address = dictionary["venue_address"]! as NSString
-        self.venue_latitude = dictionary["venue_latitude"]! as CLLocationDegrees
-        self.venue_longitude = dictionary["venue_longitude"]! as CLLocationDegrees
-        self.venue_name = dictionary["venue_name"]! as NSString
-        self.venue_postcode = dictionary["venue_postcode"]! as NSString
-        self.venue_slug = dictionary["venue_slug"]! as NSString
-        self.venue_town = dictionary["venue_town"]! as NSString
+        
+        venue_address = dictionary["venue_address"] as NSString!
+        venue_latitude = dictionary["venue_latitude"] as NSNumber!
+        venue_longitude = dictionary["venue_longitude"] as NSNumber!
+        venue_name = dictionary["venue_name"] as NSString!
+        venue_postcode = dictionary["venue_postcode"] as NSString!
+        venue_slug = dictionary["venue_slug"] as NSString!
+        venue_town = dictionary["venue_town"] as NSString!
         super.init(dictionary: dictionary)
+
     }
     
     override func collectionName() -> String! {
