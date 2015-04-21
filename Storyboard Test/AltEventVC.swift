@@ -21,7 +21,7 @@ class AltEventVC: UIViewController, UIPageViewControllerDataSource  {
     //MARK: UIPageViewControllerDataSource
     func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
         
-        var currentVC = viewController as AltEventContentVC
+        var currentVC = viewController as! AltEventContentVC
         var index = currentVC.pageIndex
         
         if index == 0 || index != nil {
@@ -35,7 +35,7 @@ class AltEventVC: UIViewController, UIPageViewControllerDataSource  {
     
     func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
         
-        var currentVC = viewController as AltEventContentVC
+        var currentVC = viewController as! AltEventContentVC
         var index = currentVC.pageIndex
         
         if index == nil {
@@ -65,8 +65,8 @@ class AltEventVC: UIViewController, UIPageViewControllerDataSource  {
             return nil
         }
         
-        var pageContentViewController = self.storyboard?.instantiateViewControllerWithIdentifier("AltEventContentVC") as AltEventContentVC
-        pageContentViewController.titleText = closeEvents[index].event_name
+        var pageContentViewController = self.storyboard?.instantiateViewControllerWithIdentifier("AltEventContentVC") as! AltEventContentVC
+        pageContentViewController.titleText = closeEvents[index].event_name as String
         pageContentViewController.lat = closeEvents[index].locations.location_latitude as Double
         pageContentViewController.lon = closeEvents[index].locations.location_longitude as Double
         pageContentViewController.locname = closeEvents[index].locations.location_name as String
@@ -84,12 +84,12 @@ class AltEventVC: UIViewController, UIPageViewControllerDataSource  {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.pageViewController = self.storyboard?.instantiateViewControllerWithIdentifier("AltEventPVC") as UIPageViewController
+        self.pageViewController = self.storyboard?.instantiateViewControllerWithIdentifier("AltEventPVC") as! UIPageViewController
         self.pageViewController.dataSource = self
         
         var startingViewController = self.viewControllerAtIndex(0) as AltEventContentVC
         var viewControllers = [startingViewController] as NSArray
-        self.pageViewController.setViewControllers(viewControllers, direction: UIPageViewControllerNavigationDirection.Forward, animated: false, completion: nil)
+        self.pageViewController.setViewControllers(viewControllers as [AnyObject], direction: UIPageViewControllerNavigationDirection.Forward, animated: false, completion: nil)
         
         //Size of the VC
         self.pageViewController.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 30)

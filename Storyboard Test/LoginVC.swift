@@ -22,36 +22,37 @@ class LoginVC: UIViewController, NSURLConnectionDelegate {
     @IBOutlet weak var txtUsername: UITextField!
     @IBOutlet weak var txtPassword: UITextField!
     
+    
     let client = BAAClient.sharedClient()
     
     @IBAction func btnSignup(sender: AnyObject) {
-        var signupvc:SignupVC = self.storyboard?.instantiateViewControllerWithIdentifier("SignupVC") as SignupVC
+        var signupvc:SignupVC = self.storyboard?.instantiateViewControllerWithIdentifier("SignupVC") as! SignupVC
         let navigationController = UINavigationController(rootViewController: signupvc)
         self.presentViewController(navigationController, animated: true, completion: nil)
     }
     @IBAction func btnLogin(sender: AnyObject) {
         
         
-        BAAUser.loginWithUsername(txtUsername.text, password:txtPassword.text, { (success: Bool, error: NSError!) -> () in
+        BAAUser.loginWithUsername(txtUsername.text, password:txtPassword.text, completion: { (success: Bool, error: NSError!) -> () in
             
             
             if (success) {
                 
                 println("successful log in")
-                
+                //move past login screen to either the main menu or the gig found screen.
                 if closeEvents.count != 0 {
                     if closeEvents[0].locations.distance < 100 {
-                        var gigfoundvc:GigFoundVC = self.storyboard?.instantiateViewControllerWithIdentifier("GigFoundVC") as GigFoundVC
+                        var gigfoundvc:GigFoundVC = self.storyboard?.instantiateViewControllerWithIdentifier("GigFoundVC") as! GigFoundVC
                         let navigationController = UINavigationController(rootViewController: gigfoundvc)
                         self.presentViewController(navigationController, animated: true, completion: nil)
                     } else {
-                        var menutbc : MenuTBC = self.storyboard?.instantiateViewControllerWithIdentifier("MenuTBC") as MenuTBC
+                        var menutbc : MenuTBC = self.storyboard?.instantiateViewControllerWithIdentifier("MenuTBC") as! MenuTBC
                         menutbc.selectedIndex = 0
                         let navigationController = UINavigationController(rootViewController: menutbc)
                         self.presentViewController(navigationController, animated: true, completion: nil)
                     }
                 } else {
-                    var menutbc : MenuTBC = self.storyboard?.instantiateViewControllerWithIdentifier("MenuTBC") as MenuTBC
+                    var menutbc : MenuTBC = self.storyboard?.instantiateViewControllerWithIdentifier("MenuTBC") as! MenuTBC
                     menutbc.selectedIndex = 0
                     let navigationController = UINavigationController(rootViewController: menutbc)
                     self.presentViewController(navigationController, animated: true, completion: nil)
@@ -73,6 +74,7 @@ class LoginVC: UIViewController, NSURLConnectionDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //check to see if a user is already authenticated
         if client.isAuthenticated() {
             
             println("Logged in")
@@ -92,21 +94,23 @@ class LoginVC: UIViewController, NSURLConnectionDelegate {
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        /*
+        
+        /* 
+        // automatically moves past the login screen if user is authenticated.
         if client.isAuthenticated(){
             if closeEvents.count != 0 {
                 if closeEvents[0].locations.distance < 100 {
-                    var gigfoundvc:GigFoundVC = storyboard?.instantiateViewControllerWithIdentifier("GigFoundVC") as GigFoundVC
+                    var gigfoundvc:GigFoundVC = storyboard?.instantiateViewControllerWithIdentifier("GigFoundVC") as! GigFoundVC
                     let navigationController = UINavigationController(rootViewController: gigfoundvc)
                     self.presentViewController(navigationController, animated: true, completion: nil)
                 } else {
-                    var menutbc : MenuTBC = storyboard?.instantiateViewControllerWithIdentifier("MenuTBC") as MenuTBC
+                    var menutbc : MenuTBC = storyboard?.instantiateViewControllerWithIdentifier("MenuTBC") as! MenuTBC
                     menutbc.selectedIndex = 0
                     let navigationController = UINavigationController(rootViewController: menutbc)
                     self.presentViewController(navigationController, animated: true, completion: nil)
                 }
             } else {
-                var menutbc : MenuTBC = storyboard?.instantiateViewControllerWithIdentifier("MenuTBC") as MenuTBC
+                var menutbc : MenuTBC = storyboard?.instantiateViewControllerWithIdentifier("MenuTBC") as! MenuTBC
                 menutbc.selectedIndex = 0
                 let navigationController = UINavigationController(rootViewController: menutbc)
                 self.presentViewController(navigationController, animated: true, completion: nil)

@@ -21,7 +21,7 @@ class ProfileVC: UIViewController {
         BAAUser.logoutWithCompletion( {(success: Bool, error: NSError!) -> () in
             
             if (success) {
-                var loginvc:LoginVC = self.storyboard?.instantiateViewControllerWithIdentifier("LoginVC") as LoginVC
+                var loginvc:LoginVC = self.storyboard?.instantiateViewControllerWithIdentifier("LoginVC") as! LoginVC
                 self.presentViewController(loginvc, animated: true, completion: nil)
             }else {
                 
@@ -44,7 +44,7 @@ class ProfileVC: UIViewController {
         
         BAAUser.loadCurrentUserWithCompletion({(object:AnyObject!, error: NSError!) -> () in
             
-            var currentUser = object as BAAUser
+            var currentUser = object as! BAAUser
             self.lblUsername.text = currentUser.username()            
             })
         

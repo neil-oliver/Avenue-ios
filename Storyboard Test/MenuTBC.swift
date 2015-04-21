@@ -13,7 +13,7 @@ class MenuTBC: UITabBarController {
 
     @IBOutlet var btnGigOn: UIButton!
     @IBAction func btnGigOn(sender: AnyObject) {
-        var gigfoundvc:GigFoundVC = storyboard?.instantiateViewControllerWithIdentifier("GigFoundVC") as GigFoundVC
+        var gigfoundvc:GigFoundVC = storyboard?.instantiateViewControllerWithIdentifier("GigFoundVC") as! GigFoundVC
         let navigationController = UINavigationController(rootViewController: gigfoundvc)
         self.presentViewController(navigationController, animated: true, completion: nil)
     }

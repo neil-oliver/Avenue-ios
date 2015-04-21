@@ -125,7 +125,7 @@ class MenuTransitionManager: UIPercentDrivenInteractiveTransition, UIViewControl
         
         // assign references to our menu view controller and the 'bottom' view controller from the tuple
         // remember that our menuViewController will alternate between the from and to view controller depending if we're presenting or dismissing
-        let menuViewController = !self.presenting ? screens.from as CloseEventSideBarVC : screens.to as CloseEventSideBarVC
+        let menuViewController = !self.presenting ? screens.from as! CloseEventSideBarVC : screens.to as! CloseEventSideBarVC
         let topViewController = !self.presenting ? screens.to as UIViewController : screens.from as UIViewController
         
         let menuView = menuViewController.view

@@ -52,7 +52,7 @@ class ScanVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
         var image = self.matchedPhotos[self.activePhotoIndex!]
         var photo = image.0
         self.imgScanImageBox.image = photo
-        self.lblMatchedEvent.text = image.1.event_name
+        self.lblMatchedEvent.text = image.1.event_name as String
         self.btnConfirm.enabled = true
 
     }
@@ -72,7 +72,7 @@ class ScanVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
         var image = self.matchedPhotos[self.activePhotoIndex!]
         var photo = image.0
         self.imgScanImageBox.image = photo
-        self.lblMatchedEvent.text = image.1.event_name
+        self.lblMatchedEvent.text = image.1.event_name as String
         self.btnConfirm.enabled = true
     }
     
@@ -93,9 +93,8 @@ class ScanVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
         imagePicker.allowsEditing = false
         self.presentViewController(imagePicker, animated: true, completion: nil)
     }
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]){
     
-    func imagePickerController(picker: UIImagePickerController!, didFinishPickingMediaWithInfo info:NSDictionary!) {
-        
         var lat: CLLocationDegrees?
         var long: CLLocationDegrees?
         var timestamp: NSDate?
@@ -103,13 +102,13 @@ class ScanVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
         var resEvents = [Events]()
         
         let library = ALAssetsLibrary()
-        var url: NSURL = info.objectForKey(UIImagePickerControllerReferenceURL) as NSURL
+        var url: NSURL = info[UIImagePickerControllerReferenceURL] as! NSURL
         
         library.assetForURL(url, resultBlock: {
             (asset: ALAsset!) in
             if asset != nil {
                 
-                    if let photoType: NSString = asset.valueForProperty(ALAssetPropertyType) as NSString!
+                    if let photoType: NSString = asset.valueForProperty(ALAssetPropertyType) as! NSString!
                     {
                         if photoType == ALAssetTypePhoto
                         {
@@ -125,12 +124,12 @@ class ScanVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
                         }
                     }
                 
-                if let location: CLLocation = asset.valueForProperty(ALAssetPropertyLocation) as CLLocation!
+                if let location: CLLocation = asset.valueForProperty(ALAssetPropertyLocation) as! CLLocation!
                 {
                     lat = location.coordinate.latitude
                     long = location.coordinate.longitude
                     
-                    if let photoDate: NSDate = asset.valueForProperty(ALAssetPropertyDate) as NSDate!
+                    if let photoDate: NSDate = asset.valueForProperty(ALAssetPropertyDate) as! NSDate!
                     {
                         timestamp = photoDate
                         //println("date: \(photoDate)")
@@ -151,22 +150,53 @@ class ScanVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
                     locationMgr.predicateVars = [latMin, latMax, lngMin, lngMax]
                     
                     
-                    var appDel: AppDelegate = (UIApplication.sharedApplication().delegate as AppDelegate)
+                    var appDel: AppDelegate = (UIApplication.sharedApplication().delegate as! AppDelegate)
                     var context:NSManagedObjectContext = appDel.managedObjectContext!
                     var request = NSFetchRequest(entityName: "Events")
                     request.returnsObjectsAsFaults = false;
                     request.relationshipKeyPathsForPrefetching = ["locations"]
                     request.predicate = NSPredicate(format: "locations.location_latitude > %f && locations.location_latitude < %f && locations.location_longitude > %f && locations.location_longitude < %f && event_start < %@ && event_end > %@ ", latMin, latMax, lngMin, lngMax, timestamp!, timestamp!)
                     var eventres: NSArray = context.executeFetchRequest(request, error: nil)!
-                    resEvents = eventres as [Events]
+                    resEvents = eventres as! [Events]
                 }
 
                     if resEvents.count == 0 {
                         self.imgScanImageBox.image = image
                         self.lblMatchedEvent.text = "No Event Found"
+                        
+                        
+                        //add selected image to BAAS
+                        var data = UIImageJPEGRepresentation(image, 1.0)
+                        var file: BAAFile = BAAFile(data: data)
+                        file.contentType = "image/jpeg"
+                        file.uploadFileWithPermissions(nil, completion:{(uploadedFile: AnyObject!, error: NSError!) -> Void in
+                            if uploadedFile != nil {
+                                println("Object: \(uploadedFile)")
+                            }
+                            if error != nil {
+                                println("Upload Error: \(error)")
+                            }
+                        })
+                        
+                        
+                        
                     } else {
                         self.imgScanImageBox.image = image
-                        self.lblMatchedEvent.text = resEvents[0].event_name
+                        self.lblMatchedEvent.text = resEvents[0].event_name as String
+                        
+                        //add selected image to BAAS
+                        var data = UIImageJPEGRepresentation(image, 1.0)
+                        var file: BAAFile = BAAFile(data: data)
+                        file.contentType = "image/jpeg"
+                        file.uploadFileWithPermissions(nil, completion:{(uploadedFile: AnyObject!, error: NSError!) -> Void in
+                            if uploadedFile != nil {
+                                println("Object: \(uploadedFile)")
+                            }
+                            if error != nil {
+                                println("Upload Error: \(error)")
+                            }
+                        })
+                        
                     }
                 
             }
@@ -176,7 +206,7 @@ class ScanVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
                 NSLog("Error!")
             }
         )}
-    
+        
     
     @IBOutlet var imgScanImageBox: UIImageView!
     
@@ -207,23 +237,23 @@ class ScanVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
             if (group != nil) {
             
                 println("Group \((group.valueForProperty(ALAssetsGroupPropertyName))) is not nil")
-                if group.valueForProperty(ALAssetsGroupPropertyName) as NSString == "All Photos" {
+                if group.valueForProperty(ALAssetsGroupPropertyName) as! NSString == "All Photos" {
                     group.enumerateAssetsUsingBlock { (asset, index, stop) in
                         if asset != nil
                         {
-                            if let location: CLLocation = asset.valueForProperty(ALAssetPropertyLocation) as CLLocation!
+                            if let location: CLLocation = asset.valueForProperty(ALAssetPropertyLocation) as! CLLocation!
                             {
                                 self.lat = location.coordinate.latitude
                                 self.long = location.coordinate.longitude
                                 //println("lat: \(lat), lon: \(long)")
                             
-                                if let photoDate: NSDate = asset.valueForProperty(ALAssetPropertyDate) as NSDate!
+                                if let photoDate: NSDate = asset.valueForProperty(ALAssetPropertyDate) as! NSDate!
                                 {
                                     self.timestamp = photoDate
                                     //println("date: \(photoDate)")
                                 }
                                 
-                                if let photoURL: NSURL = asset.valueForProperty(ALAssetPropertyAssetURL) as NSURL!
+                                if let photoURL: NSURL = asset.valueForProperty(ALAssetPropertyAssetURL) as! NSURL!
                                 {
                                     self.URL = photoURL
                                     let absoluteURL = photoURL.absoluteString!
@@ -235,7 +265,7 @@ class ScanVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
                                     self.thumbnail = photoThumb
                                 }
                                 
-                                if let photoType: NSString = asset.valueForProperty(ALAssetPropertyType) as NSString!
+                                if let photoType: NSString = asset.valueForProperty(ALAssetPropertyType) as! NSString!
                                 {
                                     if photoType == ALAssetTypePhoto
                                     {
@@ -267,14 +297,14 @@ class ScanVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
                                 locationMgr.predicateVars = [latMin, latMax, lngMin, lngMax]
                                 
                                 
-                                var appDel: AppDelegate = (UIApplication.sharedApplication().delegate as AppDelegate)
+                                var appDel: AppDelegate = (UIApplication.sharedApplication().delegate as! AppDelegate)
                                 var context:NSManagedObjectContext = appDel.managedObjectContext!
                                 var request = NSFetchRequest(entityName: "Events")
                                 request.returnsObjectsAsFaults = false;
                                 request.relationshipKeyPathsForPrefetching = ["locations"]
                                 request.predicate = NSPredicate(format: "locations.location_latitude > %f && locations.location_latitude < %f && locations.location_longitude > %f && locations.location_longitude < %f && event_start < %@ && event_end > %@ ", latMin, latMax, lngMin, lngMax, self.timestamp!, self.timestamp!)
                                 var eventres: NSArray = context.executeFetchRequest(request, error: nil)!
-                                resEvents = eventres as [Events]
+                                resEvents = eventres as! [Events]
                                 if eventres.count == 0 {
                                     //println("No event found for photo")
                                 } else {
@@ -286,8 +316,7 @@ class ScanVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
                         }
                     }
                 }
-            } else
-            {
+            } else {
                 self.btnScan.setTitle("Scan", forState: UIControlState.Normal)
                 
                 println("The group is empty!")
@@ -297,8 +326,22 @@ class ScanVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
                     var image = self.matchedPhotos[self.activePhotoIndex!]
                     var photo = image.0
                     self.imgScanImageBox.image = photo
-                    self.lblMatchedEvent.text = image.1.event_name
+                    self.lblMatchedEvent.text = image.1.event_name as String
                     self.btnConfirm.enabled = true
+                    
+                    //add scanned image to BAAS
+                    var data = UIImageJPEGRepresentation(photo, 1.0)
+                    var file: BAAFile = BAAFile(data: data)
+                    file.contentType = "image/jpeg"
+                    file.uploadFileWithPermissions(nil, completion:{(uploadedFile: AnyObject!, error: NSError!) -> Void in
+                    if uploadedFile != nil {
+                    println("Object: \(uploadedFile)")
+                    }
+                    if error != nil {
+                    println("Upload Error: \(error)")
+                    }
+                    })
+                    
                 }
                 
                 if self.matchedPhotos.count > 1 {

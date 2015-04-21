@@ -22,10 +22,10 @@ class CloseEventDetailVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        lblEventTitle.text = seletedCloseEvent?.event_name
-        lblVenueName.text = "Venue: \(seletedCloseEvent?.locations.location_name as String)"
-        lblStartDate.text = "Start Date: \(seletedCloseEvent?.event_start_date as String)"
-        lblStartTime.text = "Start Time: \(seletedCloseEvent?.event_start_time as String)"
+        lblEventTitle.text = seletedCloseEvent?.event_name as? String
+        lblVenueName.text = "Venue: \(seletedCloseEvent?.locations.location_name as! String)"
+        lblStartDate.text = "Start Date: \(seletedCloseEvent?.event_start_date as! String)"
+        lblStartTime.text = "Start Time: \(seletedCloseEvent?.event_start_time as! String)"
         // Do any additional setup after loading the view.
         self.transitionManager.sourceViewController = self
     }
@@ -33,7 +33,7 @@ class CloseEventDetailVC: UIViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         
         // set transition delegate for our menu view controller
-        let menu = segue.destinationViewController as CloseEventSideBarVC
+        let menu = segue.destinationViewController as! CloseEventSideBarVC
         menu.transitioningDelegate = self.transitionManager
         self.transitionManager.menuViewController = menu
         

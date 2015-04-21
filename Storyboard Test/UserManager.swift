@@ -40,16 +40,16 @@ class UserManager: NSObject {
 
 
             
-            users.append(User(UserID:res.valueForKey("user_id") as Int!,
-                UserNiceName:res.valueForKey("user_nicename") as String!,
-                UserLogin:res.valueForKey("user_login") as String!,
-                UserPass:res.valueForKey("user_pass") as String!,
-                UserEmail:res.valueForKey("user_email") as String!,
-                UserRole:res.valueForKey("user_role") as String!,
-                UserLoggedIn:res.valueForKey("user_loggin_in") as Bool!,
-                UserStatus:res.valueForKey("user_status") as Int!,
-                UserRegistered:res.valueForKey("user_registered") as NSDate!,
-                dateTime:res.valueForKey("user_date_created") as NSDate!))
+            users.append(User(UserID:res.valueForKey("user_id") as! Int!,
+                UserNiceName:res.valueForKey("user_nicename") as! String!,
+                UserLogin:res.valueForKey("user_login") as! String!,
+                UserPass:res.valueForKey("user_pass") as! String!,
+                UserEmail:res.valueForKey("user_email") as! String!,
+                UserRole:res.valueForKey("user_role") as! String!,
+                UserLoggedIn:res.valueForKey("user_loggin_in") as! Bool!,
+                UserStatus:res.valueForKey("user_status") as! Int!,
+                UserRegistered:res.valueForKey("user_registered") as! NSDate!,
+                dateTime:res.valueForKey("user_date_created") as! NSDate!))
         }
         
     }
@@ -72,18 +72,18 @@ class UserManager: NSObject {
         
         println("dicUser: \(dicUser)")
         
-        var UserExistCheck = persistenceHelper.list("Users", predicateString: "user_id = %@", predicateVars: [UserID as Int])
+        var UserExistCheck = persistenceHelper.list("Users", predicateString: "user_id = %@", predicateVars: [UserID as! Int])
         println("existing user: \(UserExistCheck)")
         if UserExistCheck.count == 0 {
             if(persistenceHelper.save("Users", parameters: dicUser)){
                 println("User saved")
                 
                 // if errors then its probably here as this is untested
-                users.append(User(UserID: UserID as Int?, UserNiceName: UserNiceName as String?, UserLogin: UserLogin as String?, UserPass: UserPass as String?, UserEmail: UserEmail as String?, UserRole: UserRole as String?, UserLoggedIn: UserLoggedIn as Bool?, UserStatus: UserStatus as Int?, UserRegistered: UserRegistered as NSDate?, dateTime: dateTime as NSDate?))
+                users.append(User(UserID: UserID as! Int?, UserNiceName: UserNiceName as! String?, UserLogin: UserLogin as! String?, UserPass: UserPass as! String?, UserEmail: UserEmail as! String?, UserRole: UserRole as! String?, UserLoggedIn: UserLoggedIn as! Bool?, UserStatus: UserStatus as! Int?, UserRegistered: UserRegistered as! NSDate?, dateTime: dateTime as! NSDate?))
             }
         } else {
             
-            existingUserID = UserExistCheck[0].valueForKey("user_id") as Int
+            existingUserID = UserExistCheck[0].valueForKey("user_id") as! Int
             println("User already in database. User ID: \(existingUserID)")
             
         }

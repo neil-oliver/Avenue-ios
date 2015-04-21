@@ -16,7 +16,7 @@ import Foundation
     var manager: OneShotLocationManager?
     
     func getDistance() -> Bool {
-        var appDel: AppDelegate = (UIApplication.sharedApplication().delegate as AppDelegate)
+        var appDel: AppDelegate = (UIApplication.sharedApplication().delegate as! AppDelegate)
         var context:NSManagedObjectContext = appDel.managedObjectContext!
         var request = NSFetchRequest(entityName: "Locations")
         var locres: NSArray = context.executeFetchRequest(request, error: nil)!
@@ -25,8 +25,8 @@ import Foundation
         if(locres.count > 0){
             
             for result in locres {
-                var resLat = result.valueForKey("location_latitude") as CLLocationDegrees
-                var resLon = result.valueForKey("location_longitude") as CLLocationDegrees
+                var resLat = result.valueForKey("location_latitude") as! CLLocationDegrees
+                var resLon = result.valueForKey("location_longitude") as! CLLocationDegrees
                 var resCoords:CLLocation = CLLocation(latitude:resLat, longitude:resLon)
                 var distance = locationObj.distanceFromLocation(resCoords)
                 result.setValue(distance, forKey: "distance")
@@ -47,7 +47,7 @@ import Foundation
         
         if latValue != 0 && lonValue != 0 {
             if getDistance() == true {
-                var appDel: AppDelegate = (UIApplication.sharedApplication().delegate as AppDelegate)
+                var appDel: AppDelegate = (UIApplication.sharedApplication().delegate as! AppDelegate)
                 var context:NSManagedObjectContext = appDel.managedObjectContext!
                 var request = NSFetchRequest(entityName: "Events")
                 request.returnsObjectsAsFaults = false;
@@ -55,7 +55,7 @@ import Foundation
                 request.predicate = NSPredicate(format: "locations.distance < 1000 && event_end > %@", dateTime)
                 var eventres: NSArray = context.executeFetchRequest(request, error: nil)!
                 var descriptor: NSSortDescriptor = NSSortDescriptor(key: "locations.distance", ascending: true)
-                closeEvents = eventres.sortedArrayUsingDescriptors([descriptor]) as [Events]
+                closeEvents = eventres.sortedArrayUsingDescriptors([descriptor]) as! [Events]
             } else {
                 println("error getting closest event list")
             }
@@ -90,7 +90,7 @@ import Foundation
     }
     
     func existingUserCheck(UserID: Int) -> Bool {
-        var appDel: AppDelegate = (UIApplication.sharedApplication().delegate as AppDelegate)
+        var appDel: AppDelegate = (UIApplication.sharedApplication().delegate as! AppDelegate)
         var context:NSManagedObjectContext = appDel.managedObjectContext!
         var request = NSFetchRequest(entityName: "Users")
         request.predicate = NSPredicate(format: "user_id = %i", UserID)
@@ -104,14 +104,14 @@ import Foundation
     }
     
     func logInUser(UserID: Int) -> Bool{
-        var appDel: AppDelegate = (UIApplication.sharedApplication().delegate as AppDelegate)
+        var appDel: AppDelegate = (UIApplication.sharedApplication().delegate as! AppDelegate)
         var context:NSManagedObjectContext = appDel.managedObjectContext!
         var request = NSFetchRequest(entityName: "Users")
         request.returnsObjectsAsFaults = false;
         request.predicate = NSPredicate(format: "user_id = %i", UserID)
         var results:NSArray = context.executeFetchRequest(request, error: nil)!
         if results.count != 0 {
-            let usersManagedObject = results[0] as Users
+            let usersManagedObject = results[0] as! Users
             usersManagedObject.user_logged_in = true
             context.save(nil)
             getLoggedInUser()
@@ -123,7 +123,7 @@ import Foundation
     }
     
     func getLoggedInUser() -> Bool {
-        var appDel: AppDelegate = (UIApplication.sharedApplication().delegate as AppDelegate)
+        var appDel: AppDelegate = (UIApplication.sharedApplication().delegate as! AppDelegate)
         var context:NSManagedObjectContext = appDel.managedObjectContext!
         var request = NSFetchRequest(entityName: "Users")
         request.returnsObjectsAsFaults = false;
@@ -252,7 +252,7 @@ import Foundation
     func saveImage(image: UIImage, name: String) {
         //saves image into the default directory using a specified name
         var image = image
-        let documentsPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String
+        let documentsPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as! String
         let destinationPath = documentsPath.stringByAppendingPathComponent("\(name).jpg")
         UIImageJPEGRepresentation(image,1.0).writeToFile(destinationPath, atomically: true)
     }

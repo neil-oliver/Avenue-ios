@@ -51,7 +51,7 @@ class AltEventContentVC: UIViewController {
         map.setRegion(region, animated: true)
         
         var annotation = MKPointAnnotation()
-        annotation.setCoordinate(location)
+        annotation.coordinate = location
         annotation.title = locname
         map.addAnnotation(annotation)
         

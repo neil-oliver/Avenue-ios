@@ -204,7 +204,7 @@ class FetchData: NSObject, NSURLConnectionDelegate {
     func EventSave(){
         
         //first a database query is done to check if the event id is already in the local database
-        var appDel: AppDelegate = (UIApplication.sharedApplication().delegate as AppDelegate)
+        var appDel: AppDelegate = (UIApplication.sharedApplication().delegate as! AppDelegate)
         var context:NSManagedObjectContext = appDel.managedObjectContext!
         
         var request = NSFetchRequest(entityName: "Events")
@@ -215,24 +215,24 @@ class FetchData: NSObject, NSURLConnectionDelegate {
         // if no results are returned then the data is saved
         if(results.count == 0 && EventPostID != nil){
             
-            var newEvent = NSEntityDescription.insertNewObjectForEntityForName("Events", inManagedObjectContext: context) as Events
+            var newEvent = NSEntityDescription.insertNewObjectForEntityForName("Events", inManagedObjectContext: context)as! Events
             
-            newEvent.location_id = EventLocationID as NSString
-            newEvent.event_name = EventName as NSString
-            newEvent.post_id = EventPostID as NSString
-            newEvent.event_start_date = EventStartDate as NSString
-            newEvent.event_end_date = EventEndDate as NSString
-            newEvent.event_start_time = EventStartTime as NSString
-            newEvent.event_end_time = EventEndTime as NSString
+            newEvent.location_id = EventLocationID as! NSString
+            newEvent.event_name = EventName as! NSString
+            newEvent.post_id = EventPostID as! NSString
+            newEvent.event_start_date = EventStartDate as! NSString
+            newEvent.event_end_date = EventEndDate as! NSString
+            newEvent.event_start_time = EventStartTime as! NSString
+            newEvent.event_end_time = EventEndTime as! NSString
             newEvent.event_date_created = dateTime as NSDate
-            newEvent.event_all_day  = EventAllDay as NSString
-            newEvent.event_status = EventStatus as NSString
-            newEvent.event_owner = EventOwner as NSString
-            newEvent.event_start = EventStart as NSDate
-            newEvent.event_end = EventEnd as NSDate
+            newEvent.event_all_day  = EventAllDay as! NSString
+            newEvent.event_status = EventStatus as! NSString
+            newEvent.event_owner = EventOwner as! NSString
+            newEvent.event_start = EventStart as! NSDate
+            newEvent.event_end = EventEnd as! NSDate
             
             func getLocationObject(LocationID: String)->Locations{
-                var appDel: AppDelegate = (UIApplication.sharedApplication().delegate as AppDelegate)
+                var appDel: AppDelegate = (UIApplication.sharedApplication().delegate as! AppDelegate)
                 var context:NSManagedObjectContext = appDel.managedObjectContext!
                 
                 var request = NSFetchRequest(entityName: "Locations")
@@ -240,11 +240,11 @@ class FetchData: NSObject, NSURLConnectionDelegate {
                 request.predicate = NSPredicate(format: "location_id = %@", LocationID)
                 var results:NSArray = context.executeFetchRequest(request, error: nil)!
                 
-                let locationObject = results[0] as Locations
+                let locationObject = results[0] as! Locations
                 return locationObject
             }
             
-            newEvent.locations = getLocationObject(EventLocationID as String)
+            newEvent.locations = getLocationObject(EventLocationID as! String)
             context.save(nil)
             
             println("new event: \(newEvent)")
@@ -252,8 +252,8 @@ class FetchData: NSObject, NSURLConnectionDelegate {
             //if the location id is found in the database a message is printed in the console and the data is not saved.
         }else if (results.count > 0){
             
-            var res = results[0] as NSManagedObject
-            var existingEvent = res.valueForKey("post_id") as String
+            var res = results[0]as! NSManagedObject
+            var existingEvent = res.valueForKey("post_id") as! String
             println("Event already in database. Event ID: \(existingEvent)")
             
         }else{

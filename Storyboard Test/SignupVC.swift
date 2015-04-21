@@ -21,7 +21,7 @@ class SignupVC: UIViewController {
     
     @IBAction func btnCancel(sender: AnyObject) {
         
-        var loginvc:LoginVC = self.storyboard?.instantiateViewControllerWithIdentifier("LoginVC") as LoginVC
+        var loginvc:LoginVC = self.storyboard?.instantiateViewControllerWithIdentifier("LoginVC") as! LoginVC
         let navigationController = UINavigationController(rootViewController: loginvc)
         self.presentViewController(navigationController, animated: true, completion: nil)
         
@@ -53,18 +53,18 @@ class SignupVC: UIViewController {
                     
                     if closeEvents.count != 0 {
                         if closeEvents[0].locations.distance < 100 {
-                            var gigfoundvc:GigFoundVC = self.storyboard?.instantiateViewControllerWithIdentifier("GigFoundVC") as GigFoundVC
+                            var gigfoundvc:GigFoundVC = self.storyboard?.instantiateViewControllerWithIdentifier("GigFoundVC") as! GigFoundVC
                             let navigationController = UINavigationController(rootViewController: gigfoundvc)
                             self.presentViewController(navigationController, animated: true, completion: nil)
                         } else {
-                            var menutbc : MenuTBC = self.storyboard?.instantiateViewControllerWithIdentifier("MenuTBC") as MenuTBC
+                            var menutbc : MenuTBC = self.storyboard?.instantiateViewControllerWithIdentifier("MenuTBC") as! MenuTBC
                             menutbc.selectedIndex = 0
                             let navigationController = UINavigationController(rootViewController: menutbc)
                             self.presentViewController(navigationController, animated: true, completion: nil)
                         }
                         
                     } else {
-                        var menutbc : MenuTBC = self.storyboard?.instantiateViewControllerWithIdentifier("MenuTBC") as MenuTBC
+                        var menutbc : MenuTBC = self.storyboard?.instantiateViewControllerWithIdentifier("MenuTBC") as! MenuTBC
                         menutbc.selectedIndex = 0
                         let navigationController = UINavigationController(rootViewController: menutbc)
                         self.presentViewController(navigationController, animated: true, completion: nil)

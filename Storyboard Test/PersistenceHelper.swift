@@ -13,7 +13,7 @@ import CoreData
 
 class PersistenceHelper: NSObject {
     
-    var appDel: AppDelegate = (UIApplication.sharedApplication().delegate as AppDelegate)
+    var appDel: AppDelegate = (UIApplication.sharedApplication().delegate as! AppDelegate)
     var context: NSManagedObjectContext;
     
     override init(){
@@ -22,7 +22,7 @@ class PersistenceHelper: NSObject {
     
     func save(entity: String, parameters: Dictionary<String,AnyObject> )->Bool{
         
-        var newEntity = NSEntityDescription.insertNewObjectForEntityForName(entity, inManagedObjectContext: context) as NSManagedObject
+        var newEntity = NSEntityDescription.insertNewObjectForEntityForName(entity, inManagedObjectContext: context) as! NSManagedObject
         for (key, value) in parameters{
             newEntity.setValue(value, forKey: key)
         }
@@ -35,7 +35,7 @@ class PersistenceHelper: NSObject {
         var request = NSFetchRequest(entityName: entity)
         request.returnsObjectsAsFaults = false
         if predicateString != "" && predicateVars != [] {
-            request.predicate = NSPredicate(format:predicateString, argumentArray: predicateVars)
+            request.predicate = NSPredicate(format:predicateString, argumentArray: predicateVars as [AnyObject])
         }
         var results: NSArray = context.executeFetchRequest(request, error: nil)!
         return results
@@ -50,7 +50,7 @@ class PersistenceHelper: NSObject {
         
         if(results.count>0){
         
-            var res = results[0] as NSManagedObject
+            var res = results[0] as! NSManagedObject
             context.deleteObject(res)
             context.save(nil)
             return true

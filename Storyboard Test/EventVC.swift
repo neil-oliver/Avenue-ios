@@ -14,7 +14,7 @@ class EventVC: UIViewController {
     @IBOutlet weak var cvComments: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        lblTitle.text = selectedEvent?.event_name
+        lblTitle.text = selectedEvent?.event_name as? String
         // Do any additional setup after loading the view.
     }
 

@@ -23,7 +23,7 @@ class GigFoundVC: UIViewController {
     }
     
     @IBAction func btnMenu(sender: AnyObject) {
-        var menutbc : MenuTBC = storyboard?.instantiateViewControllerWithIdentifier("MenuTBC") as MenuTBC
+        var menutbc : MenuTBC = storyboard?.instantiateViewControllerWithIdentifier("MenuTBC") as! MenuTBC
         menutbc.selectedIndex = 0
         let navigationController = UINavigationController(rootViewController: menutbc)
         self.presentViewController(navigationController, animated: true, completion: nil)

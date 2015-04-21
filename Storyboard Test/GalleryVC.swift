@@ -66,7 +66,7 @@ class GalleryVC: UIViewController, UICollectionViewDelegateFlowLayout, UICollect
     
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("cvGalleryCell", forIndexPath: indexPath) as cvGalleryCell
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("cvGalleryCell", forIndexPath: indexPath) as! cvGalleryCell
         cell.backgroundColor = UIColor.blueColor()
         cell.imgGalleryPhoto.image = downloadedImages[indexPath.row]
         cell.imgGalleryPhoto.contentMode = .ScaleAspectFill
@@ -103,7 +103,7 @@ class GalleryVC: UIViewController, UICollectionViewDelegateFlowLayout, UICollect
                 //println(guid)
                 var url: NSURL!
                 url  = NSURL(string: guid)
-                downloadImage(url, {image, error in
+                downloadImage(url, handler: {image, error in
                     self.downloadedImages.append(image)
                     self.cvGallery.insertItemsAtIndexPaths([NSIndexPath(forItem: self.downloadedImages.count - 1, inSection: 0)])
                     //println("downloadedimages count \(self.downloadedImages.count)")

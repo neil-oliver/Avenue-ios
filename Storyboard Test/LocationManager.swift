@@ -37,8 +37,8 @@ class LocationManager: NSObject {
         var tempLocations:NSArray = persistenceHelper.list("Locations", predicateString: predicateString, predicateVars: predicateVars)
         for res:AnyObject in tempLocations{
             
-            var resLat = res.valueForKey("location_latitude") as CLLocationDegrees
-            var resLon = res.valueForKey("location_longitude") as CLLocationDegrees
+            var resLat = res.valueForKey("location_latitude") as! CLLocationDegrees
+            var resLon = res.valueForKey("location_longitude") as! CLLocationDegrees
             var resCoords:CLLocation = CLLocation(latitude:resLat, longitude:resLon)
             var distance = locationObj.distanceFromLocation(resCoords) as Double
             res.setValue(distance, forKey: "distance")
@@ -47,17 +47,17 @@ class LocationManager: NSObject {
                 //var descriptor: NSSortDescriptor = NSSortDescriptor(key: "distance", ascending: true)
                 //sortedVenueResults = res.sortedArrayUsingDescriptors([descriptor])
             
-            locations.append(Location(LocationID:res.valueForKey("location_id") as String!,
-                LocationName:res.valueForKey("location_name") as String!,
-                LocationPostID:res.valueForKey("post_id") as String!,
-                LocationSlug:res.valueForKey("location_slug") as String!,
-                LocationTown:res.valueForKey("location_town") as String!,
-                LocationAddress:res.valueForKey("location_address") as String!,
-                LocationPostcode:res.valueForKey("location_postcode") as String!,
-                LocationLatitude:res.valueForKey("location_latitude") as Double!,
-                LocationLongitude:res.valueForKey("location_longitude") as Double!,
-                dateTime:res.valueForKey("location_date_created") as NSDate!,
-                distance:res.valueForKey("distance") as Double!))
+            locations.append(Location(LocationID:res.valueForKey("location_id") as! String!,
+                LocationName:res.valueForKey("location_name") as! String!,
+                LocationPostID:res.valueForKey("post_id") as! String!,
+                LocationSlug:res.valueForKey("location_slug") as! String!,
+                LocationTown:res.valueForKey("location_town") as! String!,
+                LocationAddress:res.valueForKey("location_address") as! String!,
+                LocationPostcode:res.valueForKey("location_postcode") as! String!,
+                LocationLatitude:res.valueForKey("location_latitude") as! Double!,
+                LocationLongitude:res.valueForKey("location_longitude") as! Double!,
+                dateTime:res.valueForKey("location_date_created") as! NSDate!,
+                distance:res.valueForKey("distance") as! Double!))
         }
         
     }
@@ -78,17 +78,17 @@ class LocationManager: NSObject {
           dicLocation["location_longitude"] = LocationLongitude
           dicLocation["location_date_created"] = dateTime
 
-        var LocationExistCheck = persistenceHelper.list("Locations", predicateString: "location_id = %@", predicateVars: [LocationID as String])
+        var LocationExistCheck = persistenceHelper.list("Locations", predicateString: "location_id = %@", predicateVars: [LocationID as! String])
         if LocationExistCheck.count == 0 {
             if(persistenceHelper.save("Locations", parameters: dicLocation)){
                     println("venue saved")
                 
                     // if errors then its probably here as this is untested
-                locations.append(Location(LocationID: LocationID as String?, LocationName: LocationName as String?, LocationPostID: LocationPostID as String?, LocationSlug: LocationSlug as String?, LocationTown: LocationTown as String?, LocationAddress: LocationAddress as String?, LocationPostcode: LocationPostcode as String?, LocationLatitude: LocationLatitude as Double?, LocationLongitude: LocationLongitude as Double?, dateTime: dateTime as NSDate?, distance: 0 as Double?))
+                locations.append(Location(LocationID: LocationID as! String?, LocationName: LocationName as! String?, LocationPostID: LocationPostID as! String?, LocationSlug: LocationSlug as! String?, LocationTown: LocationTown as! String?, LocationAddress: LocationAddress as! String?, LocationPostcode: LocationPostcode as! String?, LocationLatitude: LocationLatitude as! Double?, LocationLongitude: LocationLongitude as! Double?, dateTime: dateTime as! NSDate?, distance: 0 as Double?))
             }
         } else {
 
-            var existingLocationID = LocationExistCheck[0].valueForKey("location_id") as String
+            var existingLocationID = LocationExistCheck[0].valueForKey("location_id") as! String
             println("Venue already in database. Location ID: \(existingLocationID)")
         }
     }

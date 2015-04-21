@@ -59,7 +59,7 @@ class CloseEventVC: UIViewController {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell { let cell:UITableViewCell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "TableView")
         
         //Assign the contents of our var "items" to the textLabel of each cell
-        cell.textLabel?.text = closeEvents[indexPath.row].event_name
+        cell.textLabel?.text = closeEvents[indexPath.row].event_name as String
         cell.detailTextLabel?.text = "Distance from you: \(closeEvents[indexPath.row].locations.distance)"
         
         return cell
@@ -68,7 +68,7 @@ class CloseEventVC: UIViewController {
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        var closeeventdetailvc:CloseEventDetailVC = storyboard?.instantiateViewControllerWithIdentifier("CloseEventDetailVC") as CloseEventDetailVC
+        var closeeventdetailvc:CloseEventDetailVC = storyboard?.instantiateViewControllerWithIdentifier("CloseEventDetailVC") as! CloseEventDetailVC
         //Reference DetailVC's var "cellName" and assign it to DetailVC's var "items"
         seletedCloseEvent = closeEvents[indexPath.row]
 

@@ -37,13 +37,13 @@ class ArchiveVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
         // Do any additional setup after loading the view.
         
-        var appDel: AppDelegate = (UIApplication.sharedApplication().delegate as AppDelegate)
+        var appDel: AppDelegate = (UIApplication.sharedApplication().delegate as! AppDelegate)
         var context:NSManagedObjectContext = appDel.managedObjectContext!
         var request = NSFetchRequest(entityName: "Events")
         request.returnsObjectsAsFaults = false;
         request.relationshipKeyPathsForPrefetching = ["locations"]
         request.predicate = NSPredicate(format: "event_end < %@ && event_name != ''", dateTime)
-        self.results = context.executeFetchRequest(request, error: nil) as [Events]
+        self.results = context.executeFetchRequest(request, error: nil) as! [Events]
         
     }
     
@@ -78,7 +78,7 @@ class ArchiveVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
         //Assign the contents of our var "items" to the textLabel of each cell
         //cell.textLabel?.text = "test"
-        cell.textLabel?.text = results[indexPath.row].event_name
+        cell.textLabel?.text = results[indexPath.row].event_name as String
         cell.detailTextLabel?.text = "Event Date: \(results[indexPath.row].event_start_date)"
         return cell
         
@@ -87,7 +87,7 @@ class ArchiveVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         //Create instance of DetailVC
-        var archiveeventvc:ArchiveEventVC = storyboard?.instantiateViewControllerWithIdentifier("ArchiveEventVC") as ArchiveEventVC
+        var archiveeventvc:ArchiveEventVC = storyboard?.instantiateViewControllerWithIdentifier("ArchiveEventVC") as! ArchiveEventVC
         //Reference DetailVC's var "cellName" and assign it to DetailVC's var "items"
         //archiveeventvc.SelectedLocationID = locationMgr.locations[indexPath.row].LocationID
         //archiveeventvc.SelectedLocationName = locationMgr.locations[indexPath.row].LocationName
