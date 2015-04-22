@@ -10,11 +10,32 @@ import UIKit
 
 class EventVC: UIViewController {
 
+
+    @IBOutlet var txtComment: UITextField!
+    
+    @IBAction func btnSend(sender: AnyObject) {
+        
+        var newComment : BAAComment = BAAComment()
+        newComment.comment = txtComment.text
+        
+        newComment.saveObjectWithCompletion({(object:AnyObject!, error: NSError!) -> Void in
+            if object != nil {
+                println("Object: \(object)")
+                self.txtComment.text = ""
+            }
+            if error != nil {
+                println("Error: \(error)")
+            }
+        })
+        
+    }
+    
     @IBOutlet var lblTitle: UILabel!
     @IBOutlet weak var cvComments: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
         lblTitle.text = selectedEvent?.event_name as? String
+        self.navigationController!.toolbarHidden = false
         // Do any additional setup after loading the view.
     }
 
