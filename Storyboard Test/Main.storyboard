@@ -450,6 +450,30 @@
             </objects>
             <point key="canvasLocation" x="2308.5" y="-681.5"/>
         </scene>
+        <!--Single ImageVC-->
+        <scene sceneID="A3g-dY-nlI">
+            <objects>
+                <viewController storyboardIdentifier="SingleImageVC" id="QP7-lw-5MM" customClass="SingleImageVC" customModule="Storyboard_Test" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="VIH-kC-mLg">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="ZSD-b6-QLr">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="8iV-jx-JOc"/>
+                    <connections>
+                        <outlet property="imgSingle" destination="ZSD-b6-QLr" id="ECw-r3-fam"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="T6E-v6-QVx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1150.5" y="-1452.5"/>
+        </scene>
         <!--GalleryVC-->
         <scene sceneID="50f-xo-M9V">
             <objects>
@@ -485,6 +509,7 @@
                                         <size key="customSize" width="150" height="150"/>
                                         <connections>
                                             <outlet property="imgGalleryPhoto" destination="aEe-l0-X3I" id="gU0-OJ-wDD"/>
+                                            <segue destination="QP7-lw-5MM" kind="push" id="kf4-Jy-BJe"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>

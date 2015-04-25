@@ -111,9 +111,7 @@ class LoginVC: UIViewController, NSURLConnectionDelegate, UITextFieldDelegate {
     }
 
     override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        /* 
+        super.viewDidAppear(animated)        
         // automatically moves past the login screen if user is authenticated.
         if client.isAuthenticated(){
             if closeEvents.count != 0 {
@@ -134,7 +132,7 @@ class LoginVC: UIViewController, NSURLConnectionDelegate, UITextFieldDelegate {
                 self.presentViewController(navigationController, animated: true, completion: nil)
             }
         }
-        */
+        
     }
     
 }

@@ -26,6 +26,7 @@ class ScanVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
     override func viewDidLoad() {
         super.viewDidLoad()
         self.spinner.center = self.view.center
+        self.spinner.color = UIColor.blackColor()
         self.view.addSubview(self.spinner)
         btnBack.enabled = false
         btnConfirm.enabled = false
@@ -166,6 +167,23 @@ class ScanVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
                         self.imgScanImageBox.image = image
                         self.lblMatchedEvent.text = "No Event Found"
                         
+                        //this shouldn't be here, its just for testing
+                        var data = UIImageJPEGRepresentation(image, 1.0)
+                        var file: BAAFile = BAAFile(data: data)
+                        file.contentType = "image/jpeg"
+                        file.uploadFileWithPermissions(nil, completion:{(uploadedFile: AnyObject!, error: NSError!) -> Void in
+                            if uploadedFile != nil {
+                                println("Object: \(uploadedFile)")
+                            }
+                            if error != nil {
+                                println("Upload Error: \(error)")
+                                let alertController = UIAlertController(title: "Upload Error", message:
+                                    "Upload Error: \(error)", preferredStyle: UIAlertControllerStyle.Alert)
+                                alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
+                                self.presentViewController(alertController, animated: true, completion: nil)
+                            }
+                            self.spinner.stopAnimating()
+                        })
                         
                         
                     } else {
@@ -222,7 +240,8 @@ class ScanVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
     var matchedPhotos = [(UIImage,Events)]()
 
     func scanImages() {
-        
+        self.spinner.startAnimating()
+
         matchedPhotos = [(UIImage,Events)]()
         
         var library = ALAssetsLibrary()
@@ -268,6 +287,7 @@ class ScanVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
                                         if let photoFull =  UIImage(CGImage:(asset.defaultRepresentation().fullResolutionImage().takeUnretainedValue()), scale: scale, orientation: orientation!)
                                         {
                                             self.image = photoFull
+
                                         }
                                     }
                                 }
@@ -300,10 +320,12 @@ class ScanVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
                                 resEvents = eventres as! [Events]
                                 if eventres.count == 0 {
                                     //println("No event found for photo")
+                                    self.spinner.stopAnimating()
                                 } else {
                                     //println("Photo \(URL!) was taken at \(resEvents[0].event_name) at \(timestamp!)")
                                     //println(URL!.absoluteString!)
                                     self.matchedPhotos.append((self.image!,resEvents[0]))
+                                    self.spinner.stopAnimating()
                                 }
                             }
                         }
@@ -346,6 +368,7 @@ class ScanVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
             })
             { (error) -> Void in
                 println("problem loading albums: \(error)")
+                self.spinner.stopAnimating()
         }
         
     }

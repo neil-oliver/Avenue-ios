@@ -150,14 +150,18 @@ class FetchData: NSObject, NSURLConnectionDelegate {
             newLocation.venue_latitude = Venues[venueResultNo]["location_latitude"].doubleValue
             newLocation.venue_longitude = Venues[venueResultNo]["location_longitude"].doubleValue
             
-            newLocation.saveObjectWithCompletion({(object:AnyObject!, error: NSError!) -> Void in
-                if object != nil {
-                    println("Object: \(object)")
-                }
-                if error != nil {
-                    println("Error: \(error)")
-                }
-            })
+            let client = BAAClient.sharedClient()
+
+            if client.isAuthenticated() {
+                newLocation.saveObjectWithCompletion({(object:AnyObject!, error: NSError!) -> Void in
+                    if object != nil {
+                        println("Object: \(object)")
+                    }
+                    if error != nil {
+                        println("Error: \(error)")
+                    }
+                })
+            }
             */
             
             //calls the venue save function

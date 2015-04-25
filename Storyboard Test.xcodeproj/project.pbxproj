@@ -47,6 +47,7 @@
 		849C0E841A23828700542AAA /* MenuTBC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849C0E831A23828700542AAA /* MenuTBC.swift */; };
 		84A46ED91A39AFCD00EDC940 /* AltEventContentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A46ED81A39AFCD00EDC940 /* AltEventContentVC.swift */; };
 		84B240701AE9309D00BBDDFA /* cvEventGalleryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B2406F1AE9309D00BBDDFA /* cvEventGalleryCell.swift */; };
+		84B240721AEC308700BBDDFA /* SingleImageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B240711AEC308700BBDDFA /* SingleImageVC.swift */; };
 		84B5E38A1A24F50400F637DB /* PersistenceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B5E3851A24F50400F637DB /* PersistenceHelper.swift */; };
 		84B5E38B1A24F50400F637DB /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B5E3861A24F50400F637DB /* LocationManager.swift */; };
 		84B5E38C1A24F50400F637DB /* EventManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B5E3871A24F50400F637DB /* EventManager.swift */; };
@@ -166,6 +167,7 @@
 		849C0E831A23828700542AAA /* MenuTBC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuTBC.swift; sourceTree = "<group>"; };
 		84A46ED81A39AFCD00EDC940 /* AltEventContentVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AltEventContentVC.swift; sourceTree = "<group>"; };
 		84B2406F1AE9309D00BBDDFA /* cvEventGalleryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = cvEventGalleryCell.swift; sourceTree = "<group>"; };
+		84B240711AEC308700BBDDFA /* SingleImageVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleImageVC.swift; sourceTree = "<group>"; };
 		84B5E3851A24F50400F637DB /* PersistenceHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistenceHelper.swift; sourceTree = "<group>"; };
 		84B5E3861A24F50400F637DB /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		84B5E3871A24F50400F637DB /* EventManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventManager.swift; sourceTree = "<group>"; };
@@ -340,6 +342,7 @@
 				841D8FAE1A934A700087149A /* ScanVC.swift */,
 				847B7F5C1AE55B270071901C /* SignupVC.swift */,
 				84B2406F1AE9309D00BBDDFA /* cvEventGalleryCell.swift */,
+				84B240711AEC308700BBDDFA /* SingleImageVC.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -579,6 +582,7 @@
 				84B5E38D1A24F50400F637DB /* FetchData.swift in Sources */,
 				849C0E741A1F659000542AAA /* GigFoundVC.swift in Sources */,
 				84F109F31A2607FB0079F9B8 /* Locations.swift in Sources */,
+				84B240721AEC308700BBDDFA /* SingleImageVC.swift in Sources */,
 				842A54381A2C96CF0031FF58 /* MenuTransitionManager.swift in Sources */,
 				84F109F11A2607E80079F9B8 /* Events2.swift in Sources */,
 				849C0E821A237B5900542AAA /* SwiftyJSON.swift in Sources */,

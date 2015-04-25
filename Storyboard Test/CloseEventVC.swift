@@ -34,7 +34,10 @@ class CloseEventVC: UIViewController {
     
     func refresh(sender:AnyObject){
         println("refresh")
+        FetchData().startConnection()
+        getCloseEvents()
         sleep(1)
+        
         dispatch_async(dispatch_get_main_queue(), { () -> Void in
             self.EventTable.reloadData()
         })

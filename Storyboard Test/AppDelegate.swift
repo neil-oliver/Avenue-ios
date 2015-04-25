@@ -17,8 +17,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
-        getCloseEvents()
         FetchData().startConnection()
+        getCloseEvents()
         
         if Reachability.isConnectedToNetwork() {
             println("Internet Connection: Available")
@@ -38,7 +38,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         BaasBox.setBaseURL("http://bethehype.co.uk", appCode: "1234567890")
-        
         return true
     }
     

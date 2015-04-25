@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Storyboard Test/ScanVC.swift"
-            timestampString = "451606443.64636"
+            timestampString = "451688689.649472"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "172"
-            endingLineNumber = "172"
+            startingLineNumber = "190"
+            endingLineNumber = "190"
             landmarkName = "imagePickerController(_:didFinishPickingMediaWithInfo:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -74,11 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Storyboard Test/ScanVC.swift"
-            timestampString = "451606443.64636"
+            timestampString = "451688689.649472"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "314"
-            endingLineNumber = "314"
+            startingLineNumber = "340"
+            endingLineNumber = "340"
             landmarkName = "scanImages()"
             landmarkType = "5">
          </BreakpointContent>
@@ -90,11 +90,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Storyboard Test/ScanVC.swift"
-            timestampString = "451606443.64636"
+            timestampString = "451688689.649472"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "315"
-            endingLineNumber = "315"
+            startingLineNumber = "341"
+            endingLineNumber = "341"
             landmarkName = "scanImages()"
             landmarkType = "5">
          </BreakpointContent>
@@ -106,11 +106,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Storyboard Test/ScanVC.swift"
-            timestampString = "451606443.64636"
+            timestampString = "451688689.649472"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "316"
-            endingLineNumber = "316"
+            startingLineNumber = "342"
+            endingLineNumber = "342"
             landmarkName = "scanImages()"
             landmarkType = "5">
          </BreakpointContent>
@@ -122,11 +122,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Storyboard Test/ScanVC.swift"
-            timestampString = "451606443.64636"
+            timestampString = "451688689.649472"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "317"
-            endingLineNumber = "317"
+            startingLineNumber = "343"
+            endingLineNumber = "343"
             landmarkName = "scanImages()"
             landmarkType = "5">
          </BreakpointContent>
@@ -138,11 +138,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Storyboard Test/ScanVC.swift"
-            timestampString = "451606443.64636"
+            timestampString = "451688689.649472"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "318"
-            endingLineNumber = "318"
+            startingLineNumber = "344"
+            endingLineNumber = "344"
             landmarkName = "scanImages()"
             landmarkType = "5">
          </BreakpointContent>
@@ -154,11 +154,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Storyboard Test/ScanVC.swift"
-            timestampString = "451606443.64636"
+            timestampString = "451688689.649472"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "319"
-            endingLineNumber = "319"
+            startingLineNumber = "345"
+            endingLineNumber = "345"
             landmarkName = "scanImages()"
             landmarkType = "5">
          </BreakpointContent>
@@ -170,11 +170,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Storyboard Test/ScanVC.swift"
-            timestampString = "451606443.64636"
+            timestampString = "451688689.649472"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "213"
-            endingLineNumber = "213"
+            startingLineNumber = "235"
+            endingLineNumber = "235"
             landmarkName = "btnScan(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -186,11 +186,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Storyboard Test/ScanVC.swift"
-            timestampString = "451606443.64636"
+            timestampString = "451688689.649472"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "217"
-            endingLineNumber = "217"
+            startingLineNumber = "239"
+            endingLineNumber = "239"
             landmarkName = "ScanVC"
             landmarkType = "3">
             <Locations>
@@ -279,45 +279,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Storyboard Test/ScanVC.swift"
-            timestampString = "451606443.64636"
+            timestampString = "451688689.649472"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "225"
-            endingLineNumber = "225"
+            startingLineNumber = "248"
+            endingLineNumber = "248"
             landmarkName = "scanImages()"
             landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Storyboard_Test.ScanVC.scanImages (Storyboard_Test.ScanVC)() -&gt; ()"
-                  moduleName = "Storyboard Test"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Admin/Documents/Programming/avenue-ios/Storyboard%20Test/ScanVC.swift"
-                  timestampString = "451641573.160437"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "225"
-                  endingLineNumber = "225"
-                  offsetFromSymbolStart = "116">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Storyboard_Test.ScanVC.(scanImages (Storyboard_Test.ScanVC) -&gt; () -&gt; ()).(closure #1)"
-                  moduleName = "Storyboard Test"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Admin/Documents/Programming/avenue-ios/Storyboard%20Test/ScanVC.swift"
-                  timestampString = "451641573.160582"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "0"
-                  endingLineNumber = "0"
-                  offsetFromSymbolStart = "20">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -327,11 +295,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Storyboard Test/EventVC.swift"
-            timestampString = "451641550.752186"
+            timestampString = "451643741.25153"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "27"
-            endingLineNumber = "27"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
             landmarkName = "btnSend(_:)"
             landmarkType = "5">
             <Locations>

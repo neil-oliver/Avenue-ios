@@ -74,6 +74,18 @@ class GalleryVC: UIViewController, UICollectionViewDelegateFlowLayout, UICollect
         return cell
     }
     
+    
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath)
+    {
+        var cell = collectionView.cellForItemAtIndexPath(indexPath)
+        var singleimagevc:SingleImageVC = storyboard?.instantiateViewControllerWithIdentifier("SingleImageVC") as! SingleImageVC
+        singleimagevc.SingleImage = downloadedImages[indexPath.row]
+        //Programmatically push to associated VC
+        self.navigationController?.pushViewController(singleimagevc, animated: true)
+        
+    }
+    
+    
     let insertIndexPath = NSIndexPath(forItem: 0, inSection: 0)
     
     
