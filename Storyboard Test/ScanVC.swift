@@ -14,7 +14,7 @@ import CoreData
 
 class ScanVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    
+    let spinner = UIActivityIndicatorView()
     var lat: CLLocationDegrees?
     var long: CLLocationDegrees?
     var timestamp: NSDate?
@@ -25,6 +25,8 @@ class ScanVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.spinner.center = self.view.center
+        self.view.addSubview(self.spinner)
         btnBack.enabled = false
         btnConfirm.enabled = false
         btnNext.enabled = false
@@ -165,25 +167,11 @@ class ScanVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
                         self.lblMatchedEvent.text = "No Event Found"
                         
                         
-                        //add selected image to BAAS
-                        var data = UIImageJPEGRepresentation(image, 1.0)
-                        var file: BAAFile = BAAFile(data: data)
-                        file.contentType = "image/jpeg"
-                        file.uploadFileWithPermissions(nil, completion:{(uploadedFile: AnyObject!, error: NSError!) -> Void in
-                            if uploadedFile != nil {
-                                println("Object: \(uploadedFile)")
-                            }
-                            if error != nil {
-                                println("Upload Error: \(error)")
-                            }
-                        })
-                        
-                        
                         
                     } else {
                         self.imgScanImageBox.image = image
                         self.lblMatchedEvent.text = resEvents[0].event_name as String
-                        
+                        self.spinner.startAnimating()
                         //add selected image to BAAS
                         var data = UIImageJPEGRepresentation(image, 1.0)
                         var file: BAAFile = BAAFile(data: data)
@@ -194,7 +182,12 @@ class ScanVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
                             }
                             if error != nil {
                                 println("Upload Error: \(error)")
+                                let alertController = UIAlertController(title: "Upload Error", message:
+                                    "Upload Error: \(error)", preferredStyle: UIAlertControllerStyle.Alert)
+                                alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
+                                self.presentViewController(alertController, animated: true, completion: nil)
                             }
+                            self.spinner.stopAnimating()
                         })
                         
                     }
@@ -330,6 +323,7 @@ class ScanVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
                     self.btnConfirm.enabled = true
                     
                     //add scanned image to BAAS
+                    self.spinner.startAnimating()
                     var data = UIImageJPEGRepresentation(photo, 1.0)
                     var file: BAAFile = BAAFile(data: data)
                     file.contentType = "image/jpeg"
@@ -341,7 +335,7 @@ class ScanVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
                     println("Upload Error: \(error)")
                     }
                     })
-                    
+                    self.spinner.stopAnimating()
                 }
                 
                 if self.matchedPhotos.count > 1 {

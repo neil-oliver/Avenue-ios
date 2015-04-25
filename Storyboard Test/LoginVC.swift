@@ -9,13 +9,17 @@
 import UIKit
 import CoreData
 
-class LoginVC: UIViewController, NSURLConnectionDelegate {
+class LoginVC: UIViewController, NSURLConnectionDelegate, UITextFieldDelegate {
     
     // variable to call the OneShotLocationManager class
     var manager: OneShotLocationManager?
     
     //variable to hold data from NSURLConnection request
     lazy var data = NSMutableData()
+    
+    //spinner for loading
+    let spinner = UIActivityIndicatorView()
+
     
     var persistenceHelper: PersistenceHelper = PersistenceHelper()
 
@@ -25,13 +29,18 @@ class LoginVC: UIViewController, NSURLConnectionDelegate {
     
     let client = BAAClient.sharedClient()
     
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
+    }
+    
     @IBAction func btnSignup(sender: AnyObject) {
         var signupvc:SignupVC = self.storyboard?.instantiateViewControllerWithIdentifier("SignupVC") as! SignupVC
         let navigationController = UINavigationController(rootViewController: signupvc)
         self.presentViewController(navigationController, animated: true, completion: nil)
     }
     @IBAction func btnLogin(sender: AnyObject) {
-        
+        self.spinner.startAnimating()
         
         BAAUser.loginWithUsername(txtUsername.text, password:txtPassword.text, completion: { (success: Bool, error: NSError!) -> () in
             
@@ -63,9 +72,13 @@ class LoginVC: UIViewController, NSURLConnectionDelegate {
             } else {
                 
                 println("log in error \(error.localizedDescription)")
+                let alertController = UIAlertController(title: "Sign In Error", message:
+                    "log in error \(error.localizedDescription)", preferredStyle: UIAlertControllerStyle.Alert)
+                alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
+                self.presentViewController(alertController, animated: true, completion: nil)
                 
             }
-            
+            self.spinner.stopAnimating()
         })
         
     }
@@ -74,7 +87,12 @@ class LoginVC: UIViewController, NSURLConnectionDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.txtPassword.delegate = self
+        self.txtUsername.delegate = self
         //check to see if a user is already authenticated
+        self.spinner.center = self.view.center
+        self.view.addSubview(self.spinner)
+        
         if client.isAuthenticated() {
             
             println("Logged in")
