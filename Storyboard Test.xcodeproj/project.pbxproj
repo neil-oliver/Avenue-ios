@@ -327,7 +327,9 @@
 				849C0E6B1A1F64FF00542AAA /* ProfileVC.swift */,
 				849C0E6D1A1F651000542AAA /* GalleryVC.swift */,
 				8474D2F41A37064B00CE7AC8 /* cvGalleryCell.swift */,
+				84B240711AEC308700BBDDFA /* SingleImageVC.swift */,
 				849C0E711A1F655B00542AAA /* EventVC.swift */,
+				84B2406F1AE9309D00BBDDFA /* cvEventGalleryCell.swift */,
 				849C0E771A1F65FB00542AAA /* EventSideBarVC.swift */,
 				849C0E731A1F659000542AAA /* GigFoundVC.swift */,
 				849C0E751A1F65C500542AAA /* AltEventVC.swift */,
@@ -341,8 +343,6 @@
 				841D8FAC1A934A1D0087149A /* SettingsVC.swift */,
 				841D8FAE1A934A700087149A /* ScanVC.swift */,
 				847B7F5C1AE55B270071901C /* SignupVC.swift */,
-				84B2406F1AE9309D00BBDDFA /* cvEventGalleryCell.swift */,
-				84B240711AEC308700BBDDFA /* SingleImageVC.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";

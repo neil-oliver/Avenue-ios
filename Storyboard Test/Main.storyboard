@@ -458,14 +458,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="ZSD-b6-QLr">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="ZSD-b6-QLr">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" id="8iV-jx-JOc"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="imgSingle" destination="ZSD-b6-QLr" id="ECw-r3-fam"/>
                     </connections>
@@ -509,7 +511,6 @@
                                         <size key="customSize" width="150" height="150"/>
                                         <connections>
                                             <outlet property="imgGalleryPhoto" destination="aEe-l0-X3I" id="gU0-OJ-wDD"/>
-                                            <segue destination="QP7-lw-5MM" kind="push" id="kf4-Jy-BJe"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>

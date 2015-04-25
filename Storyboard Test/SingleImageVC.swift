@@ -17,6 +17,7 @@ class SingleImageVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         imgSingle.image = SingleImage!
+        self.view.backgroundColor = UIColor.blackColor()
         // Do any additional setup after loading the view.
         
     }

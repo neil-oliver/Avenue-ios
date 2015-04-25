@@ -90,7 +90,7 @@ class GalleryVC: UIViewController, UICollectionViewDelegateFlowLayout, UICollect
     
     
     func startConnection(){
-        let urlPath: String = "http://bethehype.co.uk/photo-stream"
+        let urlPath: String = "" //"http://bethehype.co.uk/photo-stream"
         var url: NSURL = NSURL(string: urlPath)!
         var request: NSURLRequest = NSURLRequest(URL: url)
         var connection: NSURLConnection = NSURLConnection(request: request, delegate: self, startImmediately: false)!

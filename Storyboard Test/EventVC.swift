@@ -91,6 +91,16 @@ class EventVC: UIViewController, UINavigationControllerDelegate, UIImagePickerCo
         return cell
     }
     
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath)
+    {
+        var cell = collectionView.cellForItemAtIndexPath(indexPath)
+        var singleimagevc:SingleImageVC = storyboard?.instantiateViewControllerWithIdentifier("SingleImageVC") as! SingleImageVC
+        singleimagevc.SingleImage = photoGallery[indexPath.row]
+        //Programmatically push to associated VC
+        self.navigationController?.pushViewController(singleimagevc, animated: true)
+        
+    }
+    
     @IBAction func btnCamera(sender: AnyObject) {
         
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)
@@ -113,10 +123,15 @@ class EventVC: UIViewController, UINavigationControllerDelegate, UIImagePickerCo
         picker.dismissViewControllerAnimated(true, completion: nil)
         
         var photo: UIImage = info[UIImagePickerControllerOriginalImage] as! UIImage
+        let metadata = info[UIImagePickerControllerMediaMetadata] as? NSDictionary
+        var exif: NSDictionary = metadata?.objectForKey("{Exif}") as! NSDictionary
+        var attachedExif: NSMutableDictionary = exif.mutableCopy() as! NSMutableDictionary
+        //println("metadata: \(attachedMeta)")
         spinner.startAnimating()
         var data = UIImageJPEGRepresentation(photo, 1.0)
         var file: BAAFile = BAAFile(data: data)
         file.contentType = "image/jpeg"
+        file.attachedData = attachedExif
         file.uploadFileWithPermissions(nil, completion:{(uploadedFile: AnyObject!, error: NSError!) -> Void in
             if uploadedFile != nil {
                 println("Object: \(uploadedFile)")
