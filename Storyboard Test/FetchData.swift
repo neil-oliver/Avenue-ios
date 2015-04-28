@@ -53,6 +53,7 @@ class FetchData: NSObject, NSURLConnectionDelegate {
             //checks to see if the current location is set before starting connection. if its not it calls LocationManager
             if latValue != 0 && lonValue != 0 {
                 
+                
                 //sets URL path for request using current lat and lon values
                 //setup required for NSURLConnection request
                 urlPath = "http://bethehype.co.uk/service.php?lat=\(latValue)&lon=\(lonValue)&update=events"

@@ -10,6 +10,8 @@ import UIKit
 
 class GalleryVC: UIViewController, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     
+    
+    
     lazy var data = NSMutableData()
     
     let spinner = UIActivityIndicatorView()
@@ -20,17 +22,17 @@ class GalleryVC: UIViewController, UICollectionViewDelegateFlowLayout, UICollect
     var refreshControl:UIRefreshControl!
     
     var downloadedImages:[UIImage] = []
+    var testimages:[UIImage] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        startConnection()
-
         self.spinner.center = self.cvGallery.center
         self.cvGallery.addSubview(self.spinner)
         self.refreshControl = UIRefreshControl()
         self.refreshControl.attributedTitle = NSAttributedString(string: "Pull to refersh")
         self.refreshControl.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
         self.cvGallery.addSubview(refreshControl)
+        getBaasImages()
         // Do any additional setup after loading the view
     }
 
@@ -49,7 +51,7 @@ class GalleryVC: UIViewController, UICollectionViewDelegateFlowLayout, UICollect
         println("No. of Images \(downloadedImages.count)")
         sleep(1)
         dispatch_async(dispatch_get_main_queue(), { () -> Void in
-            self.startConnection()
+            self.getBaasImages()
             self.cvGallery.reloadData()
         })
         self.refreshControl.endRefreshing()
@@ -88,58 +90,27 @@ class GalleryVC: UIViewController, UICollectionViewDelegateFlowLayout, UICollect
     
     let insertIndexPath = NSIndexPath(forItem: 0, inSection: 0)
     
-    
-    func startConnection(){
-        let urlPath: String = "" //"http://bethehype.co.uk/photo-stream"
-        var url: NSURL = NSURL(string: urlPath)!
-        var request: NSURLRequest = NSURLRequest(URL: url)
-        var connection: NSURLConnection = NSURLConnection(request: request, delegate: self, startImmediately: false)!
-        connection.start()
-    }
-    
-    func connection(connection: NSURLConnection!, didReceiveData data: NSData!){
-        self.data.appendData(data)
-    }
-    
-    
-    func connectionDidFinishLoading(connection: NSURLConnection!) {
-        var jsonError: NSError?
-        let jsonResult: AnyObject! = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: &jsonError)
-        let json = JSON(data: data)
-        
-        for (key, subJson) in json {
-    
-            self.spinner.startAnimating()
+    func getBaasImages(){
+        BAAFile.loadFilesAndDetailsWithCompletion({(files: [AnyObject]!, error: NSError!) -> () in
             
-            if let guid = subJson["guid"].string {
-                //println(guid)
-                var url: NSURL!
-                url  = NSURL(string: guid)
-                downloadImage(url, handler: {image, error in
-                    self.downloadedImages.append(image)
+            println("files are \(files)")
+            for file in files {
+                self.spinner.startAnimating()
+                var image : BAAFile = file as! BAAFile // instance or subclass of BAAFile, previously saved on the server
+                image.loadFileWithCompletion({(data:NSData!, error:NSError!) -> () in
+                    
+                    self.downloadedImages.append(UIImage(data: data)!)
+                    println("testimages: \(self.downloadedImages.count)")
                     self.cvGallery.insertItemsAtIndexPaths([NSIndexPath(forItem: self.downloadedImages.count - 1, inSection: 0)])
-                    //println("downloadedimages count \(self.downloadedImages.count)")
-                    //println("json count \(json.count)")
-                    if self.downloadedImages.count == json.count {
+                    if self.downloadedImages.count == files.count {
                         self.spinner.stopAnimating()
                     }
+                
                 })
             }
-        }
-    }
-
-    
-
-    func downloadImage(url: NSURL, handler: ((image: UIImage, NSError!) -> Void))
-    {
-        var imageRequest: NSURLRequest = NSURLRequest(URL: url)
-        NSURLConnection.sendAsynchronousRequest(imageRequest,
-            queue: NSOperationQueue.mainQueue(),
-            completionHandler:{response, data, error in
-                handler(image: UIImage(data: data)!, error)
+            
         })
     }
-
 }
 
 

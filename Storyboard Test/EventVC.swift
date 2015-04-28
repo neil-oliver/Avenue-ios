@@ -11,11 +11,16 @@ import AVFoundation
 
 class EventVC: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate {
 
+    @IBAction func GridListSwitch(sender: AnyObject) {
+    }
+    
     @IBOutlet var txtComment: UITextField!
     
     @IBOutlet var cvEventGallery: UICollectionView!
     
     @IBOutlet var btnSend: UIBarButtonItem!
+    
+    var cellComment: [String] = []
     
     let spinner = UIActivityIndicatorView()
     
@@ -30,6 +35,9 @@ class EventVC: UIViewController, UINavigationControllerDelegate, UIImagePickerCo
                 if object != nil {
                     self.btnSend.enabled = true
                     println("Object: \(object)")
+                    self.cellComment.append(self.txtComment.text)
+                    self.photoGallery.append(UIImage(named: "white.jpg")!)
+                    self.cvEventGallery.insertItemsAtIndexPaths([NSIndexPath(forItem: self.photoGallery.count-1, inSection: 0)])
                     self.txtComment.text = ""
                 }
                 if error != nil {
@@ -59,13 +67,25 @@ class EventVC: UIViewController, UINavigationControllerDelegate, UIImagePickerCo
     @IBOutlet weak var cvComments: UICollectionView!
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         self.txtComment.delegate = self
         lblTitle.text = selectedEvent?.event_name as? String
         self.navigationController!.toolbarHidden = false
         self.spinner.center = self.view.center
         self.view.addSubview(self.spinner)
+
     }
+
+    /* attempting to stick toolbar to keyboard
+    override func canBecomeFirstResponder() -> Bool {
+        return true
+    }
+
+    override var inputAccessoryView: UIView! {
+    return self.navigationController?.toolbar
+    }
+    */
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -87,6 +107,7 @@ class EventVC: UIViewController, UINavigationControllerDelegate, UIImagePickerCo
         cell.backgroundColor = UIColor.blueColor()
         cell.imgEventGalleryPhoto.image = photoGallery[indexPath.row]
         cell.imgEventGalleryPhoto.contentMode = .ScaleAspectFill
+        cell.CommentLabel.text = cellComment[indexPath.row]
         
         return cell
     }
@@ -96,8 +117,16 @@ class EventVC: UIViewController, UINavigationControllerDelegate, UIImagePickerCo
         var cell = collectionView.cellForItemAtIndexPath(indexPath)
         var singleimagevc:SingleImageVC = storyboard?.instantiateViewControllerWithIdentifier("SingleImageVC") as! SingleImageVC
         singleimagevc.SingleImage = photoGallery[indexPath.row]
-        //Programmatically push to associated VC
-        self.navigationController?.pushViewController(singleimagevc, animated: true)
+        singleimagevc.SingleComment = cellComment[indexPath.row]
+        
+        BAAUser.loadCurrentUserWithCompletion({(object:AnyObject!, error: NSError!) -> () in
+            
+            var currentUser = object as! BAAUser
+            singleimagevc.User = currentUser.username()
+            //Programmatically push to associated VC
+            self.navigationController?.pushViewController(singleimagevc, animated: true)
+        })
+        
         
     }
     
@@ -125,17 +154,45 @@ class EventVC: UIViewController, UINavigationControllerDelegate, UIImagePickerCo
         var photo: UIImage = info[UIImagePickerControllerOriginalImage] as! UIImage
         let metadata = info[UIImagePickerControllerMediaMetadata] as? NSDictionary
         var exif: NSDictionary = metadata?.objectForKey("{Exif}") as! NSDictionary
+        
+        if latValue != 0 && lonValue != 0 {
+            exif.setValue(latValue, forKey: "Lat")
+            exif.setValue(lonValue, forKey: "Lon")
+        }else{
+            manager = OneShotLocationManager()
+            manager!.fetchWithCompletion {location, error in
+                
+                // fetch location or an error
+                if var loc = location {
+                    println(location)
+                    //assigns values to variables for current latitude and logitude
+                    latValue = loc.coordinate.latitude
+                    lonValue = loc.coordinate.longitude
+                    
+                    //assigns a location object to variable
+                    locationObj = loc
+                    exif.setValue(latValue, forKey: "Lat")
+                    exif.setValue(lonValue, forKey: "Lon")
+                    
+                    
+                } else if var err = error {
+                    println(err.localizedDescription)
+                }
+            }
+        }
+        
         var attachedExif: NSMutableDictionary = exif.mutableCopy() as! NSMutableDictionary
-        //println("metadata: \(attachedMeta)")
         spinner.startAnimating()
         var data = UIImageJPEGRepresentation(photo, 1.0)
         var file: BAAFile = BAAFile(data: data)
         file.contentType = "image/jpeg"
         file.attachedData = attachedExif
+        println("exif: \(attachedExif)")
         file.uploadFileWithPermissions(nil, completion:{(uploadedFile: AnyObject!, error: NSError!) -> Void in
             if uploadedFile != nil {
                 println("Object: \(uploadedFile)")
                 self.photoGallery.append(photo)
+                self.cellComment.append("")
                 self.cvEventGallery.insertItemsAtIndexPaths([NSIndexPath(forItem: self.photoGallery.count-1, inSection: 0)])
                 self.spinner.stopAnimating()
             }

@@ -17,6 +17,7 @@
 		842A54381A2C96CF0031FF58 /* MenuTransitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842A54371A2C96CF0031FF58 /* MenuTransitionManager.swift */; };
 		842A543A1A2DE0C20031FF58 /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842A54391A2DE0C20031FF58 /* Functions.swift */; };
 		8431B9F41A32F6EF008C9E62 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8431B9F31A32F6EF008C9E62 /* Reachability.swift */; };
+		8431FA231AED841A00DE7332 /* white.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8431FA221AED841A00DE7332 /* white.jpg */; };
 		8442955D1A274D5100B9429B /* Users.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8442955C1A274D5100B9429B /* Users.swift */; };
 		844E16D11ADFE0DD0057FAAD /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 844E16D01ADFE0DD0057FAAD /* LaunchScreen.xib */; };
 		845101081A252FDB00940488 /* Storyboard_Test.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 845101061A252FDB00940488 /* Storyboard_Test.xcdatamodeld */; };
@@ -130,6 +131,7 @@
 		842A54371A2C96CF0031FF58 /* MenuTransitionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuTransitionManager.swift; sourceTree = "<group>"; };
 		842A54391A2DE0C20031FF58 /* Functions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
 		8431B9F31A32F6EF008C9E62 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		8431FA221AED841A00DE7332 /* white.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = white.jpg; sourceTree = "<group>"; };
 		8442955C1A274D5100B9429B /* Users.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Users.swift; sourceTree = "<group>"; };
 		844E16D01ADFE0DD0057FAAD /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		845101071A252FDB00940488 /* Storyboard_Test.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Storyboard_Test.xcdatamodel; sourceTree = "<group>"; };
@@ -386,6 +388,7 @@
 		84BDE75F1A37B8BB0089A66D /* photos */ = {
 			isa = PBXGroup;
 			children = (
+				8431FA221AED841A00DE7332 /* white.jpg */,
 				84BDE7601A37B8BB0089A66D /* Photo1.jpg */,
 				84BDE7611A37B8BB0089A66D /* Photo10.jpg */,
 				84BDE7621A37B8BB0089A66D /* Photo11.jpg */,
@@ -535,6 +538,7 @@
 				84BDE7901A37B8BB0089A66D /* Photo17.jpg in Resources */,
 				84BDE79C1A37B8BB0089A66D /* Photo28.jpg in Resources */,
 				84BDE78E1A37B8BB0089A66D /* Photo15.jpg in Resources */,
+				8431FA231AED841A00DE7332 /* white.jpg in Resources */,
 				84BDE79D1A37B8BB0089A66D /* Photo29.jpg in Resources */,
 				84BDE7A51A37B8BB0089A66D /* Photo36.jpg in Resources */,
 				84C0BBE11A2FCA1F00398E45 /* Main.storyboard in Resources */,
