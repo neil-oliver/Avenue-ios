@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:Storyboard Test.xcodeproj">
+      location = "self:/Users/Admin/Documents/Programming/avenue-ios/Avenue.xcodeproj">
    </FileRef>
 </Workspace>

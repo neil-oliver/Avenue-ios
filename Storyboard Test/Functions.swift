@@ -240,6 +240,7 @@ import Foundation
 
     infix operator < {}
 
+    /*
     func < (let left:NSDate, let right: NSDate) -> Bool {
         var result:NSComparisonResult = left.compare(right)
         var isEarlier = false
@@ -248,6 +249,7 @@ import Foundation
         }
         return isEarlier
     }
+    */
 
     func saveImage(image: UIImage, name: String) {
         //saves image into the default directory using a specified name
@@ -256,6 +258,16 @@ import Foundation
         let destinationPath = documentsPath.stringByAppendingPathComponent("\(name).jpg")
         UIImageJPEGRepresentation(image,1.0).writeToFile(destinationPath, atomically: true)
     }
+
+    public func <(a: NSDate, b: NSDate) -> Bool {
+        return a.compare(b) == NSComparisonResult.OrderedAscending
+    }
+
+    public func ==(a: NSDate, b: NSDate) -> Bool {
+        return a.compare(b) == NSComparisonResult.OrderedSame
+    }
+
+    extension NSDate: Comparable { }
 
 
 

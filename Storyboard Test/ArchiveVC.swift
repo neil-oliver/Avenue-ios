@@ -16,24 +16,20 @@ class ArchiveVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     //variable for refreshing table data
     var refreshControl:UIRefreshControl!
     
-    // variable to call the OneShotLocationManager class
-    var manager: OneShotLocationManager?
-    
-    //variable to hold data from NSURLConnection request
-    lazy var data = NSMutableData()
+
+
     
     //This is your tableView
-    @IBOutlet var EventTable: UITableView!
+    @IBOutlet var ArchiveTable: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         navigationItem.title = "The Archive"
-        self.EventTable.reloadData()
         self.refreshControl = UIRefreshControl()
         self.refreshControl.attributedTitle = NSAttributedString(string: "Pull to refersh")
         self.refreshControl.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
-        self.EventTable.addSubview(refreshControl)
+        self.ArchiveTable.addSubview(refreshControl)
         
         // Do any additional setup after loading the view.
         
@@ -50,10 +46,11 @@ class ArchiveVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     func refresh(sender:AnyObject){
         println("refresh")
         sleep(1)
-        self.EventTable.reloadData()
+        self.ArchiveTable.reloadData()
         self.refreshControl.endRefreshing()
         
     }
+    
     
 
     
@@ -62,15 +59,17 @@ class ArchiveVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         // Dispose of any resources that can be recreated.
     }
     
+    
     override func viewWillAppear(animated: Bool) {
         
-        EventTable.reloadData()
+        ArchiveTable.reloadData()
         
     }
     
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return results.count
+        return self.results.count
         
     }
     
@@ -78,8 +77,9 @@ class ArchiveVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
         //Assign the contents of our var "items" to the textLabel of each cell
         //cell.textLabel?.text = "test"
-        cell.textLabel?.text = results[indexPath.row].event_name as String
-        cell.detailTextLabel?.text = "Event Date: \(results[indexPath.row].event_start_date)"
+            cell.textLabel?.text = self.results[indexPath.row].event_name as String
+            cell.detailTextLabel?.text = "Event Date: \(self.results[indexPath.row].event_start_date)"
+
         return cell
         
     }

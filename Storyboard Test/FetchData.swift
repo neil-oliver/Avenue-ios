@@ -90,6 +90,9 @@ class FetchData: NSObject, NSURLConnectionDelegate {
                         
                     } else if var err = error {
                         println(err.localizedDescription)
+                        let alertController = UIAlertController(title: "Failed to find location", message:
+                            "Location error \(err.localizedDescription)", preferredStyle: UIAlertControllerStyle.Alert)
+                        alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
                     }
                     self.manager = nil
                 }
@@ -252,7 +255,7 @@ class FetchData: NSObject, NSURLConnectionDelegate {
             newEvent.locations = getLocationObject(EventLocationID as! String)
             context.save(nil)
             
-            println("new event: \(newEvent)")
+            //println("new event: \(newEvent)")
             
             //if the location id is found in the database a message is printed in the console and the data is not saved.
         }else if (results.count > 0){
@@ -265,6 +268,66 @@ class FetchData: NSObject, NSURLConnectionDelegate {
             
             println("event save error")
             
+        }
+    }
+    
+    func getBassVenues(){
+        //checks to see if the current location is set before starting connection. if its not it calls LocationManager
+        if latValue != 0 && lonValue != 0 {
+            
+            // Assumes BAAVenue as a subclass of BAAObject
+            var parameters: NSDictionary = ["where" : "distance(lat,lng,\(latValue),\(lonValue)) < 5"]
+            BAAVenue.getObjectsWithParams(parameters as [NSObject : AnyObject], completion:{(venues:[AnyObject]!, error:NSError!) -> Void in
+                if venues != nil {
+                    for venue in venues {
+                        var singlevenue: BAAVenue = venue as! BAAVenue
+                        println("Venue Name: \(singlevenue.displayName)")
+                    }
+                }
+                if error != nil {
+                    println("Error: \(error)")
+                }
+            })
+
+        } else {
+            
+            manager = OneShotLocationManager()
+            manager!.fetchWithCompletion {location, error in
+                
+                // fetch location or an error
+                if var loc = location {
+                    println(location)
+                    //assigns values to variables for current latitude and logitude
+                    latValue = loc.coordinate.latitude
+                    lonValue = loc.coordinate.longitude
+                    
+                    //assigns a location object to variable
+                    locationObj = loc
+
+                    // Assumes BAAVenue as a subclass of BAAObject
+                    var parameters: NSDictionary = ["where" : "distance(lat,lng,\(latValue),\(lonValue)) < 5"]
+                    BAAVenue.getObjectsWithParams(parameters as [NSObject : AnyObject], completion:{(venues:[AnyObject]!, error:NSError!) -> Void in
+                        if venues != nil {
+                            for venue in venues {
+                                var singlevenue: BAAVenue = venue as! BAAVenue
+                                println("Venue Name: \(singlevenue.displayName)")
+                            }
+                        }
+                        if error != nil {
+                            println("Error: \(error)")
+                        }
+                    })
+                    
+                    
+                    
+                } else if var err = error {
+                    println(err.localizedDescription)
+                    let alertController = UIAlertController(title: "Failed to find location", message:
+                        "Location error \(err.localizedDescription)", preferredStyle: UIAlertControllerStyle.Alert)
+                    alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
+                }
+                self.manager = nil
+            }
         }
     }
 }

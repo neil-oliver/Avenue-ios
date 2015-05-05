@@ -92,21 +92,24 @@ class GalleryVC: UIViewController, UICollectionViewDelegateFlowLayout, UICollect
     
     func getBaasImages(){
         BAAFile.loadFilesAndDetailsWithCompletion({(files: [AnyObject]!, error: NSError!) -> () in
-            
+            FetchData().getBassVenues() //this is just here so i can test and know we have the location set
+
             println("files are \(files)")
-            for file in files {
-                self.spinner.startAnimating()
-                var image : BAAFile = file as! BAAFile // instance or subclass of BAAFile, previously saved on the server
-                image.loadFileWithCompletion({(data:NSData!, error:NSError!) -> () in
+            if files != nil {
+                for file in files {
+                    self.spinner.startAnimating()
+                    var image : BAAFile = file as! BAAFile // instance or subclass of BAAFile, previously saved on the server
+                    image.loadFileWithCompletion({(data:NSData!, error:NSError!) -> () in
+                        
+                        self.downloadedImages.append(UIImage(data: data)!)
+                        self.cvGallery.insertItemsAtIndexPaths([NSIndexPath(forItem: self.downloadedImages.count - 1, inSection: 0)])
+                        if self.downloadedImages.count == files.count {
+                            self.spinner.stopAnimating()
+
+                        }
                     
-                    self.downloadedImages.append(UIImage(data: data)!)
-                    println("testimages: \(self.downloadedImages.count)")
-                    self.cvGallery.insertItemsAtIndexPaths([NSIndexPath(forItem: self.downloadedImages.count - 1, inSection: 0)])
-                    if self.downloadedImages.count == files.count {
-                        self.spinner.stopAnimating()
-                    }
-                
-                })
+                    })
+                }
             }
             
         })

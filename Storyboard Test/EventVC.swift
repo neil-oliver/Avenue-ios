@@ -9,11 +9,14 @@
 import UIKit
 import AVFoundation
 
-class EventVC: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate {
+class EventVC: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate, UITextViewDelegate {
 
     @IBAction func GridListSwitch(sender: AnyObject) {
+    
     }
     
+    @IBOutlet weak var inputToolbar: UIToolbar!
+        
     @IBOutlet var txtComment: UITextField!
     
     @IBOutlet var cvEventGallery: UICollectionView!
@@ -26,18 +29,23 @@ class EventVC: UIViewController, UINavigationControllerDelegate, UIImagePickerCo
     
     var photoGallery: [UIImage] = []
     
+    var eventGallery: [[AnyObject]] = []
+    
     @IBAction func btnSend(sender: AnyObject) {
+        sendComment(txtComment.text)
+    }
+    
+    func sendComment(comment: String) {
         btnSend.enabled = false
         var newComment : BAAComment = BAAComment()
-        newComment.comment = txtComment.text
+        newComment.comment = comment
         if newComment.comment != "" {
             newComment.saveObjectWithCompletion({(object:AnyObject!, error: NSError!) -> Void in
                 if object != nil {
                     self.btnSend.enabled = true
                     println("Object: \(object)")
-                    self.cellComment.append(self.txtComment.text)
-                    self.photoGallery.append(UIImage(named: "white.jpg")!)
-                    self.cvEventGallery.insertItemsAtIndexPaths([NSIndexPath(forItem: self.photoGallery.count-1, inSection: 0)])
+                    self.eventGallery.append([comment, UIImage(named: "white.jpg")!])
+                    self.cvEventGallery.insertItemsAtIndexPaths([NSIndexPath(forItem: self.eventGallery.count-1, inSection: 0)])
                     self.txtComment.text = ""
                 }
                 if error != nil {
@@ -55,9 +63,7 @@ class EventVC: UIViewController, UINavigationControllerDelegate, UIImagePickerCo
             alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
             self.presentViewController(alertController, animated: true, completion: nil)
         }
-        
     }
-    
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         txtComment.endEditing(true)
         return false
@@ -71,21 +77,12 @@ class EventVC: UIViewController, UINavigationControllerDelegate, UIImagePickerCo
         super.viewDidLoad()
         self.txtComment.delegate = self
         lblTitle.text = selectedEvent?.event_name as? String
-        self.navigationController!.toolbarHidden = false
         self.spinner.center = self.view.center
         self.view.addSubview(self.spinner)
-
+        //getBaasCommentsAndFiles()
+        getBaasImages()
     }
 
-    /* attempting to stick toolbar to keyboard
-    override func canBecomeFirstResponder() -> Bool {
-        return true
-    }
-
-    override var inputAccessoryView: UIView! {
-    return self.navigationController?.toolbar
-    }
-    */
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -98,17 +95,18 @@ class EventVC: UIViewController, UINavigationControllerDelegate, UIImagePickerCo
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return photoGallery.count
+        return eventGallery.count
     }
     
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("cvEventGalleryCell", forIndexPath: indexPath) as! cvEventGalleryCell
         cell.backgroundColor = UIColor.blueColor()
-        cell.imgEventGalleryPhoto.image = photoGallery[indexPath.row]
+        cell.imgEventGalleryPhoto.image = eventGallery[indexPath.row][1] as? UIImage
+
         cell.imgEventGalleryPhoto.contentMode = .ScaleAspectFill
-        cell.CommentLabel.text = cellComment[indexPath.row]
-        
+        cell.CommentLabel.text = eventGallery[indexPath.row][0] as? String
+
         return cell
     }
     
@@ -116,8 +114,8 @@ class EventVC: UIViewController, UINavigationControllerDelegate, UIImagePickerCo
     {
         var cell = collectionView.cellForItemAtIndexPath(indexPath)
         var singleimagevc:SingleImageVC = storyboard?.instantiateViewControllerWithIdentifier("SingleImageVC") as! SingleImageVC
-        singleimagevc.SingleImage = photoGallery[indexPath.row]
-        singleimagevc.SingleComment = cellComment[indexPath.row]
+        singleimagevc.SingleImage = eventGallery[indexPath.row][1] as? UIImage
+        singleimagevc.SingleComment = eventGallery[indexPath.row][0] as! String
         
         BAAUser.loadCurrentUserWithCompletion({(object:AnyObject!, error: NSError!) -> () in
             
@@ -191,9 +189,10 @@ class EventVC: UIViewController, UINavigationControllerDelegate, UIImagePickerCo
         file.uploadFileWithPermissions(nil, completion:{(uploadedFile: AnyObject!, error: NSError!) -> Void in
             if uploadedFile != nil {
                 println("Object: \(uploadedFile)")
-                self.photoGallery.append(photo)
-                self.cellComment.append("")
-                self.cvEventGallery.insertItemsAtIndexPaths([NSIndexPath(forItem: self.photoGallery.count-1, inSection: 0)])
+                //self.photoGallery.append(photo)
+                //self.cellComment.append("")
+                self.eventGallery.append(["", photo])
+                self.cvEventGallery.insertItemsAtIndexPaths([NSIndexPath(forItem: self.eventGallery.count-1, inSection: 0)])
                 self.spinner.stopAnimating()
             }
             if error != nil {
@@ -208,4 +207,195 @@ class EventVC: UIViewController, UINavigationControllerDelegate, UIImagePickerCo
         })
     }
     
+    func getBaasImages(){
+        BAAFile.loadFilesAndDetailsWithCompletion({(files: [AnyObject]!, error: NSError!) -> () in
+
+            if files != nil {
+                for file in files {
+                    var image : BAAFile = file as! BAAFile // instance or subclass of BAAFile, previously saved on the server
+                    println("image taken \(image.creationDate)")
+                    image.loadFileWithCompletion({(data:NSData!, error:NSError!) -> () in
+                        self.eventGallery.append(["",UIImage(data: data)!])
+                        self.cvEventGallery.insertItemsAtIndexPaths([NSIndexPath(forItem: self.eventGallery.count - 1, inSection: 0)])
+                    })
+                }
+            }
+            
+        })
+        
+        getBassComments()
+    }
+    
+    func getBassComments(){
+        
+        // Assumes BAAComment as a subclass of BAAObject
+        var parameters: NSDictionary = [:]
+        BAAComment.getObjectsWithParams(parameters as [NSObject : AnyObject], completion:{(comments:[AnyObject]!, error:NSError!) -> Void in
+            if comments != nil {
+                for single in comments {
+                    var singlecomment: BAAComment = single as! BAAComment
+                    println("comment written \(singlecomment.creationDate)")
+                    self.eventGallery.append([singlecomment.comment as String, UIImage(named: "white.jpg")!])
+                    self.cvEventGallery.insertItemsAtIndexPaths([NSIndexPath(forItem: self.eventGallery.count - 1, inSection: 0)])
+                }
+            }
+            if error != nil {
+                println("Error: \(error)")
+            }
+        })
+        
+    }
+    
+    
+    //experimenting with getting the data and sorting it in date order before updating the collection
+    
+    class downloadDataClass {
+        var comment = String()
+        var image = UIImage()
+        var date = NSDate()
+        
+    }
+    
+    var downloadData: [downloadDataClass] = []
+
+    func getBaasCommentsAndFiles(){
+        
+        // Assumes BAAComment as a subclass of BAAObject
+        var parameters: NSDictionary = [:]
+        BAAComment.getObjectsWithParams(parameters as [NSObject : AnyObject], completion:{(comments:[AnyObject]!, error:NSError!) -> Void in
+            if comments != nil {
+                println("recieved \(comments.count) comments")
+                for single in comments {
+                    var singlecomment: BAAComment = single as! BAAComment
+                    println("comment written \(singlecomment.creationDate)")
+                    var commentdata = downloadDataClass()
+                    commentdata.comment = singlecomment.comment as String
+                    commentdata.image = UIImage(named: "white.jpg")!
+                    commentdata.date = singlecomment.creationDate as NSDate
+                    self.downloadData.append(commentdata)
+                    println("downloadData count from comments = \(self.downloadData.count)")
+                    //self.downloadData.append([singlecomment.comment as String , UIImage(named: "white.jpg")! , singlecomment.creationDate])
+                    if self.downloadData.count == comments.count {
+                        
+                        BAAFile.loadFilesAndDetailsWithCompletion({(files: [AnyObject]!, error: NSError!) -> () in
+                            if files != nil {
+                                println("recieved \(files.count) files")
+                                for file in files {
+                                    var image : BAAFile = file as! BAAFile // instance or subclass of BAAFile, previously saved on the server
+                                    println("image taken \(image.creationDate)")
+                                    image.loadFileWithCompletion({(data:NSData!, error:NSError!) -> () in
+                                        var photodata = downloadDataClass()
+                                        photodata.comment = singlecomment.comment as String
+                                        photodata.image = UIImage(data: data)!
+                                        photodata.date = singlecomment.creationDate as NSDate
+                                        self.downloadData.append(commentdata)
+                                        //self.downloadData.append(["" , UIImage(data: data)! , image.creationDate])
+                                        println("downloadData count from files = \(self.downloadData.count)")
+                                        println("total data download count \((files.count + comments.count))")
+
+                                    })
+                                    
+                                    if self.downloadData.count == (files.count + comments.count) {
+                                        println("sorting data")
+                                        //sort the array and then update the collection
+                                        // sort(&self.downloadData){ $0.date > $1.date } //doent work yet
+                                        for item in self.downloadData {
+                                            self.eventGallery.append([item.comment, item.image])
+                                            self.cvEventGallery.insertItemsAtIndexPaths([NSIndexPath(forItem: self.eventGallery.count - 1, inSection: 0)])
+                                        }
+                                        
+                                    }
+                                }
+                            }
+                            
+                        })
+                    }
+                }
+            }
+            if error != nil {
+                println("Error: \(error)")
+            }
+        })
+        
+    }
+    
+    
+    //// toolbar experimenting - close but not there yet
+    /*
+    
+    var toolBar: UIToolbar!
+    var textView: UITextView!
+    var sendButton: UIButton!
+    var rotating = false
+    
+    let messageFontSize: CGFloat = 17
+    let toolBarMinHeight: CGFloat = 44
+    let textViewMaxHeight: (portrait: CGFloat, landscape: CGFloat) = (portrait: 272, landscape: 90)
+    
+    override var inputAccessoryView: UIView! {
+       
+        get {
+            if toolBar == nil {
+                toolBar = UIToolbar(frame: CGRectMake(0, 0, 0, toolBarMinHeight-0.5))
+                
+                textView = InputTextView(frame: CGRectZero)
+                textView.backgroundColor = UIColor(white: 250/255, alpha: 1)
+                textView.delegate = self
+                textView.font = UIFont.systemFontOfSize(messageFontSize)
+                textView.layer.borderColor = UIColor(red: 200/255, green: 200/255, blue: 205/255, alpha:1).CGColor
+                textView.layer.borderWidth = 0.5
+                textView.layer.cornerRadius = 5
+                //        textView.placeholder = "Message"
+                textView.scrollsToTop = false
+                textView.textContainerInset = UIEdgeInsetsMake(4, 3, 3, 3)
+                toolBar.addSubview(textView)
+                
+                sendButton = UIButton.buttonWithType(.System) as! UIButton
+                sendButton.enabled = false
+                sendButton.titleLabel?.font = UIFont.boldSystemFontOfSize(17)
+                sendButton.setTitle("Send", forState: .Normal)
+                sendButton.setTitleColor(UIColor(red: 142/255, green: 142/255, blue: 147/255, alpha: 1), forState: .Disabled)
+                sendButton.setTitleColor(UIColor(red: 1/255, green: 122/255, blue: 255/255, alpha: 1), forState: .Normal)
+                sendButton.contentEdgeInsets = UIEdgeInsets(top: 6, left: 6, bottom: 6, right: 6)
+                sendButton.addTarget(self, action: "sendAction", forControlEvents: UIControlEvents.TouchUpInside)
+                toolBar.addSubview(sendButton)
+                
+                // Auto Layout allows `sendButton` to change width, e.g., for localization.
+                textView.setTranslatesAutoresizingMaskIntoConstraints(false)
+                sendButton.setTranslatesAutoresizingMaskIntoConstraints(false)
+                toolBar.addConstraint(NSLayoutConstraint(item: textView, attribute: .Left, relatedBy: .Equal, toItem: toolBar, attribute: .Left, multiplier: 1, constant: 8))
+                toolBar.addConstraint(NSLayoutConstraint(item: textView, attribute: .Top, relatedBy: .Equal, toItem: toolBar, attribute: .Top, multiplier: 1, constant: 7.5))
+                toolBar.addConstraint(NSLayoutConstraint(item: textView, attribute: .Right, relatedBy: .Equal, toItem: sendButton, attribute: .Left, multiplier: 1, constant: -2))
+                toolBar.addConstraint(NSLayoutConstraint(item: textView, attribute: .Bottom, relatedBy: .Equal, toItem: toolBar, attribute: .Bottom, multiplier: 1, constant: -8))
+                toolBar.addConstraint(NSLayoutConstraint(item: sendButton, attribute: .Right, relatedBy: .Equal, toItem: toolBar, attribute: .Right, multiplier: 1, constant: 0))
+                toolBar.addConstraint(NSLayoutConstraint(item: sendButton, attribute: .Bottom, relatedBy: .Equal, toItem: toolBar, attribute: .Bottom, multiplier: 1, constant: -4.5))
+            }
+            return toolBar
+        }
+
+    }
+    
+    
+    class InputTextView: UITextView {
+        override func canPerformAction(action: Selector, withSender sender: AnyObject!) -> Bool {
+            return super.canPerformAction(action, withSender: sender)
+        }
+    }
+    
+    
+    func textViewDidChange(textView: UITextView) {
+        sendButton.enabled = textView.hasText()
+    }
+    
+    
+    func sendAction() {
+        textView.resignFirstResponder()
+        textView.becomeFirstResponder()
+        sendComment(textView.text)
+        textView.text = nil
+        sendButton.enabled = false
+        view.endEditing(true)
+
+    }
+    */
 }

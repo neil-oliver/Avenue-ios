@@ -10,24 +10,38 @@ import Foundation
 
 class BAAVenue: BAAObject {
     
-    var venue_address: NSString!
-    var venue_latitude: NSNumber!
-    var venue_longitude: NSNumber!
-    var venue_name: NSString!
-    var venue_postcode: NSString!
-    var venue_slug: NSString!
-    var venue_town: NSString!
-    
+    var venue_address: AnyObject!
+    var lat: AnyObject! //Done
+    var lng: AnyObject! // Done
+    var displayName: AnyObject! // Done
+    var zip: AnyObject! // Done
+    var venue_town: AnyObject!
+    var capacity: AnyObject! //Done
+    var uri: AnyObject! //Done
+    var venue_id: AnyObject! //Done
+    var street: AnyObject! //Done
+    var website: AnyObject! //Done
+    var phone: AnyObject! //Done
+    var venue_description: AnyObject! //Done
     
     override init!(dictionary: [NSObject : AnyObject]!) {
+        // Just an idea on how to solve the NSNull problem
+        // if dictionary["venue_address"]?.type != NSNull() {venue_address = dictionary["venue_address"] as! NSString!}
         
-        venue_address = dictionary["venue_address"] as! NSString!
-        venue_latitude = dictionary["venue_latitude"] as! NSNumber!
-        venue_longitude = dictionary["venue_longitude"] as! NSNumber!
-        venue_name = dictionary["venue_name"] as! NSString!
-        venue_postcode = dictionary["venue_postcode"] as! NSString!
-        venue_slug = dictionary["venue_slug"] as! NSString!
-        venue_town = dictionary["venue_town"] as! NSString!
+        venue_address = dictionary["venue_address"]
+        lat = dictionary["lng"]
+        lng = dictionary["lat"]
+        displayName = dictionary["displayName"]
+        zip = dictionary["zip"]
+        venue_town = dictionary["venue_town"]
+        capacity = dictionary["capacity"]
+        uri = dictionary["uri"]
+        venue_id = dictionary["venue_id"]
+        street = dictionary["street"]
+        website = dictionary["website"]
+        phone = dictionary["phone"]
+        venue_description = dictionary["description"]
+
         super.init(dictionary: dictionary)
 
     }
@@ -35,5 +49,42 @@ class BAAVenue: BAAObject {
     override func collectionName() -> String! {
         return "document/Venues";
     }
+    
+    
+    /*
+    
+    Example Data Set for Venue
+    
+    {
+        "street": "Tatton Park",
+        "metroArea": {
+            "uri": "http://www.songkick.com/metro_areas/24475-uk-manchester?utm_source=14198&utm_medium=partner",
+            "id": 24475,
+            "country": {
+                "displayName": "UK"
+            },
+            "displayName": "Manchester"
+        },
+        "website": "http://www.tattonpark.org.uk/",
+        "city": {
+            "country": {
+                "displayName": "UK"
+            },
+            "displayName": "Knutsford"
+        },
+        "zip": "WA16 6QN",
+        "phone": null,
+        "description": "",
+        "lat": 53.33033,
+        "capacity": null,
+        "lng": -2.3881333,
+        "uri": "http://www.songkick.com/venues/28931-tatton-park?utm_source=14198&utm_medium=partner",
+        "displayName": "Tatton Park",
+        "venue_id": 28931
+    }
+
+
+    */
+    
     
 }

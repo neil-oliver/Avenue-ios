@@ -40,33 +40,36 @@ class LoginVC: UIViewController, NSURLConnectionDelegate, UITextFieldDelegate {
         self.presentViewController(navigationController, animated: true, completion: nil)
     }
     @IBAction func btnLogin(sender: AnyObject) {
-        self.spinner.startAnimating()
-        
+        //self.spinner.startAnimating()
+        println("login button pushed")
         BAAUser.loginWithUsername(txtUsername.text, password:txtPassword.text, completion: { (success: Bool, error: NSError!) -> () in
             
-            
+            println("BAAUser login called")
             if (success) {
                 
                 println("successful log in")
                 //move past login screen to either the main menu or the gig found screen.
                 if closeEvents.count != 0 {
                     if closeEvents[0].locations.distance < 100 {
+                        println("close event found")
                         var gigfoundvc:GigFoundVC = self.storyboard?.instantiateViewControllerWithIdentifier("GigFoundVC") as! GigFoundVC
                         let navigationController = UINavigationController(rootViewController: gigfoundvc)
                         self.presentViewController(navigationController, animated: true, completion: nil)
                     } else {
+                        println("event found but not close")
                         var menutbc : MenuTBC = self.storyboard?.instantiateViewControllerWithIdentifier("MenuTBC") as! MenuTBC
                         menutbc.selectedIndex = 0
                         let navigationController = UINavigationController(rootViewController: menutbc)
                         self.presentViewController(navigationController, animated: true, completion: nil)
                     }
                 } else {
+                    println("no events found")
                     var menutbc : MenuTBC = self.storyboard?.instantiateViewControllerWithIdentifier("MenuTBC") as! MenuTBC
                     menutbc.selectedIndex = 0
                     let navigationController = UINavigationController(rootViewController: menutbc)
                     self.presentViewController(navigationController, animated: true, completion: nil)
                 }
-
+                
                 
                 
             } else {
@@ -78,7 +81,7 @@ class LoginVC: UIViewController, NSURLConnectionDelegate, UITextFieldDelegate {
                 self.presentViewController(alertController, animated: true, completion: nil)
                 
             }
-            self.spinner.stopAnimating()
+            //self.spinner.stopAnimating()
         })
         
     }
