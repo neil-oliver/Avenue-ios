@@ -15,6 +15,7 @@ class BAAEvent: BAAObject {
         var datetime: AnyObject!
         var date: AnyObject!
     }
+
     
     struct Artist {
         var artist_id: AnyObject!
@@ -30,7 +31,7 @@ class BAAEvent: BAAObject {
     var event_id: AnyObject!
     var venue_id: AnyObject!
     var start = Start()
-    //var artist = Artist() //Cant work out the Array bit
+    //var artist = Artist()
     
     override init!(dictionary: [NSObject : AnyObject]!) {
         type = dictionary["type"]

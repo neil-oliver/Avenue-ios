@@ -15,6 +15,11 @@ class CloseEventDetailVC: UIViewController {
     // create instance of our custom transition manager
     let transitionManager = MenuTransitionManager()
     
+    var startDate = ""
+    var startTime = ""
+    var eventTitle = ""
+    var venueId = ""
+    
     @IBOutlet var lblStartDate: UILabel!
     @IBOutlet var lblStartTime: UILabel!
     @IBOutlet var lblEventTitle: UILabel!
@@ -22,10 +27,12 @@ class CloseEventDetailVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        lblEventTitle.text = seletedCloseEvent?.event_name as? String
-        lblVenueName.text = "Venue: \(seletedCloseEvent?.locations.location_name as! String)"
-        lblStartDate.text = "Start Date: \(seletedCloseEvent?.event_start_date as! String)"
-        lblStartTime.text = "Start Time: \(seletedCloseEvent?.event_start_time as! String)"
+        
+        lblEventTitle.text = eventTitle
+        lblVenueName.text = venueId
+        lblStartDate.text = startDate
+        lblStartTime.text = startTime
+        
         // Do any additional setup after loading the view.
         self.transitionManager.sourceViewController = self
     }

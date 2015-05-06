@@ -15,6 +15,8 @@ class CloseEventVC: UIViewController {
     
     //variable for refreshing table data
     var refreshControl:UIRefreshControl!
+    
+    var Events = [BAAEvent]()
 
     @IBOutlet var EventTable: UITableView!
     
@@ -25,6 +27,7 @@ class CloseEventVC: UIViewController {
         self.refreshControl.attributedTitle = NSAttributedString(string: "Pull to refersh")
         self.refreshControl.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
         self.EventTable.addSubview(refreshControl)
+        getBassEvents()
     }
 
     override func didReceiveMemoryWarning() {
@@ -34,36 +37,90 @@ class CloseEventVC: UIViewController {
     
     func refresh(sender:AnyObject){
         println("refresh")
-        FetchData().startConnection()
-        getCloseEvents()
-        sleep(1)
+        getBassEvents()
         
         dispatch_async(dispatch_get_main_queue(), { () -> Void in
             self.EventTable.reloadData()
         })
         self.refreshControl.endRefreshing()
-        
     }
     
     override func viewWillAppear(animated: Bool) {
         dispatch_async(dispatch_get_main_queue(), { () -> Void in
             self.EventTable.reloadData()
         })
-        
-        
+    }
+    
+    
+    func getBassEvents(){
+        //checks to see if the current location is set before starting connection. if its not it calls LocationManager
+        if latValue != 0 && lonValue != 0 {
+            
+            // Assumes BAAEvent as a subclass of BAAObject
+            //var parameters: NSDictionary = ["where" : "distance(lat,lng,\(latValue),\(lonValue)) < 50"]
+            var parameters: NSDictionary = ["":""]
+            BAAEvent.getObjectsWithParams(parameters as [NSObject : AnyObject], completion:{(events:[AnyObject]!, error:NSError!) -> Void in
+                if events != nil {
+                    self.Events = events as! [BAAEvent]
+                    self.EventTable.reloadData()
+                }
+                if error != nil {
+                    println("Error: \(error)")
+                }
+            })
+            
+        } else {
+            
+            manager = OneShotLocationManager()
+            manager!.fetchWithCompletion {location, error in
+                
+                // fetch location or an error
+                if var loc = location {
+                    println(location)
+                    //assigns values to variables for current latitude and logitude
+                    latValue = loc.coordinate.latitude
+                    lonValue = loc.coordinate.longitude
+                    
+                    //assigns a location object to variable
+                    locationObj = loc
+                    
+                    // Assumes BAAEvent as a subclass of BAAObject
+                    //var parameters: NSDictionary = ["where" : "distance(lat,lng,\(latValue),\(lonValue)) < 50"]
+                    var parameters: NSDictionary = ["":""]
+                    BAAEvent.getObjectsWithParams(parameters as [NSObject : AnyObject], completion:{(events:[AnyObject]!, error:NSError!) -> Void in
+                        if events != nil {
+                            self.Events = events as! [BAAEvent]
+                            self.EventTable.reloadData()
+                        }
+                        if error != nil {
+                            println("Error: \(error)")
+                        }
+                    })
+                    
+                    
+                    
+                } else if var err = error {
+                    println(err.localizedDescription)
+                    let alertController = UIAlertController(title: "Failed to find location", message:
+                        "Location error \(err.localizedDescription)", preferredStyle: UIAlertControllerStyle.Alert)
+                    alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
+                }
+                self.manager = nil
+            }
+        }
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return closeEvents.count
+        return Events.count
         
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell { let cell:UITableViewCell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "TableView")
         
         //Assign the contents of our var "items" to the textLabel of each cell
-        cell.textLabel?.text = closeEvents[indexPath.row].event_name as String
-        cell.detailTextLabel?.text = "Distance from you: \(closeEvents[indexPath.row].locations.distance)"
+        cell.textLabel?.text = Events[indexPath.row].displayName as? String
+        cell.detailTextLabel?.text = "Start Time: \(Events[indexPath.row].start.time)"
         
         return cell
         
@@ -73,8 +130,11 @@ class CloseEventVC: UIViewController {
         
         var closeeventdetailvc:CloseEventDetailVC = storyboard?.instantiateViewControllerWithIdentifier("CloseEventDetailVC") as! CloseEventDetailVC
         //Reference DetailVC's var "cellName" and assign it to DetailVC's var "items"
-        seletedCloseEvent = closeEvents[indexPath.row]
-
+        closeeventdetailvc.eventTitle = Events[indexPath.row].displayName as! String
+        closeeventdetailvc.startDate = "Start Date: \(Events[indexPath.row].start.date)"
+        closeeventdetailvc.startTime = "Start Time: \(Events[indexPath.row].start.time)"
+        closeeventdetailvc.venueId = "Venue ID: \(Events[indexPath.row].venue_id)"
+        
         //Programmatically push to associated VC (EventsVC)
         self.navigationController?.pushViewController(closeeventdetailvc, animated: true)
     }
