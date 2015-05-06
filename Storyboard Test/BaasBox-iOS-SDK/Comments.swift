@@ -26,4 +26,10 @@ class BAAComment: BAAObject {
         return "document/Comments";
     }
     
+    /* example output from BAAS
+    {
+        "comment": "Bob"
+    }
+    */
+
 }

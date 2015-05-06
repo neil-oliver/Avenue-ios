@@ -19,6 +19,8 @@
 		8431B9F41A32F6EF008C9E62 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8431B9F31A32F6EF008C9E62 /* Reachability.swift */; };
 		8442955D1A274D5100B9429B /* Users.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8442955C1A274D5100B9429B /* Users.swift */; };
 		84444A1C1AF8D83800BDA347 /* white.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 84444A1B1AF8D83800BDA347 /* white.jpg */; };
+		84444A1E1AF9769300BDA347 /* Artists.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84444A1D1AF9769300BDA347 /* Artists.swift */; };
+		84444A201AF9771B00BDA347 /* ToDo in Resources */ = {isa = PBXBuildFile; fileRef = 84444A1F1AF9771B00BDA347 /* ToDo */; };
 		844E16D11ADFE0DD0057FAAD /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 844E16D01ADFE0DD0057FAAD /* LaunchScreen.xib */; };
 		845101081A252FDB00940488 /* Storyboard_Test.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 845101061A252FDB00940488 /* Storyboard_Test.xcdatamodeld */; };
 		8463C9131AE43B450074BBA7 /* Venues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8463C9121AE43B450074BBA7 /* Venues.swift */; };
@@ -93,6 +95,8 @@
 		8431B9F31A32F6EF008C9E62 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		8442955C1A274D5100B9429B /* Users.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Users.swift; sourceTree = "<group>"; };
 		84444A1B1AF8D83800BDA347 /* white.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = white.jpg; sourceTree = "<group>"; };
+		84444A1D1AF9769300BDA347 /* Artists.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Artists.swift; sourceTree = "<group>"; };
+		84444A1F1AF9771B00BDA347 /* ToDo */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ToDo; sourceTree = "<group>"; };
 		844E16D01ADFE0DD0057FAAD /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		845101071A252FDB00940488 /* Storyboard_Test.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Storyboard_Test.xcdatamodel; sourceTree = "<group>"; };
 		8463C9121AE43B450074BBA7 /* Venues.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Venues.swift; sourceTree = "<group>"; };
@@ -207,6 +211,7 @@
 				842A54351A2AC5DD0031FF58 /* View Controllers */,
 				842A54361A2AC60F0031FF58 /* Core Data */,
 				8416B1CA1A1E016C00106879 /* Supporting Files */,
+				84444A1F1AF9771B00BDA347 /* ToDo */,
 			);
 			name = Avenue;
 			path = "Storyboard Test";
@@ -301,6 +306,7 @@
 				84F4F70E1ADEB63600D3637A /* Bridging-Header.h */,
 				8463C9121AE43B450074BBA7 /* Venues.swift */,
 				8463C9141AE43DD70074BBA7 /* Events.swift */,
+				84444A1D1AF9769300BDA347 /* Artists.swift */,
 				84C93C4F1AE84393001558F9 /* Comments.swift */,
 			);
 			path = "BaasBox-iOS-SDK";
@@ -389,6 +395,7 @@
 			files = (
 				844E16D11ADFE0DD0057FAAD /* LaunchScreen.xib in Resources */,
 				84B5E3951A24F60100F637DB /* The Fleece.gpx in Resources */,
+				84444A201AF9771B00BDA347 /* ToDo in Resources */,
 				840C548F1ADFDCAF00F98F29 /* Images.xcassets in Resources */,
 				84C0BBE11A2FCA1F00398E45 /* Main.storyboard in Resources */,
 				84B5E3941A24F60100F637DB /* Bristol Academy.gpx in Resources */,
@@ -443,6 +450,7 @@
 				849C0E761A1F65C500542AAA /* AltEventVC.swift in Sources */,
 				8416B1CD1A1E016C00106879 /* AppDelegate.swift in Sources */,
 				84F109F51A26336F0079F9B8 /* UserManager.swift in Sources */,
+				84444A1E1AF9769300BDA347 /* Artists.swift in Sources */,
 				8463C9131AE43B450074BBA7 /* Venues.swift in Sources */,
 				84B5E3901A24F5AC00F637DB /* Globals.swift in Sources */,
 				842A543A1A2DE0C20031FF58 /* Functions.swift in Sources */,

@@ -8,9 +8,29 @@
 
 import Foundation
 
+
+
+
 class BAAVenue: BAAObject {
     
-    var venue_address: AnyObject!
+    struct MetroArea {
+        var uri: AnyObject!
+        var id: AnyObject!
+        var country = Country()
+
+    }
+    
+    struct Country{
+        var displayName: AnyObject!
+    }
+    
+    struct City{
+        var displayName: AnyObject!
+        var country = Country()
+    }
+
+    var metroArea = MetroArea()
+    var city = City()
     var lat: AnyObject! //Done
     var lng: AnyObject! // Done
     var displayName: AnyObject! // Done
@@ -28,7 +48,13 @@ class BAAVenue: BAAObject {
         // Just an idea on how to solve the NSNull problem
         // if dictionary["venue_address"]?.type != NSNull() {venue_address = dictionary["venue_address"] as! NSString!}
         
-        venue_address = dictionary["venue_address"]
+        metroArea.id = dictionary["metroArea"]?.objectForKey("id")
+        metroArea.uri = dictionary["metroArea"]?.objectForKey("uri")
+        metroArea.country.displayName = dictionary["metroArea"]?.objectForKey("coutry")?.objectForKey("displayName")
+        
+        city.displayName = dictionary["city"]?.objectForKey("displayName")
+        city.country.displayName = dictionary["city"]?.objectForKey("coutry")?.objectForKey("displayName")
+        
         lat = dictionary["lng"]
         lng = dictionary["lat"]
         displayName = dictionary["displayName"]

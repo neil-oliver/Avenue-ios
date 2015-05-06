@@ -282,6 +282,7 @@ class FetchData: NSObject, NSURLConnectionDelegate {
                     for venue in venues {
                         var singlevenue: BAAVenue = venue as! BAAVenue
                         println("Venue Name: \(singlevenue.displayName)")
+                        println("Metro Area: \(singlevenue.metroArea.id)")
                     }
                 }
                 if error != nil {
@@ -311,6 +312,8 @@ class FetchData: NSObject, NSURLConnectionDelegate {
                             for venue in venues {
                                 var singlevenue: BAAVenue = venue as! BAAVenue
                                 println("Venue Name: \(singlevenue.displayName)")
+                                println("Metro Area: \(singlevenue.metroArea.id)")
+                                
                             }
                         }
                         if error != nil {
