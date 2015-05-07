@@ -1,10 +1,8 @@
 
 ToDo: Essential
 
-Sort Artist Varibales on BAAEvent
+Sort Artist Variables on BAAEvent
 BAAArtist variables
-Sort file / object order in events collection view
-Switch events over to BAAS
 Add warning that user MUST allow location
 Change image search in setting to BAAS
 Add link from object / file to event

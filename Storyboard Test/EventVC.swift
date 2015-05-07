@@ -79,8 +79,8 @@ class EventVC: UIViewController, UINavigationControllerDelegate, UIImagePickerCo
         lblTitle.text = selectedEvent?.event_name as? String
         self.spinner.center = self.view.center
         self.view.addSubview(self.spinner)
-        //getBaasCommentsAndFiles()
-        getBaasImages()
+        getBaasCommentsAndFiles()
+        //getBaasImages()
     }
 
 
@@ -207,59 +207,17 @@ class EventVC: UIViewController, UINavigationControllerDelegate, UIImagePickerCo
         })
     }
     
-    func getBaasImages(){
-        BAAFile.loadFilesAndDetailsWithCompletion({(files: [AnyObject]!, error: NSError!) -> () in
-
-            if files != nil {
-                for file in files {
-                    var image : BAAFile = file as! BAAFile // instance or subclass of BAAFile, previously saved on the server
-                    println("image taken \(image.creationDate)")
-                    image.loadFileWithCompletion({(data:NSData!, error:NSError!) -> () in
-                        self.eventGallery.append(["",UIImage(data: data)!])
-                        self.cvEventGallery.insertItemsAtIndexPaths([NSIndexPath(forItem: self.eventGallery.count - 1, inSection: 0)])
-                    })
-                }
-            }
-            
-        })
-        
-        getBassComments()
-    }
-    
-    func getBassComments(){
-        
-        // Assumes BAAComment as a subclass of BAAObject
-        var parameters: NSDictionary = [:]
-        BAAComment.getObjectsWithParams(parameters as [NSObject : AnyObject], completion:{(comments:[AnyObject]!, error:NSError!) -> Void in
-            if comments != nil {
-                for single in comments {
-                    var singlecomment: BAAComment = single as! BAAComment
-                    println("comment written \(singlecomment.creationDate)")
-                    self.eventGallery.append([singlecomment.comment as String, UIImage(named: "white.jpg")!])
-                    self.cvEventGallery.insertItemsAtIndexPaths([NSIndexPath(forItem: self.eventGallery.count - 1, inSection: 0)])
-                }
-            }
-            if error != nil {
-                println("Error: \(error)")
-            }
-        })
-        
-    }
-    
-    
-    //experimenting with getting the data and sorting it in date order before updating the collection
     
     class downloadDataClass {
         var comment = String()
         var image = UIImage()
         var date = NSDate()
-        
     }
     
     var downloadData: [downloadDataClass] = []
 
     func getBaasCommentsAndFiles(){
-        
+        self.spinner.startAnimating()
         // Assumes BAAComment as a subclass of BAAObject
         var parameters: NSDictionary = [:]
         BAAComment.getObjectsWithParams(parameters as [NSObject : AnyObject], completion:{(comments:[AnyObject]!, error:NSError!) -> Void in
@@ -285,26 +243,28 @@ class EventVC: UIViewController, UINavigationControllerDelegate, UIImagePickerCo
                                     println("image taken \(image.creationDate)")
                                     image.loadFileWithCompletion({(data:NSData!, error:NSError!) -> () in
                                         var photodata = downloadDataClass()
-                                        photodata.comment = singlecomment.comment as String
+                                        photodata.comment = ""
                                         photodata.image = UIImage(data: data)!
                                         photodata.date = singlecomment.creationDate as NSDate
-                                        self.downloadData.append(commentdata)
+                                        self.downloadData.append(photodata)
                                         //self.downloadData.append(["" , UIImage(data: data)! , image.creationDate])
                                         println("downloadData count from files = \(self.downloadData.count)")
                                         println("total data download count \((files.count + comments.count))")
+                                        
+                                        if self.downloadData.count == (files.count + comments.count) {
+                                            println("sorting data")
+                                            //sort the array and then update the collection
+                                            sort(&self.downloadData){ $0.date > $1.date } //doent work yet
+                                            for item in self.downloadData {
+                                                self.eventGallery.append([item.comment, item.image])
+                                                self.cvEventGallery.insertItemsAtIndexPaths([NSIndexPath(forItem: self.eventGallery.count - 1, inSection: 0)])
+                                                self.spinner.stopAnimating()
+                                            }
+                                            
+                                        }
 
                                     })
                                     
-                                    if self.downloadData.count == (files.count + comments.count) {
-                                        println("sorting data")
-                                        //sort the array and then update the collection
-                                        // sort(&self.downloadData){ $0.date > $1.date } //doent work yet
-                                        for item in self.downloadData {
-                                            self.eventGallery.append([item.comment, item.image])
-                                            self.cvEventGallery.insertItemsAtIndexPaths([NSIndexPath(forItem: self.eventGallery.count - 1, inSection: 0)])
-                                        }
-                                        
-                                    }
                                 }
                             }
                             
@@ -314,6 +274,8 @@ class EventVC: UIViewController, UINavigationControllerDelegate, UIImagePickerCo
             }
             if error != nil {
                 println("Error: \(error)")
+                self.spinner.stopAnimating()
+
             }
         })
         
