@@ -31,7 +31,9 @@ class BAAEvent: BAAObject {
     var event_id: AnyObject!
     var venue_id: AnyObject!
     var start = Start()
-    //var artist = Artist()
+    var artistArray: NSArray!
+    var artist = Artist()
+    var artists = [Artist]()
     
     override init!(dictionary: [NSObject : AnyObject]!) {
         type = dictionary["type"]
@@ -45,9 +47,14 @@ class BAAEvent: BAAObject {
         start.date = dictionary["start"]?.objectForKey("date")
         start.datetime = dictionary["start"]?.objectForKey("datetime")
         start.time = dictionary["start"]?.objectForKey("time")
-        //artist.artist_id = dictionary["artist"]?.objectForKey("artist_id")
-        //artist.billingIndex = dictionary["artist"]?.objectForKey("billingIndex")
         
+        //builds an array of artists at the event
+        artistArray = dictionary["artist"] as! NSArray
+        for item in artistArray {
+            artist.artist_id = item.valueForKey("artist_id")
+            artist.billingIndex = item.valueForKey("billingIndex")
+            artists.append(artist)
+        }
         super.init(dictionary: dictionary)
     }
     

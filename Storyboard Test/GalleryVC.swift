@@ -92,8 +92,6 @@ class GalleryVC: UIViewController, UICollectionViewDelegateFlowLayout, UICollect
     
     func getBaasImages(){
         BAAFile.loadFilesAndDetailsWithCompletion({(files: [AnyObject]!, error: NSError!) -> () in
-            FetchData().getBassVenues() //this is just here so i can test and know we have the location set
-
             println("files are \(files)")
             if files != nil {
                 for file in files {
