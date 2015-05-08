@@ -26,6 +26,7 @@ class CloseEventVC: UIViewController {
         self.refreshControl.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
         self.EventTable.addSubview(refreshControl)
         getBassEvents()
+        println(formattedDateTime)
     }
 
     override func didReceiveMemoryWarning() {
@@ -54,7 +55,7 @@ class CloseEventVC: UIViewController {
         if latValue != 0 && lonValue != 0 {
             
             // Assumes BAAEvent as a subclass of BAAObject
-            var parameters: NSDictionary = ["where" : "start.time > date('2015-05-08T07:33:51.000+0000')"]
+            var parameters: NSDictionary = ["where" : "start.time > date('\(formattedDateTime)')"]
             //var parameters: NSDictionary = ["":""]
             BAAEvent.getObjectsWithParams(parameters as [NSObject : AnyObject], completion:{(events:[AnyObject]!, error:NSError!) -> Void in
                 if events != nil {
@@ -82,7 +83,7 @@ class CloseEventVC: UIViewController {
                     locationObj = loc
                     
                     // Assumes BAAEvent as a subclass of BAAObject
-                    var parameters: NSDictionary = ["where" : "start.time > date('2015-05-08T07:33:51.000+0000')"]
+                    var parameters: NSDictionary = ["where" : "start.time > date('\(formattedDateTime)')"]
                     //var parameters: NSDictionary = ["":""]
                     BAAEvent.getObjectsWithParams(parameters as [NSObject : AnyObject], completion:{(events:[AnyObject]!, error:NSError!) -> Void in
                         if events != nil {

@@ -28,6 +28,8 @@ var venueSelect: Int = 0
 var eventSelect: Int = 0
 let dateTime = NSDate()
 
+var formattedDateTime :String!
+
 var loggedInUser: Users?
 var seletedCloseEvent: Events?
 var selectedEvent: Events?
