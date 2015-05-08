@@ -16,8 +16,6 @@ class CloseEventVC: UIViewController {
     //variable for refreshing table data
     var refreshControl:UIRefreshControl!
     
-    var Events = [BAAEvent]()
-
     @IBOutlet var EventTable: UITableView!
     
     override func viewDidLoad() {
@@ -51,17 +49,16 @@ class CloseEventVC: UIViewController {
         })
     }
     
-    
     func getBassEvents(){
         //checks to see if the current location is set before starting connection. if its not it calls LocationManager
         if latValue != 0 && lonValue != 0 {
             
             // Assumes BAAEvent as a subclass of BAAObject
-            //var parameters: NSDictionary = ["where" : "distance(lat,lng,\(latValue),\(lonValue)) < 50"]
-            var parameters: NSDictionary = ["":""]
+            var parameters: NSDictionary = ["where" : "start.time > date('2015-05-08T07:33:51.000+0000')"]
+            //var parameters: NSDictionary = ["":""]
             BAAEvent.getObjectsWithParams(parameters as [NSObject : AnyObject], completion:{(events:[AnyObject]!, error:NSError!) -> Void in
                 if events != nil {
-                    self.Events = events as! [BAAEvent]
+                    CloseEvents = events as! [BAAEvent]
                     self.EventTable.reloadData()
                 }
                 if error != nil {
@@ -85,11 +82,11 @@ class CloseEventVC: UIViewController {
                     locationObj = loc
                     
                     // Assumes BAAEvent as a subclass of BAAObject
-                    //var parameters: NSDictionary = ["where" : "distance(lat,lng,\(latValue),\(lonValue)) < 50"]
-                    var parameters: NSDictionary = ["":""]
+                    var parameters: NSDictionary = ["where" : "start.time > date('2015-05-08T07:33:51.000+0000')"]
+                    //var parameters: NSDictionary = ["":""]
                     BAAEvent.getObjectsWithParams(parameters as [NSObject : AnyObject], completion:{(events:[AnyObject]!, error:NSError!) -> Void in
                         if events != nil {
-                            self.Events = events as! [BAAEvent]
+                            CloseEvents = events as! [BAAEvent]
                             self.EventTable.reloadData()
                         }
                         if error != nil {
@@ -112,15 +109,15 @@ class CloseEventVC: UIViewController {
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return Events.count
+        return CloseEvents.count
         
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell { let cell:UITableViewCell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "TableView")
         
         //Assign the contents of our var "items" to the textLabel of each cell
-        cell.textLabel?.text = Events[indexPath.row].displayName as? String
-        cell.detailTextLabel?.text = "Start Time: \(Events[indexPath.row].start.time)"
+        cell.textLabel?.text = CloseEvents[indexPath.row].displayName as? String
+        cell.detailTextLabel?.text = "Start Time: \(CloseEvents[indexPath.row].start.time)"
         
         return cell
         
@@ -130,10 +127,10 @@ class CloseEventVC: UIViewController {
         
         var closeeventdetailvc:CloseEventDetailVC = storyboard?.instantiateViewControllerWithIdentifier("CloseEventDetailVC") as! CloseEventDetailVC
         //Reference DetailVC's var "cellName" and assign it to DetailVC's var "items"
-        closeeventdetailvc.eventTitle = Events[indexPath.row].displayName as! String
-        closeeventdetailvc.startDate = "Start Date: \(Events[indexPath.row].start.date)"
-        closeeventdetailvc.startTime = "Start Time: \(Events[indexPath.row].start.time)"
-        closeeventdetailvc.venueId = "Venue ID: \(Events[indexPath.row].venue_id)"
+        closeeventdetailvc.eventTitle = CloseEvents[indexPath.row].displayName as! String
+        closeeventdetailvc.startDate = "Start Date: \(CloseEvents[indexPath.row].start.date)"
+        closeeventdetailvc.startTime = "Start Time: \(CloseEvents[indexPath.row].start.time)"
+        closeeventdetailvc.venueId = "Venue ID: \(CloseEvents[indexPath.row].venue_id)"
         
         //Programmatically push to associated VC (EventsVC)
         self.navigationController?.pushViewController(closeeventdetailvc, animated: true)
