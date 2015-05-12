@@ -38,9 +38,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         BaasBox.setBaseURL("http://api.bethehype.co.uk", appCode: "1234567890")
+        //BaasBox.setBaseURL("http://localhost:9000", appCode: "1234567890")
         
         let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:MM:SS'.000'Z" // superset of OP's format
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:MM:ss.FFFZ" // superset of OP's format
         formattedDateTime = dateFormatter.stringFromDate(NSDate())
         
         return true

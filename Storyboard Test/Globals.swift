@@ -34,8 +34,9 @@ var loggedInUser: Users?
 var seletedCloseEvent: Events?
 var selectedEvent: Events?
 var closeEvents = [Events]()
-var CloseEvents = [BAAEvent]()
+//var CloseEvents = [BAAEvent]()
 var ArchiveEvents = [BAAEvent]()
+var closeVenueEvents = [BAALinkedVenueEvents]()
 var gigFound:Bool = false
 
 var OnlineSearch: Bool = false

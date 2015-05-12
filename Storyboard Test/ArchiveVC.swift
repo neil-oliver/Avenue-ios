@@ -61,7 +61,7 @@ class ArchiveVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         if latValue != 0 && lonValue != 0 {
             
             // Assumes BAAEvent as a subclass of BAAObject
-            var parameters: NSDictionary = ["where" : "start.time < date('\(formattedDateTime)')"]
+            var parameters: NSDictionary = ["where" : "start.datetime < date('\(formattedDateTime)')"]
             //var parameters: NSDictionary = ["":""]
             BAAEvent.getObjectsWithParams(parameters as [NSObject : AnyObject], completion:{(events:[AnyObject]!, error:NSError!) -> Void in
                 if events != nil {
@@ -89,7 +89,7 @@ class ArchiveVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                     locationObj = loc
                     
                     // Assumes BAAEvent as a subclass of BAAObject
-                    var parameters: NSDictionary = ["where" : "start.time < date('\(formattedDateTime)')"]
+                    var parameters: NSDictionary = ["where" : "start.datetime < date('\(formattedDateTime)')"]
                     //var parameters: NSDictionary = ["":""]
                     BAAEvent.getObjectsWithParams(parameters as [NSObject : AnyObject], completion:{(events:[AnyObject]!, error:NSError!) -> Void in
                         if events != nil {

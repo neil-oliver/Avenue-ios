@@ -63,6 +63,7 @@
 		84C0BBDF1A2FC7DB00398E45 /* GigNC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C0BBDE1A2FC7DB00398E45 /* GigNC.swift */; };
 		84C0BBE11A2FCA1F00398E45 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84C0BBE01A2FCA1F00398E45 /* Main.storyboard */; };
 		84C93C501AE84393001558F9 /* Comments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C93C4F1AE84393001558F9 /* Comments.swift */; };
+		84D885421AFD73FA00A1B853 /* LinkedVenueEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D885411AFD73FA00A1B853 /* LinkedVenueEvents.swift */; };
 		84F109F11A2607E80079F9B8 /* Events2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F109F01A2607E80079F9B8 /* Events2.swift */; };
 		84F109F31A2607FB0079F9B8 /* Locations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F109F21A2607FB0079F9B8 /* Locations.swift */; };
 		84F109F51A26336F0079F9B8 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F109F41A26336F0079F9B8 /* UserManager.swift */; };
@@ -146,6 +147,7 @@
 		84C0BBDE1A2FC7DB00398E45 /* GigNC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GigNC.swift; sourceTree = "<group>"; };
 		84C0BBE01A2FCA1F00398E45 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		84C93C4F1AE84393001558F9 /* Comments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comments.swift; sourceTree = "<group>"; };
+		84D885411AFD73FA00A1B853 /* LinkedVenueEvents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinkedVenueEvents.swift; sourceTree = "<group>"; };
 		84F109F01A2607E80079F9B8 /* Events2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Events2.swift; sourceTree = "<group>"; };
 		84F109F21A2607FB0079F9B8 /* Locations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Locations.swift; sourceTree = "<group>"; };
 		84F109F41A26336F0079F9B8 /* UserManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
@@ -308,6 +310,7 @@
 				8463C9141AE43DD70074BBA7 /* Events.swift */,
 				84444A1D1AF9769300BDA347 /* Artists.swift */,
 				84C93C4F1AE84393001558F9 /* Comments.swift */,
+				84D885411AFD73FA00A1B853 /* LinkedVenueEvents.swift */,
 			);
 			path = "BaasBox-iOS-SDK";
 			sourceTree = "<group>";
@@ -433,6 +436,7 @@
 				849880E21ADEB55D00188146 /* BAAMutableURLRequest.m in Sources */,
 				849C0E781A1F65FB00542AAA /* EventSideBarVC.swift in Sources */,
 				84C0BBDF1A2FC7DB00398E45 /* GigNC.swift in Sources */,
+				84D885421AFD73FA00A1B853 /* LinkedVenueEvents.swift in Sources */,
 				842A53FF1A2A93C50031FF58 /* ArchiveEventSideBarVC.swift in Sources */,
 				84A46ED91A39AFCD00EDC940 /* AltEventContentVC.swift in Sources */,
 				84C93C501AE84393001558F9 /* Comments.swift in Sources */,

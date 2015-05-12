@@ -280,6 +280,7 @@ class FetchData: NSObject, NSURLConnectionDelegate {
             BAAVenue.getObjectsWithParams(parameters as [NSObject : AnyObject], completion:{(venues:[AnyObject]!, error:NSError!) -> Void in
                 if venues != nil {
                     for venue in venues {
+                        println(venue)
                         var singlevenue: BAAVenue = venue as! BAAVenue
                         println("Venue Name: \(singlevenue.displayName)")
                         println("Metro Area: \(singlevenue.metroArea.id)")
@@ -310,6 +311,7 @@ class FetchData: NSObject, NSURLConnectionDelegate {
                     BAAVenue.getObjectsWithParams(parameters as [NSObject : AnyObject], completion:{(venues:[AnyObject]!, error:NSError!) -> Void in
                         if venues != nil {
                             for venue in venues {
+                                println(venue)
                                 var singlevenue: BAAVenue = venue as! BAAVenue
                                 println("Venue Name: \(singlevenue.displayName)")
                                 println("Metro Area: \(singlevenue.metroArea.id)")
