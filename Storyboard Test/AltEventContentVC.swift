@@ -15,11 +15,10 @@ class AltEventContentVC: UIViewController {
     var pageIndex : Int?
     var titleText : String?
     var imagePath : String?
-    var lat: Double = 0
-    var lon: Double = 0
     var locname: String = ""
     var StartTime: String = ""
     var StartDate: String = ""
+    var location : CLLocationCoordinate2D!
     //To have a label for a childVC and a background image for the child VC.
     //@IBOutlet weak var titleLabel: UILabel!
     //@IBOutlet weak var backgroundImageView: UIImageView!
@@ -38,23 +37,15 @@ class AltEventContentVC: UIViewController {
         // Do any additional setup after loading the view.
         //self.backgroundImageView.image = UIImage(named: self.imagePath!)
         //self.titleLabel.text = self.titleText
-
-        
-        var location = CLLocationCoordinate2D(
-            latitude: lat,
-            longitude: lon
-        )
         
         var span = MKCoordinateSpanMake(0.01, 0.01)
         var region = MKCoordinateRegion(center: location, span: span)
-        
-        map.setRegion(region, animated: true)
-        
         var annotation = MKPointAnnotation()
         annotation.coordinate = location
         annotation.title = locname
         map.addAnnotation(annotation)
-        
+        println("region \(region.center.latitude)")
+        map.setRegion(region, animated: true)
         
     }
 

@@ -32,9 +32,8 @@ var formattedDateTime :String!
 
 var loggedInUser: Users?
 var seletedCloseEvent: Events?
-var selectedEvent: Events?
+var selectedEvent: BAALinkedVenueEvents?
 var closeEvents = [Events]()
-//var CloseEvents = [BAAEvent]()
 var ArchiveEvents = [BAAEvent]()
 var closeVenueEvents = [BAALinkedVenueEvents]()
 var gigFound:Bool = false

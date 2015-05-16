@@ -55,8 +55,8 @@ class BAAVenue: BAAObject {
         city.displayName = dictionary["city"]?.objectForKey("displayName")
         city.country.displayName = dictionary["city"]?.objectForKey("coutry")?.objectForKey("displayName")
         
-        lat = dictionary["lng"]
-        lng = dictionary["lat"]
+        lat = dictionary["lat"]
+        lng = dictionary["lng"]
         displayName = dictionary["displayName"]
         zip = dictionary["zip"]
         venue_town = dictionary["venue_town"]

@@ -25,7 +25,9 @@ class CloseEventVC: UIViewController {
         self.refreshControl.attributedTitle = NSAttributedString(string: "Pull to refersh")
         self.refreshControl.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
         self.EventTable.addSubview(refreshControl)
-        getBassVenuesEvents()
+        FetchData().getBassVenuesEvents()
+        FetchData().getNewEvents()
+        //EventTable.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -35,7 +37,7 @@ class CloseEventVC: UIViewController {
     
     func refresh(sender:AnyObject){
         println("refresh")
-        getBassVenuesEvents()
+        FetchData().getBassVenuesEvents()
         
         dispatch_async(dispatch_get_main_queue(), { () -> Void in
             self.EventTable.reloadData()
@@ -50,35 +52,6 @@ class CloseEventVC: UIViewController {
     }
 
     
-    func getBassVenuesEvents(){
-        
-        //checks to see if the current location is set before starting connection. if its not it calls LocationManager
-        if latValue != 0 && lonValue != 0 {
-            println("getting venues and events")
-            var path: NSString = "link"
-            var params: NSDictionary = ["where" : "distance(out.lat,out.lng,\(latValue),\(lonValue)) < 10 and in.start.datetime > date('\(formattedDateTime)') and label=\"venue_event\""]
-            var c = BAAClient.sharedClient()
-            
-            c.getPath(path as String, parameters: params as [NSObject : AnyObject], success:{(success: AnyObject!) -> Void in
-                
-                var data: NSDictionary = success as! NSDictionary
-                var dataArray: [AnyObject] = data["data"] as! [AnyObject]
-                for item in dataArray {
-                    
-                    var venueAndEvent = BAALinkedVenueEvents(dictionary: item as! [NSObject : AnyObject])
-                    closeVenueEvents.append(venueAndEvent)
-                    println(venueAndEvent.venue.displayName)
-                    println(venueAndEvent.event.displayName)
-                    self.EventTable.reloadData()
-                }
-                
-                }, failure:{(failure: NSError!) -> Void in
-                    
-                    println(failure)
-                    
-            })
-        }
-    }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         

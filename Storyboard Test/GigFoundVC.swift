@@ -15,7 +15,7 @@ class GigFoundVC: UIViewController {
     @IBOutlet var btnContinue: UIButton!
     @IBOutlet var btnSelect: UIButton!
     @IBAction func btnContinue(sender: AnyObject) {
-        selectedEvent = closeEvents[0]
+        selectedEvent = closeVenueEvents[0]
     }
     
     @IBAction func btnSelect(sender: AnyObject){
@@ -29,27 +29,30 @@ class GigFoundVC: UIViewController {
         self.presentViewController(navigationController, animated: true, completion: nil)
     }
     
-    func WhereWhen(){
-        if closeEvents.count != 0 {
+    
+    func whereWhen (){
+        
+        if closeVenueEvents.count != 0 {
             // nested if statement to work out where the user is and if there is an event listed. println() statements describe each condition of the if statement.
-            if closeEvents[0].locations.distance <= 100 {
-                println("The Nearest venue to you is \(closeEvents[0].locations.location_name) and you are within 100m")
+            if closeVenueEvents[0].distance <= 10 {
+                println("The Nearest venue to you is \(closeVenueEvents[0].venue.displayName) and you are within 100m")
                 
-                if closeEvents[0].start_date_comparison_result >= 0 {
-                    lblTitle.text = ("\(closeEvents[0].locations.location_name) has the event \(closeEvents[0].event_name) listed but is in the future")
+                if dateComparison(closeVenueEvents[0].event.start.datetime as! String) == 1 {
+                    lblTitle.text = ("\(closeVenueEvents[0].venue.displayName) has the event \(closeVenueEvents[0].event.displayName) listed but is in the future")
                     btnSelect.hidden = false
-                } else if closeEvents[0].start_date_comparison_result <= 0 && closeEvents[0].end_date_comparison_result == 1 {
-                    lblTitle.text = ("The event \(closeEvents[0].event_name) is currently happening at \(closeEvents[0].locations.location_name)")
+                    
+                } else if dateComparison(closeVenueEvents[0].event.start.datetime as! String) == 0 {
+                    lblTitle.text = ("The event \(closeVenueEvents[0].event.displayName) is currently happening at \(closeVenueEvents[0].venue.displayName)")
                     btnContinue.hidden = false
                     btnSelect.hidden = false
                 }
                 
                 
-            } else if closeEvents[0].locations.distance > 100 {
-                println("The Nearest venue to you is \(closeEvents[0].locations.location_name) and you are not within 100m")
+            } else if closeVenueEvents[0].distance > 10 {
+                println("The Nearest venue to you is \(closeVenueEvents[0].venue.displayName) and you are not within 100m")
                 
-                if closeEvents[0].start_date_comparison_result >= 0 {
-                    lblTitle.text = ("\(closeEvents[0].locations.location_name) has the event \(closeEvents[0].event_name) listed but is in the future")
+                if dateComparison(closeVenueEvents[0].event.start.datetime as! String) == 1 {
+                    lblTitle.text = ("\(closeVenueEvents[0].venue.displayName) has the event \(closeVenueEvents[0].event.displayName) listed but is in the future")
                     btnSelect.hidden = false
                 }
             }
@@ -67,7 +70,7 @@ class GigFoundVC: UIViewController {
         super.viewDidLoad()
         btnContinue.hidden = true
         btnSelect.hidden = true
-        self.WhereWhen()
+        self.whereWhen()
         // Do any additional setup after loading the view.
     }
 

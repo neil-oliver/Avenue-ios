@@ -1,5 +1,6 @@
 
 ToDo: Essential
+sort getBassVenuesEvents() where comparisons
 Stop repetition of code on any functions that need location
 BAAArtist variables
 Add warning that user MUST allow location

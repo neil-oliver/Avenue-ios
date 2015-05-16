@@ -76,7 +76,7 @@ class EventVC: UIViewController, UINavigationControllerDelegate, UIImagePickerCo
         
         super.viewDidLoad()
         self.txtComment.delegate = self
-        lblTitle.text = selectedEvent?.event_name as? String
+        lblTitle.text = selectedEvent?.event.displayName as? String
         self.spinner.center = self.view.center
         self.view.addSubview(self.spinner)
         getBaasCommentsAndFiles()

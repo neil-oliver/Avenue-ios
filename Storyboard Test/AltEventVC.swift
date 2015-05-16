@@ -7,17 +7,15 @@
 //
 
 import UIKit
+import MapKit
 
 class AltEventVC: UIViewController, UIPageViewControllerDataSource  {
     
     //Initialize a UIPageViewController object.
     var pageViewController = UIPageViewController()
-    //var pageTitles = [ "Over 200 Tips and Tricks", "Discover Hidden Features", "Bookmark Favorite Tip", "Free Regular Update" ]
-    var pageImagePaths = []
     
     @IBOutlet var btnSelectGig: UIButton!
 
-    
     //MARK: UIPageViewControllerDataSource
     func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
         
@@ -44,7 +42,7 @@ class AltEventVC: UIViewController, UIPageViewControllerDataSource  {
         }
         index = index! + 1
         
-        if index == closeEvents.count {
+        if index == closeVenueEvents.count {
             return nil
         }
         
@@ -52,7 +50,7 @@ class AltEventVC: UIViewController, UIPageViewControllerDataSource  {
     }
     
     func presentationCountForPageViewController(pageViewController: UIPageViewController) -> Int {
-        return closeEvents.count
+        return closeVenueEvents.count
     }
     
     func presentationIndexForPageViewController(pageViewController: UIPageViewController) -> Int {
@@ -61,20 +59,21 @@ class AltEventVC: UIViewController, UIPageViewControllerDataSource  {
     
     //Used to generate the ViewControllers at the Index.
     func viewControllerAtIndex( index: Int) -> AltEventContentVC! {
-        if closeEvents.count == 0 || index >= closeEvents.count {
+        if closeVenueEvents.count == 0 || index >= closeVenueEvents.count {
             return nil
         }
         
         var pageContentViewController = self.storyboard?.instantiateViewControllerWithIdentifier("AltEventContentVC") as! AltEventContentVC
-        pageContentViewController.titleText = closeEvents[index].event_name as String
-        pageContentViewController.lat = closeEvents[index].locations.location_latitude as Double
-        pageContentViewController.lon = closeEvents[index].locations.location_longitude as Double
-        pageContentViewController.locname = closeEvents[index].locations.location_name as String
-        pageContentViewController.StartDate = "Start Date: \(closeEvents[index].event_start_date as String)"
-        pageContentViewController.StartTime = "Start Time: \(closeEvents[index].event_start_time as String)"
-        //pageContentViewController.imagePath = self.pageImagePaths[index]
+        pageContentViewController.titleText = closeVenueEvents[index].event.displayName as? String
+        pageContentViewController.location = CLLocationCoordinate2D(
+            latitude: closeVenueEvents[index].venue.lat as! Double,
+            longitude: closeVenueEvents[index].venue.lng as! Double
+        )
+        pageContentViewController.locname = closeVenueEvents[index].venue.displayName as! String
+        pageContentViewController.StartDate = "Start Date: \(closeVenueEvents[index].event.start.date as! String)"
+        pageContentViewController.StartTime = "Start Time: \(closeVenueEvents[index].event.start.time as! String)"
         pageContentViewController.pageIndex = index
-        selectedEvent = closeEvents[index]
+        selectedEvent = closeVenueEvents[index]
         
         return pageContentViewController
     }
