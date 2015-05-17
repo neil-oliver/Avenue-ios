@@ -40,7 +40,7 @@ class BAAEvent: BAAObject {
         status = dictionary["status"]
         ageRestriction = dictionary["ageRestriction"]
         uri = dictionary["uri"]
-        displayName = dictionary["displayName"]
+        displayName = dictionary["name"]
         popularity = dictionary["popularity"]
         event_id = dictionary["event_id"]
         venue_id  = dictionary["venue_id"]
@@ -49,7 +49,7 @@ class BAAEvent: BAAObject {
         start.time = dictionary["start"]?.objectForKey("time")
         
         //builds an array of artists at the event
-        artistArray = dictionary["artist"] as! NSArray
+        artistArray = dictionary["artists"] as! NSArray
         for item in artistArray {
             artist.artist_id = item.valueForKey("artist_id")
             artist.billingIndex = item.valueForKey("billingIndex")

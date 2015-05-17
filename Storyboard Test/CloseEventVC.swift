@@ -26,7 +26,7 @@ class CloseEventVC: UIViewController {
         self.refreshControl.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
         self.EventTable.addSubview(refreshControl)
         FetchData().getBassVenuesEvents()
-        FetchData().getNewEvents()
+        //FetchData().getNewEvents()
         //EventTable.reloadData()
     }
 

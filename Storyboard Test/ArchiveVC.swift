@@ -11,7 +11,7 @@ import CoreData
 
 class ArchiveVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    var results = [Events]()
+    // possibly delete var results = [Events]()
 
     //variable for refreshing table data
     var refreshControl:UIRefreshControl!

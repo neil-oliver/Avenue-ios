@@ -22,6 +22,8 @@ class ScanVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
     var thumbnail: UIImage?
     var image: UIImage?
     var orientation: ALAssetOrientation?
+    
+    var baasTime: String!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -135,32 +137,40 @@ class ScanVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
                     if let photoDate: NSDate = asset.valueForProperty(ALAssetPropertyDate) as! NSDate!
                     {
                         timestamp = photoDate
-                        //println("date: \(photoDate)")
+                        let dateFormatter = NSDateFormatter()
+                        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:MM:ss.FFFZ"
+                        self.baasTime = dateFormatter.stringFromDate(photoDate)
                     }
                     
                     if OnlineSearch == true {
-                        FetchData().startConnection(lat: lat!, lon: long!)
+                        //FetchData().startConnection(lat: lat!, lon: long!)
                     }
-                    
-                    // creates a bounding box to only get venue details within a sort distance of the current location
-                    var latMax: Double = Double(lat!) + 0.005
-                    var latMin: Double = Double(lat!) - 0.005
-                    var lngMax: Double = Double(long!) + 0.005
-                    var lngMin: Double = Double(long!) - 0.005
-                    
-                    //breaking predicate parameters into variables
-                    locationMgr.predicateString = "location_latitude > %f and location_latitude < %f and location_longitude > %f and location_longitude < %f"
-                    locationMgr.predicateVars = [latMin, latMax, lngMin, lngMax]
-                    
-                    
-                    var appDel: AppDelegate = (UIApplication.sharedApplication().delegate as! AppDelegate)
-                    var context:NSManagedObjectContext = appDel.managedObjectContext!
-                    var request = NSFetchRequest(entityName: "Events")
-                    request.returnsObjectsAsFaults = false;
-                    request.relationshipKeyPathsForPrefetching = ["locations"]
-                    request.predicate = NSPredicate(format: "locations.location_latitude > %f && locations.location_latitude < %f && locations.location_longitude > %f && locations.location_longitude < %f && event_start < %@ && event_end > %@ ", latMin, latMax, lngMin, lngMax, timestamp!, timestamp!)
-                    var eventres: NSArray = context.executeFetchRequest(request, error: nil)!
-                    resEvents = eventres as! [Events]
+                        /* 
+                        //incomplete: start of the call to baas to check if photo was taken at a gig but need an end date
+                        var path: NSString = "link"
+                        var params: NSDictionary = ["fields" : "out,in, distance(out.lat,out.lng,\(lat),\(long)) as distance", "where" : "distance(out.lat,out.lng,\(lat),\(long)) < 0.5 and in.start.datetime < date('\(self.baasTime)') and label=\"venue_event\""]
+                        var c = BAAClient.sharedClient()
+                        
+                        c.getPath(path as String, parameters: params as [NSObject : AnyObject], success:{(success: AnyObject!) -> Void in
+                            var data: NSDictionary = success as! NSDictionary
+                            var dataArray: [AnyObject] = data["data"] as! [AnyObject]
+                            for item in dataArray {
+                                
+                                var venueAndEvent = BAALinkedVenueEvents(dictionary: item as! [NSObject : AnyObject])
+                                closeVenueEvents.append(venueAndEvent)
+                                println(venueAndEvent.venue.displayName)
+                                println(venueAndEvent.event.displayName)
+                                println("Distance: \(venueAndEvent.distance)")
+                            }
+                            
+                            }, failure:{(failure: NSError!) -> Void in
+                                
+                                println(failure)
+                                
+                        })
+                        */
+
+
                 }
 
                     if resEvents.count == 0 {

@@ -367,7 +367,8 @@ class FetchData: NSObject, NSURLConnectionDelegate {
         if latValue != 0 && lonValue != 0 {
             println("getting venues and events")
             var path: NSString = "link"
-            var params: NSDictionary = ["fields" : "out,in, distance(out.lat,out.lng,\(latValue),\(lonValue)) as distance", "where" : "distance(out.lat,out.lng,\(latValue),\(lonValue)) < 5 and in.start.datetime > date('\(formattedDateTime)') and label=\"venue_event\""]
+            var params: NSDictionary = ["fields" : "out, in, distance(out.lat,out.lng,\(latValue),\(lonValue)) as distance", "where" : "distance(out.lat,out.lng,\(latValue),\(lonValue)) < 5 and in.start.datetime > date('\(formattedDateTime)') and label=\"venue_event\""]
+            
             var c = BAAClient.sharedClient()
             
             c.getPath(path as String, parameters: params as [NSObject : AnyObject], success:{(success: AnyObject!) -> Void in
@@ -395,7 +396,7 @@ class FetchData: NSObject, NSURLConnectionDelegate {
         
         //checks to see if the current location is set before starting connection. if its not it calls LocationManager
         if latValue != 0 && lonValue != 0 {
-            println("getting venues and events")
+            println("calling plugin")
             var path: NSString = "plugin/avenue.event_management?apikey=io09K9l3ebJxmxe2&location=geo:\(latValue),\(lonValue)"
             var params: NSDictionary = ["" : ""]
             //var params: NSDictionary = ["api" : "io09K9l3ebJxmxe2", "location" : "geo:\(latValue),\(lonValue)"]

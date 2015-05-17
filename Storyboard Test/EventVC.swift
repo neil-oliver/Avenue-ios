@@ -44,9 +44,11 @@ class EventVC: UIViewController, UINavigationControllerDelegate, UIImagePickerCo
                 if object != nil {
                     self.btnSend.enabled = true
                     println("Object: \(object)")
+                    createBaasLink(object.objectId, selectedEvent!.event.objectId)
                     self.eventGallery.append([comment, UIImage(named: "white.jpg")!])
                     self.cvEventGallery.insertItemsAtIndexPaths([NSIndexPath(forItem: self.eventGallery.count-1, inSection: 0)])
                     self.txtComment.text = ""
+                    
                 }
                 if error != nil {
                     self.btnSend.enabled = true
@@ -79,8 +81,9 @@ class EventVC: UIViewController, UINavigationControllerDelegate, UIImagePickerCo
         lblTitle.text = selectedEvent?.event.displayName as? String
         self.spinner.center = self.view.center
         self.view.addSubview(self.spinner)
-        getBaasCommentsAndFiles()
+        //getBaasCommentsAndFiles()
         //getBaasImages()
+        getEventComments()
     }
 
 
@@ -185,10 +188,10 @@ class EventVC: UIViewController, UINavigationControllerDelegate, UIImagePickerCo
         var file: BAAFile = BAAFile(data: data)
         file.contentType = "image/jpeg"
         file.attachedData = attachedExif
-        println("exif: \(attachedExif)")
         file.uploadFileWithPermissions(nil, completion:{(uploadedFile: AnyObject!, error: NSError!) -> Void in
             if uploadedFile != nil {
                 println("Object: \(uploadedFile)")
+                createBaasLink(uploadedFile.fileId, selectedEvent!.event.objectId)
                 //self.photoGallery.append(photo)
                 //self.cellComment.append("")
                 self.eventGallery.append(["", photo])
@@ -207,6 +210,41 @@ class EventVC: UIViewController, UINavigationControllerDelegate, UIImagePickerCo
         })
     }
     
+    func getEventComments(){
+        
+        //checks to see if the current location is set before starting connection. if its not it calls LocationManager
+        if latValue != 0 && lonValue != 0 {
+            println("getting linked comments")
+            var path: NSString = "link"
+            var params: NSDictionary = ["where": "in.event_id = \(selectedEvent!.event.event_id) and label=\"event_object\""]
+            var c = BAAClient.sharedClient()
+            
+            c.getPath(path as String, parameters: params as [NSObject : AnyObject], success:{(success: AnyObject!) -> Void in
+                
+                if success != nil {
+                    println(success)
+                    var data: NSDictionary = success as! NSDictionary
+                    var dataArray: [AnyObject] = data["data"] as! [AnyObject]
+                    
+                    /*
+                    for item in dataArray {
+                        
+                        var eventAndComment = BAALinkedEventComments(dictionary: item as! [NSObject : AnyObject])
+                        eventComments.append(eventAndComment)
+                        println(eventAndComment.event.displayName)
+                        println(eventAndComment.comment.comment)
+                    }
+                    */
+                }
+                
+            }, failure:{(failure: NSError!) -> Void in
+                    
+                    println(failure)
+                    
+            })
+        }
+    }
+    
     
     class downloadDataClass {
         var comment = String()
@@ -215,12 +253,14 @@ class EventVC: UIViewController, UINavigationControllerDelegate, UIImagePickerCo
     }
     
     var downloadData: [downloadDataClass] = []
-
+    
+    /*
     func getBaasCommentsAndFiles(){
         self.spinner.startAnimating()
         // Assumes BAAComment as a subclass of BAAObject
         var parameters: NSDictionary = [:]
         BAAComment.getObjectsWithParams(parameters as [NSObject : AnyObject], completion:{(comments:[AnyObject]!, error:NSError!) -> Void in
+            println(comments)
             if comments != nil {
                 println("recieved \(comments.count) comments")
                 for single in comments {
@@ -280,7 +320,7 @@ class EventVC: UIViewController, UINavigationControllerDelegate, UIImagePickerCo
         })
         
     }
-    
+    */
     
     //// toolbar experimenting - close but not there yet
     /*
