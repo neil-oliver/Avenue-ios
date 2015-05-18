@@ -34,8 +34,8 @@ class GigFoundVC: UIViewController {
         
         if closeVenueEvents.count != 0 {
             // nested if statement to work out where the user is and if there is an event listed. println() statements describe each condition of the if statement.
-            if closeVenueEvents[0].distance <= 10 {
-                println("The Nearest venue to you is \(closeVenueEvents[0].venue.displayName) and you are within 100m")
+            if closeVenueEvents[0].distance <= 1 {
+                println("The Nearest venue to you is \(closeVenueEvents[0].venue.displayName) and you are within 1000m")
                 
                 if dateComparison(closeVenueEvents[0].event.start.datetime as! String) == 1 {
                     lblTitle.text = ("\(closeVenueEvents[0].venue.displayName) has the event \(closeVenueEvents[0].event.displayName) listed but is in the future")
@@ -48,8 +48,8 @@ class GigFoundVC: UIViewController {
                 }
                 
                 
-            } else if closeVenueEvents[0].distance > 10 {
-                println("The Nearest venue to you is \(closeVenueEvents[0].venue.displayName) and you are not within 100m")
+            } else if closeVenueEvents[0].distance > 1 {
+                println("The Nearest venue to you is \(closeVenueEvents[0].venue.displayName) and you are not within 1000m")
                 
                 if dateComparison(closeVenueEvents[0].event.start.datetime as! String) == 1 {
                     lblTitle.text = ("\(closeVenueEvents[0].venue.displayName) has the event \(closeVenueEvents[0].event.displayName) listed but is in the future")

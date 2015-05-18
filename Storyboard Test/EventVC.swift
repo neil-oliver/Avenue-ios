@@ -226,15 +226,37 @@ class EventVC: UIViewController, UINavigationControllerDelegate, UIImagePickerCo
                     var data: NSDictionary = success as! NSDictionary
                     var dataArray: [AnyObject] = data["data"] as! [AnyObject]
                     
-                    /*
-                    for item in dataArray {
-                        
+                    
+                    for (index, item) in enumerate(dataArray) {
+                    
                         var eventAndComment = BAALinkedEventComments(dictionary: item as! [NSObject : AnyObject])
                         eventComments.append(eventAndComment)
-                        println(eventAndComment.event.displayName)
-                        println(eventAndComment.comment.comment)
+                        var commentdata = downloadDataClass()
+                        if eventAndComment.comment != nil {
+                            commentdata.comment = eventAndComment.comment.comment as String
+                        } else {
+                            commentdata.comment = ""
+                        }
+                        if eventAndComment.file == nil {
+                            commentdata.image = UIImage(named: "white.jpg")!
+                            self.downloadData.append(commentdata)
+                            self.eventGallery.append([commentdata.comment, commentdata.image])
+                            self.cvEventGallery.insertItemsAtIndexPaths([NSIndexPath(forItem: self.eventGallery.count - 1, inSection: 0)])
+                        } else {
+                            self.spinner.startAnimating()
+                            eventAndComment.file.loadFileWithCompletion({(data:NSData!, error:NSError!) -> () in
+                                if data != nil {
+                                    commentdata.image = UIImage(data: data)!
+                                    self.downloadData.append(commentdata)
+                                    self.eventGallery.insert([commentdata.comment, commentdata.image], atIndex: index)
+                                    self.cvEventGallery.insertItemsAtIndexPaths([NSIndexPath(forItem: index, inSection: 0)])
+                                    self.spinner.stopAnimating()
+                                }
+                            })
+                        }
+                        commentdata.date = eventAndComment.creationDate as NSDate
                     }
-                    */
+                    
                 }
                 
             }, failure:{(failure: NSError!) -> Void in

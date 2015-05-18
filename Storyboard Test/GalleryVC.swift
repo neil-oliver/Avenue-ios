@@ -98,9 +98,12 @@ class GalleryVC: UIViewController, UICollectionViewDelegateFlowLayout, UICollect
                     self.spinner.startAnimating()
                     var image : BAAFile = file as! BAAFile // instance or subclass of BAAFile, previously saved on the server
                     image.loadFileWithCompletion({(data:NSData!, error:NSError!) -> () in
-                        
+                        if data != nil {
                         self.downloadedImages.append(UIImage(data: data)!)
                         self.cvGallery.insertItemsAtIndexPaths([NSIndexPath(forItem: self.downloadedImages.count - 1, inSection: 0)])
+                        } else {
+                            println("error downloading gallery image")
+                        }
                         if self.downloadedImages.count == files.count {
                             self.spinner.stopAnimating()
 
