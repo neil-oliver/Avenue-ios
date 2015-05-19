@@ -19,10 +19,10 @@ class CloseEventSideBarVC: UIViewController {
 
         // Do any additional setup after loading the view.
         
-        lblVenueTitle.text = seletedCloseEvent?.locations.location_name as? String
+        lblVenueTitle.text = selectedEvent?.venue.displayName as? String
         
-        var lat = seletedCloseEvent?.locations.location_latitude as! Double
-        var lon = seletedCloseEvent?.locations.location_longitude as! Double
+        var lat = selectedEvent?.venue.lat as! Double
+        var lon = selectedEvent?.venue.lng as! Double
         
         var location = CLLocationCoordinate2D(
             latitude: lat,
@@ -36,7 +36,7 @@ class CloseEventSideBarVC: UIViewController {
         
         var annotation = MKPointAnnotation()
         annotation.coordinate = location
-        annotation.title = seletedCloseEvent?.locations.location_name as! String
+        annotation.title = selectedEvent?.venue.displayName as! String
         map.addAnnotation(annotation)
     }
 

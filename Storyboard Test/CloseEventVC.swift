@@ -18,18 +18,28 @@ class CloseEventVC: UIViewController {
     
     @IBOutlet var EventTable: UITableView!
     
+    let spinner = UIActivityIndicatorView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        self.spinner.center = self.EventTable.center
+        self.spinner.color = UIColor.blackColor()
+        self.EventTable.addSubview(self.spinner)
         self.refreshControl = UIRefreshControl()
         self.refreshControl.attributedTitle = NSAttributedString(string: "Pull to refersh")
         self.refreshControl.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
         self.EventTable.addSubview(refreshControl)
-        FetchData().getBassVenuesEvents()
-        FetchData().getNewEvents()
-        //EventTable.reloadData()
+        FetchData().getNewEvents(){(results: Bool) in
+            self.spinner.startAnimating()
+            FetchData().getBassVenuesEvents() {(getBassVenuesEventsResult: Bool) in
+                self.EventTable.reloadData()
+                self.spinner.stopAnimating()
+            }
+        }
     }
 
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -37,7 +47,7 @@ class CloseEventVC: UIViewController {
     
     func refresh(sender:AnyObject){
         println("refresh")
-        FetchData().getBassVenuesEvents()
+        //FetchData().getBassVenuesEvents()
         
         dispatch_async(dispatch_get_main_queue(), { () -> Void in
             self.EventTable.reloadData()
@@ -50,7 +60,7 @@ class CloseEventVC: UIViewController {
             self.EventTable.reloadData()
         })
     }
-
+    
     
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -61,9 +71,18 @@ class CloseEventVC: UIViewController {
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell { let cell:UITableViewCell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "TableView")
         
+        var bestGuess: String = ""
+        /* is estimate currently not working
+        if closeVenueEvents[indexPath.row].event.start.is_estimate == true {
+            bestGuess = "- We couldnt find a start date so we took our best guess!"
+        } else {
+            
+        }
+        */
+        
         //Assign the contents of our var "items" to the textLabel of each cell
         cell.textLabel?.text = closeVenueEvents[indexPath.row].event.displayName as? String
-        cell.detailTextLabel?.text = "Start Time: \(closeVenueEvents[indexPath.row].event.start.time)"
+        cell.detailTextLabel?.text = "Start Time: \(closeVenueEvents[indexPath.row].event.start.time) \(bestGuess)"
         
         return cell
         

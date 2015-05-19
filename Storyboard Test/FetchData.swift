@@ -361,7 +361,7 @@ class FetchData: NSObject, NSURLConnectionDelegate {
         }
     }
     
-    func getBassVenuesEvents(){
+    func getBassVenuesEvents(completion: (getBassVenuesEventsResult: Bool) -> Void){
         
         //checks to see if the current location is set before starting connection. if its not it calls LocationManager
         if latValue != 0 && lonValue != 0 {
@@ -374,14 +374,16 @@ class FetchData: NSObject, NSURLConnectionDelegate {
             c.getPath(path as String, parameters: params as [NSObject : AnyObject], success:{(success: AnyObject!) -> Void in
                 var data: NSDictionary = success as! NSDictionary
                 var dataArray: [AnyObject] = data["data"] as! [AnyObject]
+                closeVenueEvents = []
+
                 for item in dataArray {
                     
                     var venueAndEvent = BAALinkedVenueEvents(dictionary: item as! [NSObject : AnyObject])
                     closeVenueEvents.append(venueAndEvent)
-                    println(venueAndEvent.venue.displayName)
                     println(venueAndEvent.event.displayName)
+                    println(venueAndEvent.event.start.datetime)
                     println("Distance: \(venueAndEvent.distance)")
-                    CloseEventVC().EventTable?.reloadData()
+                    completion(getBassVenuesEventsResult: true)
                 }
                 
                 }, failure:{(failure: NSError!) -> Void in
@@ -392,7 +394,7 @@ class FetchData: NSObject, NSURLConnectionDelegate {
         }
     }
     
-    func getNewEvents(){
+    func getNewEvents(completion: (result: Bool) -> Void){
         
         //checks to see if the current location is set before starting connection. if its not it calls LocationManager
         if latValue != 0 && lonValue != 0 {
@@ -405,7 +407,9 @@ class FetchData: NSObject, NSURLConnectionDelegate {
             c.postPath(path as String, parameters: params as [NSObject : AnyObject], success:{(success: AnyObject!) -> Void in
                 
                     println("new events successfully added")
-                    self.getBassVenuesEvents()
+                
+                completion(result: true)
+                
                 }, failure:{(failure: NSError!) -> Void in
                     
                     println(failure)

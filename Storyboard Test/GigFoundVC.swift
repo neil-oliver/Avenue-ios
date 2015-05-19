@@ -37,11 +37,11 @@ class GigFoundVC: UIViewController {
             if closeVenueEvents[0].distance <= 1 {
                 println("The Nearest venue to you is \(closeVenueEvents[0].venue.displayName) and you are within 1000m")
                 
-                if dateComparison(closeVenueEvents[0].event.start.datetime as! String) == 1 {
+                if dateComparison(closeVenueEvents[0].event.start.datetime as! String, closeVenueEvents[0].event.end.datetime as! String) == 1 {
                     lblTitle.text = ("\(closeVenueEvents[0].venue.displayName) has the event \(closeVenueEvents[0].event.displayName) listed but is in the future")
                     btnSelect.hidden = false
                     
-                } else if dateComparison(closeVenueEvents[0].event.start.datetime as! String) == 0 {
+                } else if dateComparison(closeVenueEvents[0].event.start.datetime as! String, closeVenueEvents[0].event.end.datetime as! String) == 0 {
                     lblTitle.text = ("The event \(closeVenueEvents[0].event.displayName) is currently happening at \(closeVenueEvents[0].venue.displayName)")
                     btnContinue.hidden = false
                     btnSelect.hidden = false
@@ -51,7 +51,7 @@ class GigFoundVC: UIViewController {
             } else if closeVenueEvents[0].distance > 1 {
                 println("The Nearest venue to you is \(closeVenueEvents[0].venue.displayName) and you are not within 1000m")
                 
-                if dateComparison(closeVenueEvents[0].event.start.datetime as! String) == 1 {
+                if dateComparison(closeVenueEvents[0].event.start.datetime as! String, closeVenueEvents[0].event.end.datetime as! String) == 1 {
                     lblTitle.text = ("\(closeVenueEvents[0].venue.displayName) has the event \(closeVenueEvents[0].event.displayName) listed but is in the future")
                     btnSelect.hidden = false
                 }

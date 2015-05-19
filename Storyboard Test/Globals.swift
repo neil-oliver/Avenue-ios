@@ -31,7 +31,7 @@ let dateTime = NSDate()
 var formattedDateTime :String!
 
 var loggedInUser: Users?
-var seletedCloseEvent: Events?
+//var seletedCloseEvent: Events?
 var selectedEvent: BAALinkedVenueEvents?
 var closeEvents = [Events]()
 var ArchiveEvents = [BAAEvent]()

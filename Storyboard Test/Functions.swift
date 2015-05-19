@@ -270,13 +270,12 @@ import Foundation
     extension NSDate: Comparable { }
 
 
-func dateComparison(dateString: String) ->Int {
+func dateComparison(startDateString: String, endDateString: String ) ->Int {
     
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "yyy-MM-dd'T'HH:mm:ss.SSSZZZZZ"
-        let date = dateFormatter.dateFromString(dateString)!
-        //var date = BaasBox.dateFormatter(dateString)
-        println(date)
+        let startDate = dateFormatter.dateFromString(startDateString)!
+        println(startDate)
     
         var startResult: Int!
         var endResult: Int!
@@ -287,7 +286,7 @@ func dateComparison(dateString: String) ->Int {
             //variable for current time
             var currentDateTime = NSDate()
             //time comparison outputs an NSCompareResult object
-            var startDateComparisonResult : NSComparisonResult = currentDateTime.compare(date)
+            var startDateComparisonResult : NSComparisonResult = currentDateTime.compare(startDate)
             
             //uses NSCompareResult to assign a value to date to dateComparison variable. 1 = future, 0 = exact time to second, -1 = past
             if startDateComparisonResult == NSComparisonResult.OrderedAscending {
@@ -308,12 +307,13 @@ func dateComparison(dateString: String) ->Int {
             }
             
             
-            let cal = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)
-            let midnight = cal!.startOfDayForDate(date)
-            let day: NSTimeInterval = 86400 //one day in seconds
+            let dateFormatter = NSDateFormatter()
+            dateFormatter.dateFormat = "yyy-MM-dd'T'HH:mm:ss.SSSZZZZZ"
+            let endDate = dateFormatter.dateFromString(endDateString)!
+            println(endDate)
             
             //no end date currently stored so using midnight of the day of the gig
-            var endDateComparisonResult : NSComparisonResult = currentDateTime.compare(midnight.dateByAddingTimeInterval(day))
+            var endDateComparisonResult : NSComparisonResult = currentDateTime.compare(endDate)
             
             if endDateComparisonResult == NSComparisonResult.OrderedAscending {
                 // Current date is smaller than end date. (gig is in the future or has not finished yet)

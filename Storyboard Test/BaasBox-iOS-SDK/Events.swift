@@ -14,6 +14,14 @@ class BAAEvent: BAAObject {
         var time: AnyObject!
         var datetime: AnyObject!
         var date: AnyObject!
+        var is_estimate: Bool!
+    }
+    
+    struct End {
+        var time: AnyObject!
+        var datetime: AnyObject!
+        var date: AnyObject!
+        var is_estimate: Bool!
     }
 
     
@@ -31,6 +39,7 @@ class BAAEvent: BAAObject {
     var event_id: AnyObject!
     var venue_id: AnyObject!
     var start = Start()
+    var end = End()
     var artistArray: NSArray!
     var artist = Artist()
     var artists = [Artist]()
@@ -47,6 +56,11 @@ class BAAEvent: BAAObject {
         start.date = dictionary["start"]?.objectForKey("date")
         start.datetime = dictionary["start"]?.objectForKey("datetime")
         start.time = dictionary["start"]?.objectForKey("time")
+        start.is_estimate = dictionary["start"]?.objectForKey("is_estimate") as? Bool
+        end.date = dictionary["start"]?.objectForKey("date")
+        end.datetime = dictionary["start"]?.objectForKey("datetime")
+        end.time = dictionary["start"]?.objectForKey("time")
+        end.is_estimate = dictionary["start"]?.objectForKey("is_estimate") as? Bool
         
         //builds an array of artists at the event
         artistArray = dictionary["artists"] as! NSArray

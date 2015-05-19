@@ -40,7 +40,7 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="667"/>
                     <connections>
-                        <outlet property="EventTable" destination="L1D-Yq-u6u" id="3JS-Wm-mYB"/>
+                        <outlet property="EventTable" destination="L1D-Yq-u6u" id="66W-hh-tLc"/>
                         <segue destination="3R6-CY-xDY" kind="show" identifier="CloseEventDetailSegue" id="2I1-Dz-L2a"/>
                     </connections>
                 </viewController>
