@@ -244,7 +244,8 @@ class EventVC: UIViewController, UINavigationControllerDelegate, UIImagePickerCo
                             self.cvEventGallery.insertItemsAtIndexPaths([NSIndexPath(forItem: self.eventGallery.count - 1, inSection: 0)])
                         } else {
                             self.spinner.startAnimating()
-                            eventAndComment.file.loadFileWithCompletion({(data:NSData!, error:NSError!) -> () in
+                            var params = ["resize":"25%"]
+                            eventAndComment.file.loadFileWithParameters( params as [NSObject : AnyObject], completion: {(data:NSData!, error:NSError!) -> () in
                                 if data != nil {
                                     commentdata.image = UIImage(data: data)!
                                     self.downloadData.append(commentdata)

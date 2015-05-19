@@ -19,6 +19,7 @@ class AltEventVC: UIViewController, UIPageViewControllerDataSource  {
     //MARK: UIPageViewControllerDataSource
     func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
         
+
         var currentVC = viewController as! AltEventContentVC
         var index = currentVC.pageIndex
         
@@ -35,7 +36,7 @@ class AltEventVC: UIViewController, UIPageViewControllerDataSource  {
         
         var currentVC = viewController as! AltEventContentVC
         var index = currentVC.pageIndex
-        
+
         if index == nil {
             println("returning nil")
             return nil
@@ -74,6 +75,7 @@ class AltEventVC: UIViewController, UIPageViewControllerDataSource  {
         pageContentViewController.StartTime = "Start Time: \(closeVenueEvents[index].event.start.time as! String)"
         pageContentViewController.pageIndex = index
         selectedEvent = closeVenueEvents[index]
+        println(selectedEvent!.event.displayName)
         
         return pageContentViewController
     }

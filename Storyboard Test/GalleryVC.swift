@@ -97,7 +97,8 @@ class GalleryVC: UIViewController, UICollectionViewDelegateFlowLayout, UICollect
                 for file in files {
                     self.spinner.startAnimating()
                     var image : BAAFile = file as! BAAFile // instance or subclass of BAAFile, previously saved on the server
-                    image.loadFileWithCompletion({(data:NSData!, error:NSError!) -> () in
+                    var params = ["resize":"25%"]
+                    image.loadFileWithParameters( params as [NSObject : AnyObject], completion: {(data:NSData!, error:NSError!) -> () in
                         if data != nil {
                         self.downloadedImages.append(UIImage(data: data)!)
                         self.cvGallery.insertItemsAtIndexPaths([NSIndexPath(forItem: self.downloadedImages.count - 1, inSection: 0)])

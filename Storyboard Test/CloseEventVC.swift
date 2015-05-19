@@ -30,8 +30,8 @@ class CloseEventVC: UIViewController {
         self.refreshControl.attributedTitle = NSAttributedString(string: "Pull to refersh")
         self.refreshControl.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
         self.EventTable.addSubview(refreshControl)
+        self.spinner.startAnimating()
         FetchData().getNewEvents(){(results: Bool) in
-            self.spinner.startAnimating()
             FetchData().getBassVenuesEvents() {(getBassVenuesEventsResult: Bool) in
                 self.EventTable.reloadData()
                 self.spinner.stopAnimating()
@@ -72,13 +72,11 @@ class CloseEventVC: UIViewController {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell { let cell:UITableViewCell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "TableView")
         
         var bestGuess: String = ""
-        /* is estimate currently not working
         if closeVenueEvents[indexPath.row].event.start.is_estimate == true {
-            bestGuess = "- We couldnt find a start date so we took our best guess!"
+            bestGuess = "- Estimate Start Time"
         } else {
             
         }
-        */
         
         //Assign the contents of our var "items" to the textLabel of each cell
         cell.textLabel?.text = closeVenueEvents[indexPath.row].event.displayName as? String
