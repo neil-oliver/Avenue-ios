@@ -103,11 +103,7 @@ class ArchiveVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
         //Create instance of DetailVC
         var archiveeventvc:ArchiveEventVC = storyboard?.instantiateViewControllerWithIdentifier("ArchiveEventVC") as! ArchiveEventVC
-        //Reference DetailVC's var "cellName" and assign it to DetailVC's var "items"
-        //archiveeventvc.SelectedLocationID = locationMgr.locations[indexPath.row].LocationID
-        //archiveeventvc.SelectedLocationName = locationMgr.locations[indexPath.row].LocationName
-        //var SelectedLocationID: String = locationMgr.locations[indexPath.row].LocationID!
-        //archiveeventvc.SelectedLocationIndex = indexPath.row
+        archiveeventvc.selectedArchive = ArchiveEvents[indexPath.row]
         //Programmatically push to associated VC (EventsVC)
         self.navigationController?.pushViewController(archiveeventvc, animated: true)
     }

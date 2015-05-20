@@ -50,6 +50,7 @@
 		849C0E821A237B5900542AAA /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849C0E801A237B5900542AAA /* SwiftyJSON.swift */; };
 		849C0E841A23828700542AAA /* MenuTBC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849C0E831A23828700542AAA /* MenuTBC.swift */; };
 		84A46ED91A39AFCD00EDC940 /* AltEventContentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A46ED81A39AFCD00EDC940 /* AltEventContentVC.swift */; };
+		84A8DE9D1B0CA47400F93F21 /* cvArchiveEventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A8DE9C1B0CA47400F93F21 /* cvArchiveEventCell.swift */; };
 		84B240701AE9309D00BBDDFA /* cvEventGalleryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B2406F1AE9309D00BBDDFA /* cvEventGalleryCell.swift */; };
 		84B240721AEC308700BBDDFA /* SingleImageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B240711AEC308700BBDDFA /* SingleImageVC.swift */; };
 		84B5E38A1A24F50400F637DB /* PersistenceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B5E3851A24F50400F637DB /* PersistenceHelper.swift */; };
@@ -135,6 +136,7 @@
 		849C0E801A237B5900542AAA /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		849C0E831A23828700542AAA /* MenuTBC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuTBC.swift; sourceTree = "<group>"; };
 		84A46ED81A39AFCD00EDC940 /* AltEventContentVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AltEventContentVC.swift; sourceTree = "<group>"; };
+		84A8DE9C1B0CA47400F93F21 /* cvArchiveEventCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = cvArchiveEventCell.swift; sourceTree = "<group>"; };
 		84B2406F1AE9309D00BBDDFA /* cvEventGalleryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = cvEventGalleryCell.swift; sourceTree = "<group>"; };
 		84B240711AEC308700BBDDFA /* SingleImageVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleImageVC.swift; sourceTree = "<group>"; };
 		84B5E3851A24F50400F637DB /* PersistenceHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistenceHelper.swift; sourceTree = "<group>"; };
@@ -268,6 +270,7 @@
 				84A46ED81A39AFCD00EDC940 /* AltEventContentVC.swift */,
 				849C0E7B1A1F777100542AAA /* ArchiveVC.swift */,
 				849C0E791A1F741900542AAA /* ArchiveEventVC.swift */,
+				84A8DE9C1B0CA47400F93F21 /* cvArchiveEventCell.swift */,
 				842A53FE1A2A93C50031FF58 /* ArchiveEventSideBarVC.swift */,
 				849C0E831A23828700542AAA /* MenuTBC.swift */,
 				84C0BBDC1A2FBD9700398E45 /* MenuNC.swift */,
@@ -452,6 +455,7 @@
 				8474D2F51A37064B00CE7AC8 /* cvGalleryCell.swift in Sources */,
 				84B5E38B1A24F50400F637DB /* LocationManager.swift in Sources */,
 				8463C9151AE43DD70074BBA7 /* Events.swift in Sources */,
+				84A8DE9D1B0CA47400F93F21 /* cvArchiveEventCell.swift in Sources */,
 				849C0E7C1A1F777100542AAA /* ArchiveVC.swift in Sources */,
 				849C0E721A1F655B00542AAA /* EventVC.swift in Sources */,
 				849C0E761A1F65C500542AAA /* AltEventVC.swift in Sources */,
