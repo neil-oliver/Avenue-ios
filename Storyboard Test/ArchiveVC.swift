@@ -29,13 +29,12 @@ class ArchiveVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         self.refreshControl.attributedTitle = NSAttributedString(string: "Pull to refersh")
         self.refreshControl.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
         self.ArchiveTable.addSubview(refreshControl)
-        getBassEvents()
+        getArchiveEvents()
         
     }
     
     func refresh(sender:AnyObject){
         println("refresh")
-        sleep(1)
         self.ArchiveTable.reloadData()
         self.refreshControl.endRefreshing()
         
@@ -56,63 +55,31 @@ class ArchiveVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
     }
     
-    func getBassEvents(){
-        //checks to see if the current location is set before starting connection. if its not it calls LocationManager
-        if latValue != 0 && lonValue != 0 {
+    func getArchiveEvents(){
+        
+            var path: NSString = "link"
+            var params: NSDictionary = ["where": "in.end.datetime < date('\(formattedDateTime)') and label=\"event_object\""]
+            var c = BAAClient.sharedClient()
             
-            // Assumes BAAEvent as a subclass of BAAObject
-            var parameters: NSDictionary = ["where" : "start.datetime < date('\(formattedDateTime)')"]
-            //var parameters: NSDictionary = ["":""]
-            BAAEvent.getObjectsWithParams(parameters as [NSObject : AnyObject], completion:{(events:[AnyObject]!, error:NSError!) -> Void in
-                if events != nil {
-                    ArchiveEvents = events as! [BAAEvent]
+            c.getPath(path as String, parameters: params as [NSObject : AnyObject], success:{(success: AnyObject!) -> Void in
+                
+                if success != nil {
+                    var data: NSDictionary = success as! NSDictionary
+                    var dataArray: [AnyObject] = data["data"] as! [AnyObject]
+                    ArchiveEvents = []
+                    for item in dataArray {
+                        var eventAndComment = BAALinkedEventComments(dictionary: item as! [NSObject : AnyObject])
+                        ArchiveEvents.append(eventAndComment)
+                    }
+                    
                     self.ArchiveTable.reloadData()
                 }
-                if error != nil {
-                    println("Error: \(error)")
-                }
-            })
-            
-        } else {
-            
-            manager = OneShotLocationManager()
-            manager!.fetchWithCompletion {location, error in
                 
-                // fetch location or an error
-                if var loc = location {
-                    println(location)
-                    //assigns values to variables for current latitude and logitude
-                    latValue = loc.coordinate.latitude
-                    lonValue = loc.coordinate.longitude
+                }, failure:{(failure: NSError!) -> Void in
                     
-                    //assigns a location object to variable
-                    locationObj = loc
+                    println(failure)
                     
-                    // Assumes BAAEvent as a subclass of BAAObject
-                    var parameters: NSDictionary = ["where" : "start.datetime < date('\(formattedDateTime)')"]
-                    //var parameters: NSDictionary = ["":""]
-                    BAAEvent.getObjectsWithParams(parameters as [NSObject : AnyObject], completion:{(events:[AnyObject]!, error:NSError!) -> Void in
-                        if events != nil {
-                            ArchiveEvents = events as! [BAAEvent]
-                            self.ArchiveTable.reloadData()
-                            
-                        }
-                        if error != nil {
-                            println("Error: \(error)")
-                        }
-                    })
-                    
-                    
-                    
-                } else if var err = error {
-                    println(err.localizedDescription)
-                    let alertController = UIAlertController(title: "Failed to find location", message:
-                        "Location error \(err.localizedDescription)", preferredStyle: UIAlertControllerStyle.Alert)
-                    alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
-                }
-                self.manager = nil
-            }
-        }
+            })
     }
     
     
@@ -125,8 +92,8 @@ class ArchiveVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell { let cell:UITableViewCell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "TableView")
         
         //Assign the contents of our var "items" to the textLabel of each cell
-        cell.textLabel?.text = ArchiveEvents[indexPath.row].displayName as? String
-        cell.detailTextLabel?.text = "Start Time: \(ArchiveEvents[indexPath.row].start.time)"
+        cell.textLabel?.text = ArchiveEvents[indexPath.row].event.displayName as? String
+        cell.detailTextLabel?.text = "Start Time: \(ArchiveEvents[indexPath.row].event.start.time)"
 
         return cell
         
