@@ -18,6 +18,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         FetchData().getLocation()
+        FetchData().getNewEvents(){(results: Bool) in
+            FetchData().getBassVenuesEvents() {(getBassVenuesEventsResult: Bool) in
+            }
+        }
         
         if Reachability.isConnectedToNetwork() {
             println("Internet Connection: Available")

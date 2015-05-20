@@ -33,11 +33,7 @@ class CloseEventVC: UIViewController {
         FetchData().getBassVenuesEvents() {(getBassVenuesEventsResult: Bool) in
             self.EventTable.reloadData()
         }
-        FetchData().getNewEvents(){(results: Bool) in
-            FetchData().getBassVenuesEvents() {(getBassVenuesEventsResult: Bool) in
-                self.EventTable.reloadData()
-            }
-        }
+
     }
 
     
