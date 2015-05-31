@@ -10,20 +10,17 @@ import Foundation
 
 class BAAArtist: BAAObject {
     
-    let event_all_day: Bool!
-    let event_end: NSDate!
-    let event_name: NSString!
-    let event_start: NSDate!
-    let event_status: NSString!
-    let location_id: NSString! // this is where the link will go but i havent looked that bit up yet
+    let name: AnyObject!
+    let sk_artist: AnyObject!
+    let mb_artist: AnyObject!
+
     
     override init!(dictionary: [NSObject : AnyObject]!) {
-        event_all_day = dictionary["event_all_day"] as! Bool!
-        event_end = dictionary["event_end"] as! NSDate!
-        event_name = dictionary["event_name"] as! NSString!
-        event_start = dictionary["event_start"] as! NSDate!
-        event_status = dictionary["event_status"] as! NSString!
-        location_id = dictionary["location_id"] as! NSString!
+        
+        name = dictionary["name"]
+        sk_artist = dictionary["sk_artist"]
+        mb_artist = dictionary["mb_aritst"]
+
         super.init(dictionary: dictionary)
     }
     
@@ -32,3 +29,13 @@ class BAAArtist: BAAObject {
     }
 }
 
+/*
+Example output from aritsts call
+
+{
+"sk_artist": 45922833,
+"mb_artist": 793332,
+"name": "Tom  Mitchell"
+}
+
+*/

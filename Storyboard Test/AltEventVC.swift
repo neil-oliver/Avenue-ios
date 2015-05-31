@@ -75,6 +75,10 @@ class AltEventVC: UIViewController, UIPageViewControllerDataSource  {
         pageContentViewController.StartTime = "Start Time: \(closeVenueEvents[index].event.start.time as! String)"
         pageContentViewController.pageIndex = index
         selectedEvent = closeVenueEvents[index]
+        let alertController = UIAlertController(title: "SelectedEvent Variable", message:
+            "The current gig in the selectedEvent Variable is: \(closeVenueEvents[index].event.displayName)", preferredStyle: UIAlertControllerStyle.Alert)
+        alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
+        self.presentViewController(alertController, animated: true, completion: nil)
         println(selectedEvent!.event.displayName)
         
         return pageContentViewController

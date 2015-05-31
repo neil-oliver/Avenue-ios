@@ -13,7 +13,6 @@ class CloseEventDetailVC: UIViewController {
     //var seletedCloseEvent: Events?
     
     // create instance of our custom transition manager
-    let transitionManager = MenuTransitionManager()
     
     var startDate = ""
     var startTime = ""
@@ -34,16 +33,13 @@ class CloseEventDetailVC: UIViewController {
         lblStartTime.text = startTime
         
         // Do any additional setup after loading the view.
-        self.transitionManager.sourceViewController = self
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         
         // set transition delegate for our menu view controller
         let menu = segue.destinationViewController as! CloseEventSideBarVC
-        menu.transitioningDelegate = self.transitionManager
-        self.transitionManager.menuViewController = menu
-        
+ 
     }
     
     @IBAction func unwindToMainViewController (sender: UIStoryboardSegue){

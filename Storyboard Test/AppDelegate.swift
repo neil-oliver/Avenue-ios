@@ -17,9 +17,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
-        FetchData().getLocation()
-        FetchData().getNewEvents(){(results: Bool) in
-            FetchData().getBassVenuesEvents() {(getBassVenuesEventsResult: Bool) in
+        FetchData().getLocation(){(locationSet: Bool) in
+            FetchData().getNewEvents(){(results: Bool) in
+                FetchData().getBassVenuesEvents() {(getBassVenuesEventsResult: Bool) in
+                    println("\(closeVenueEvents.count) events were found and saved to your device!")
+                    let alertController = UIAlertController(title: "Close Events", message:
+                        "Events were found and saved to your device!", preferredStyle: UIAlertControllerStyle.Alert)
+                    alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
+                    self.window?.rootViewController?.presentedViewController?.presentViewController(alertController, animated: true, completion: nil)
+                }
             }
         }
         

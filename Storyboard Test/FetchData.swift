@@ -336,28 +336,34 @@ class FetchData: NSObject, NSURLConnectionDelegate {
         }
     }
     
-    func getLocation() {
-        manager = OneShotLocationManager()
-        manager!.fetchWithCompletion {location, error in
-            
-            // fetch location or an error
-            if var loc = location {
-                println(location)
-                //assigns values to variables for current latitude and logitude
-                latValue = loc.coordinate.latitude
-                lonValue = loc.coordinate.longitude
+    func getLocation(completion: (locationSet: Bool) -> Void) {
+        if latValue == 0 && lonValue == 0 {
+        
+            manager = OneShotLocationManager()
+            manager!.fetchWithCompletion {location, error in
                 
-                //assigns a location object to variable
-                locationObj = loc
-
-                
-            } else if var err = error {
-                println(err.localizedDescription)
-                let alertController = UIAlertController(title: "Failed to find location", message:
-                    "Location error \(err.localizedDescription)", preferredStyle: UIAlertControllerStyle.Alert)
-                alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
+                // fetch location or an error
+                if var loc = location {
+                    println(location)
+                    //assigns values to variables for current latitude and logitude
+                    latValue = loc.coordinate.latitude
+                    lonValue = loc.coordinate.longitude
+                    
+                    //assigns a location object to variable
+                    locationObj = loc
+                    
+                    completion(locationSet: true)
+                    
+                } else if var err = error {
+                    println(err.localizedDescription)
+                    let alertController = UIAlertController(title: "Failed to find location", message:
+                        "Location error \(err.localizedDescription)", preferredStyle: UIAlertControllerStyle.Alert)
+                    alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
+                }
+                self.manager = nil
             }
-            self.manager = nil
+        } else {
+            completion(locationSet: true)
         }
     }
     

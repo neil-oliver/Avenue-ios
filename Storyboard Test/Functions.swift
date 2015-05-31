@@ -381,6 +381,40 @@ func createBaasLink(inLink: String, outLink: String){
     //return (Success, Error)
 }
 
+func checkLocationServices(delegate: UIViewController) {
+    
+    
+    if CLLocationManager.locationServicesEnabled() == false {
+        println("location services check")
+        
+        switch UIDevice.currentDevice().systemVersion.compare("8.0.0", options: NSStringCompareOptions.NumericSearch) {
+        case .OrderedSame, .OrderedDescending:
+            println("iOS >= 8.0")
+            let alertController = UIAlertController(title: "This app does not have access to Location service", message:
+                "You can enable access in Settings->Privacy->Location->Location Services", preferredStyle: UIAlertControllerStyle.Alert)
+            alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
+            //Direct user to settings - not currently working
+            /*
+            alertController.addAction(UIAlertAction(title: "Settings", style: UIAlertActionStyle.Default,handler: { (alertAction) -> Void in
+                UIApplication.sharedApplication().openURL(NSURL(fileURLWithPath: UIApplicationOpenSettingsURLString)!)
+                println("Open Settings")
+            }))
+            */
+            delegate.presentViewController(alertController, animated: true, completion: nil)
+            
+            
+        case .OrderedAscending:
+            println("iOS < 8.0")
+            let alertController = UIAlertController(title: "This app does not have access to Location service", message:
+                "You can enable access in Settings->Privacy->Location->Location Services", preferredStyle: UIAlertControllerStyle.Alert)
+            alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
+            delegate.presentViewController(alertController, animated: true, completion: nil)
+        }
+        
+    }
+    
+}
+
 
 
 

@@ -57,7 +57,7 @@ class ScanVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
         var image = self.matchedPhotos[self.activePhotoIndex!]
         var photo = image.0
         self.imgScanImageBox.image = photo
-        self.lblMatchedEvent.text = image.1.event_name as String
+        self.lblMatchedEvent.text = image.1.event.displayName as? String
         self.btnConfirm.enabled = true
 
     }
@@ -77,11 +77,30 @@ class ScanVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
         var image = self.matchedPhotos[self.activePhotoIndex!]
         var photo = image.0
         self.imgScanImageBox.image = photo
-        self.lblMatchedEvent.text = image.1.event_name as String
+        self.lblMatchedEvent.text = image.1.event.displayName as? String
         self.btnConfirm.enabled = true
     }
     
     @IBAction func btnConfirm(sender: AnyObject) {
+        var data = UIImageJPEGRepresentation(self.matchedPhotos[self.activePhotoIndex!].0, 1.0)
+        var file: BAAFile = BAAFile(data: data)
+        file.contentType = "image/jpeg"
+        println("Uploading Image")
+        file.uploadFileWithPermissions(nil, completion:{(uploadedFile: AnyObject!, error: NSError!) -> Void in
+            if uploadedFile != nil {
+                println("Object: \(uploadedFile)")
+                createBaasLink(uploadedFile.fileId, self.matchedPhotos[self.activePhotoIndex!].1.event.objectId)
+            }
+            if error != nil {
+                println("Upload Error: \(error)")
+                let alertController = UIAlertController(title: "Upload Error", message:
+                    "Upload Error: \(error)", preferredStyle: UIAlertControllerStyle.Alert)
+                alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
+                self.presentViewController(alertController, animated: true, completion: nil)
+            }
+            self.dismissViewControllerAnimated(true, completion: nil)
+            self.spinner.stopAnimating()
+        })
     }
     
     var imagePicker = UIImagePickerController()
@@ -200,6 +219,10 @@ class ScanVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
                     }, failure:{(failure: NSError!) -> Void in
                         println(failure)
                     })
+                } else {
+                    self.imgScanImageBox.image = image
+                    self.lblMatchedEvent.text = "No GPS Data Found"
+                    self.dismissViewControllerAnimated(true, completion: nil)
                 }
             }
             }, failureBlock: {
@@ -225,19 +248,22 @@ class ScanVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
         
         //self.btnScan.setTitle("Scanning...", forState: UIControlState.Normal)
         //scanImages()
+        
+        
         let alertController = UIAlertController(title: "Coming Soon...", message:
             "This option does not currently work with the BaasBox server.", preferredStyle: UIAlertControllerStyle.Alert)
         alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
         self.presentViewController(alertController, animated: true, completion: nil)
+        
     }
     
     var activePhotoIndex: Int?
-    var matchedPhotos = [(UIImage,Events)]()
+    var matchedPhotos = [(UIImage,BAALinkedVenueEvents)]()
 
     func scanImages() {
         self.spinner.startAnimating()
 
-        matchedPhotos = [(UIImage,Events)]()
+        matchedPhotos = [(UIImage,BAALinkedVenueEvents)]()
         
         var library = ALAssetsLibrary()
         library.enumerateGroupsWithTypes(ALAssetsGroupAll, usingBlock: { (group, stop) -> Void in
@@ -257,6 +283,10 @@ class ScanVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
                                 if let photoDate: NSDate = asset.valueForProperty(ALAssetPropertyDate) as! NSDate!
                                 {
                                     self.timestamp = photoDate
+                                    let dateFormatter = NSDateFormatter()
+                                    dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:MM:ss.FFFZ"
+                                    self.baasTime = dateFormatter.stringFromDate(photoDate as NSDate)
+                                    println("photo date in baas format: \(self.baasTime)")
                                     //println("date: \(photoDate)")
                                 }
                                 
@@ -293,35 +323,34 @@ class ScanVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
                                 }
                                 
                                 var resEvents = [Events]()
+                                var resBaasEvents = [BAALinkedVenueEvents]()
                                 
-                                // creates a bounding box to only get venue details within a sort distance of the current location
-                                var latMax: Double = Double(self.lat!) + 0.005
-                                var latMin: Double = Double(self.lat!) - 0.005
-                                var lngMax: Double = Double(self.long!) + 0.005
-                                var lngMin: Double = Double(self.long!) - 0.005
+                                var path: NSString = "link"
+                                var params: NSDictionary = ["fields" : "out,in, distance(out.lat,out.lng,\(self.lat!),\(self.long!)) as distance", "where" : "distance(out.lat,out.lng,\(self.lat!),\(self.long!)) < 0.1 and in.start.datetime < date('\(self.baasTime)') and in.end.datetime > date('\(self.baasTime)') and label=\"venue_event\"", "orderBy": "distance asc"]
+                                var c = BAAClient.sharedClient()
                                 
-                                //breaking predicate parameters into variables
-                                locationMgr.predicateString = "location_latitude > %f and location_latitude < %f and location_longitude > %f and location_longitude < %f"
-                                locationMgr.predicateVars = [latMin, latMax, lngMin, lngMax]
+                                c.getPath(path as String, parameters: params as [NSObject : AnyObject], success:{(success: AnyObject!) -> Void in
+                                    if success != nil {
+                                        println("event search results for photo: \(success)")
+                                        var data: NSDictionary = success as! NSDictionary
+                                        var dataArray: [AnyObject] = data["data"] as! [AnyObject]
+                                        if dataArray.count != 0 {
+                                            for item in dataArray {
+                                                var venueAndEvent = BAALinkedVenueEvents(dictionary: item as! [NSObject : AnyObject])
+                                                println("scanned event found: \(venueAndEvent.event.displayName)")
+                                                println("Distance: \(venueAndEvent.distance)")
+                                                resBaasEvents.append(venueAndEvent)
+                                            }
+                                        }
+                                        self.matchedPhotos.append((self.image!,resBaasEvents[0]))
+                                        self.spinner.stopAnimating()
+                                    } else {
+                                       self.spinner.stopAnimating()
+                                    }
+                                    }, failure:{(failure: NSError!) -> Void in
+                                        println(failure)
+                                })
                                 
-                                
-                                var appDel: AppDelegate = (UIApplication.sharedApplication().delegate as! AppDelegate)
-                                var context:NSManagedObjectContext = appDel.managedObjectContext!
-                                var request = NSFetchRequest(entityName: "Events")
-                                request.returnsObjectsAsFaults = false;
-                                request.relationshipKeyPathsForPrefetching = ["locations"]
-                                request.predicate = NSPredicate(format: "locations.location_latitude > %f && locations.location_latitude < %f && locations.location_longitude > %f && locations.location_longitude < %f && event_start < %@ && event_end > %@ ", latMin, latMax, lngMin, lngMax, self.timestamp!, self.timestamp!)
-                                var eventres: NSArray = context.executeFetchRequest(request, error: nil)!
-                                resEvents = eventres as! [Events]
-                                if eventres.count == 0 {
-                                    //println("No event found for photo")
-                                    self.spinner.stopAnimating()
-                                } else {
-                                    //println("Photo \(URL!) was taken at \(resEvents[0].event_name) at \(timestamp!)")
-                                    //println(URL!.absoluteString!)
-                                    self.matchedPhotos.append((self.image!,resEvents[0]))
-                                    self.spinner.stopAnimating()
-                                }
                             }
                         }
                     }
@@ -336,7 +365,7 @@ class ScanVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
                     var image = self.matchedPhotos[self.activePhotoIndex!]
                     var photo = image.0
                     self.imgScanImageBox.image = photo
-                    self.lblMatchedEvent.text = image.1.event_name as String
+                    self.lblMatchedEvent.text = image.1.event.displayName as? String
                     self.btnConfirm.enabled = true
                     
                     //add scanned image to BAAS
@@ -353,6 +382,12 @@ class ScanVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
                     }
                     })
                     self.spinner.stopAnimating()
+                } else {
+                    self.spinner.stopAnimating()
+                    let alertController = UIAlertController(title: "Photo Scanning", message:
+                        "No photos were found to be taken at any of the gigs we have listed.", preferredStyle: UIAlertControllerStyle.Alert)
+                    alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
+                    self.presentViewController(alertController, animated: true, completion: nil)
                 }
                 
                 if self.matchedPhotos.count > 1 {

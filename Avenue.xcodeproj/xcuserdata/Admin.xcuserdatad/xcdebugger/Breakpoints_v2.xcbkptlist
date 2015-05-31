@@ -49,38 +49,6 @@
             endingLineNumber = "114"
             landmarkName = "logInUser(_:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "static Avenue.&lt; infix (ObjectiveC.NSDate, ObjectiveC.NSDate) -&gt; Swift.Bool"
-                  moduleName = "Avenue"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Admin/Documents/Programming/avenue-ios/Storyboard%20Test/Functions.swift"
-                  timestampString = "453661459.567166"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "263"
-                  endingLineNumber = "263"
-                  offsetFromSymbolStart = "20">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "protocol witness for static Swift._Comparable.&lt; infix &lt;A : Swift._Comparable&gt;(Swift._Comparable.Self.Type)(Swift._Comparable.Self, Swift._Comparable.Self) -&gt; Swift.Bool in conformance ObjectiveC.NSDate : Swift._Comparable in Avenue"
-                  moduleName = "Avenue"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Admin/Documents/Programming/avenue-ios/Storyboard%20Test/Functions.swift"
-                  timestampString = "453661459.567328"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "262"
-                  endingLineNumber = "262"
-                  offsetFromSymbolStart = "0">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -90,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Storyboard Test/ScanVC.swift"
-            timestampString = "453849804.55586"
+            timestampString = "454085349.734252"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "226"
-            endingLineNumber = "226"
+            startingLineNumber = "249"
+            endingLineNumber = "249"
             landmarkName = "btnScan(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -106,11 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Storyboard Test/ScanVC.swift"
-            timestampString = "453849804.55586"
+            timestampString = "454088902.797319"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "234"
-            endingLineNumber = "234"
+            startingLineNumber = "260"
+            endingLineNumber = "260"
             landmarkName = "ScanVC"
             landmarkType = "3">
             <Locations>
@@ -118,11 +86,11 @@
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "Avenue.ScanVC.matchedPhotos.getter : Swift.Array&lt;(ObjectiveC.UIImage, Avenue.Events)&gt;"
+                  symbolName = "Avenue.ScanVC.activePhotoIndex.getter : Swift.Optional&lt;Swift.Int&gt;"
                   moduleName = "Avenue"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Admin/Documents/Programming/avenue-ios/Storyboard%20Test/ScanVC.swift"
-                  timestampString = "453848135.318267"
+                  timestampString = "454727593.619144"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "0"
@@ -133,31 +101,16 @@
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "Avenue.ScanVC.matchedPhotos.setter : Swift.Array&lt;(ObjectiveC.UIImage, Avenue.Events)&gt;"
+                  symbolName = "Avenue.ScanVC.activePhotoIndex.setter : Swift.Optional&lt;Swift.Int&gt;"
                   moduleName = "Avenue"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Admin/Documents/Programming/avenue-ios/Storyboard%20Test/ScanVC.swift"
-                  timestampString = "453848135.318453"
+                  timestampString = "454727593.61934"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "0"
                   endingLineNumber = "0"
-                  offsetFromSymbolStart = "16">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Avenue.ScanVC.matchedPhotos.materializeForSet : Swift.Array&lt;(ObjectiveC.UIImage, Avenue.Events)&gt;"
-                  moduleName = "Avenue"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Admin/Documents/Programming/avenue-ios/Storyboard%20Test/ScanVC.swift"
-                  timestampString = "453848135.318593"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "0"
-                  endingLineNumber = "0"
-                  offsetFromSymbolStart = "16">
+                  offsetFromSymbolStart = "27">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -167,12 +120,12 @@
                   moduleName = "Avenue"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Admin/Documents/Programming/avenue-ios/Storyboard%20Test/ScanVC.swift"
-                  timestampString = "453848135.318719"
+                  timestampString = "454727593.619545"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "226"
-                  endingLineNumber = "226"
-                  offsetFromSymbolStart = "653">
+                  startingLineNumber = "260"
+                  endingLineNumber = "260"
+                  offsetFromSymbolStart = "637">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -182,12 +135,12 @@
                   moduleName = "Avenue"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Admin/Documents/Programming/avenue-ios/Storyboard%20Test/ScanVC.swift"
-                  timestampString = "453848135.318926"
+                  timestampString = "454727593.619641"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "226"
-                  endingLineNumber = "226"
-                  offsetFromSymbolStart = "607">
+                  startingLineNumber = "260"
+                  endingLineNumber = "260"
+                  offsetFromSymbolStart = "589">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -199,13 +152,45 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Storyboard Test/ScanVC.swift"
-            timestampString = "453849804.55586"
+            timestampString = "454088902.797319"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "243"
-            endingLineNumber = "243"
+            startingLineNumber = "269"
+            endingLineNumber = "269"
             landmarkName = "scanImages()"
             landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Avenue.ScanVC.scanImages (Avenue.ScanVC)() -&gt; ()"
+                  moduleName = "Avenue"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Admin/Documents/Programming/avenue-ios/Storyboard%20Test/ScanVC.swift"
+                  timestampString = "454727593.7391"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "269"
+                  endingLineNumber = "269"
+                  offsetFromSymbolStart = "212">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Avenue.ScanVC.(scanImages (Avenue.ScanVC) -&gt; () -&gt; ()).(closure #1)"
+                  moduleName = "Avenue"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Admin/Documents/Programming/avenue-ios/Storyboard%20Test/ScanVC.swift"
+                  timestampString = "454727593.73925"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "15">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -302,6 +287,38 @@
             endingLineNumber = "248"
             landmarkName = "getEventComments()"
             landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Avenue.EventVC.(getEventComments (Avenue.EventVC) -&gt; () -&gt; ()).(closure #1)"
+                  moduleName = "Avenue"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Admin/Documents/Programming/avenue-ios/Storyboard%20Test/EventVC.swift"
+                  timestampString = "454727593.741719"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "248"
+                  endingLineNumber = "248"
+                  offsetFromSymbolStart = "4617">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Avenue.EventVC.(getEventComments (Avenue.EventVC) -&gt; () -&gt; ()).(closure #1).(closure #1)"
+                  moduleName = "Avenue"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Admin/Documents/Programming/avenue-ios/Storyboard%20Test/EventVC.swift"
+                  timestampString = "454727593.741848"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "249"
+                  endingLineNumber = "249"
+                  offsetFromSymbolStart = "35">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -350,6 +367,38 @@
             endingLineNumber = "257"
             landmarkName = "getEventComments()"
             landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Avenue.EventVC.(getEventComments (Avenue.EventVC) -&gt; () -&gt; ()).(closure #1)"
+                  moduleName = "Avenue"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Admin/Documents/Programming/avenue-ios/Storyboard%20Test/EventVC.swift"
+                  timestampString = "454727593.746561"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "257"
+                  endingLineNumber = "257"
+                  offsetFromSymbolStart = "5702">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Avenue.EventVC.(getEventComments (Avenue.EventVC) -&gt; () -&gt; ()).(closure #1)"
+                  moduleName = "Avenue"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Admin/Documents/Programming/avenue-ios/Storyboard%20Test/EventVC.swift"
+                  timestampString = "454727593.746677"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "257"
+                  endingLineNumber = "257"
+                  offsetFromSymbolStart = "5753">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy

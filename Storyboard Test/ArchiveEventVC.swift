@@ -7,12 +7,17 @@
 //
 
 import UIKit
+import Spring
 
 class ArchiveEventVC: UIViewController, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     
     var selectedArchive: BAALinkedEventComments!
     
     @IBOutlet weak var cvComments: UICollectionView!
+    
+    @IBOutlet var lblEventTitle: UILabel!
+    
+    var eventTitle: String = ""
 
     lazy var data = NSMutableData()
     
@@ -29,6 +34,9 @@ class ArchiveEventVC: UIViewController, UICollectionViewDelegateFlowLayout, UICo
     override func viewDidLoad() {
         super.viewDidLoad()
         getEventComments()
+        lblEventTitle.text = eventTitle
+        UIApplication.sharedApplication().sendAction("minimizeView:", to: nil, from: self, forEvent: nil)
+
         // Do any additional setup after loading the view
     }
     
@@ -144,6 +152,13 @@ class ArchiveEventVC: UIViewController, UICollectionViewDelegateFlowLayout, UICo
     }
     
     var downloadData: [downloadDataClass] = []
+    
+
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let ArchiveEventSideBarVC = segue.destinationViewController as? ArchiveEventSideBarVC {
+            //ArchiveEventSideBarVC.data = ballView
+        }
+    }
     
 
 

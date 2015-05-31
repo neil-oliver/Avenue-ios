@@ -30,6 +30,7 @@ class CloseEventVC: UIViewController {
         self.refreshControl.attributedTitle = NSAttributedString(string: "Pull to refersh")
         self.refreshControl.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
         self.EventTable.addSubview(refreshControl)
+        checkLocationServices(self)
         FetchData().getBassVenuesEvents() {(getBassVenuesEventsResult: Bool) in
             self.EventTable.reloadData()
         }
