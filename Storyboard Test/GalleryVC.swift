@@ -21,7 +21,7 @@ class GalleryVC: UIViewController, UICollectionViewDelegateFlowLayout, UICollect
     //variable for refreshing table data
     var refreshControl:UIRefreshControl!
     
-    var downloadedImages:[UIImage] = []
+    var downloadedImages = [File]()
     var testimages:[UIImage] = []
     
     override func viewDidLoad() {
@@ -70,7 +70,7 @@ class GalleryVC: UIViewController, UICollectionViewDelegateFlowLayout, UICollect
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("cvGalleryCell", forIndexPath: indexPath) as! cvGalleryCell
         cell.backgroundColor = UIColor.blueColor()
-        cell.imgGalleryPhoto.image = downloadedImages[indexPath.row]
+        cell.imgGalleryPhoto.image = downloadedImages[indexPath.row].image
         cell.imgGalleryPhoto.contentMode = .ScaleAspectFill
 
         return cell
@@ -81,7 +81,9 @@ class GalleryVC: UIViewController, UICollectionViewDelegateFlowLayout, UICollect
     {
         var cell = collectionView.cellForItemAtIndexPath(indexPath)
         var singleimagevc:SingleImageVC = storyboard?.instantiateViewControllerWithIdentifier("SingleImageVC") as! SingleImageVC
-        singleimagevc.SingleImage = downloadedImages[indexPath.row]
+        singleimagevc.SingleImage = downloadedImages[indexPath.row].image
+        singleimagevc.User = downloadedImages[indexPath.row].details.author
+
         //Programmatically push to associated VC
         self.navigationController?.pushViewController(singleimagevc, animated: true)
         
@@ -90,18 +92,26 @@ class GalleryVC: UIViewController, UICollectionViewDelegateFlowLayout, UICollect
     
     let insertIndexPath = NSIndexPath(forItem: 0, inSection: 0)
     
+    class File {
+        var details = BAAFile()
+        var image = UIImage()
+    }
+    
     func getBaasImages(){
         BAAFile.loadFilesAndDetailsWithCompletion({(files: [AnyObject]!, error: NSError!) -> () in
             println("files are \(files)")
             if files != nil {
                 for file in files {
+                    var fileData = File()
                     self.spinner.startAnimating()
                     var image : BAAFile = file as! BAAFile // instance or subclass of BAAFile, previously saved on the server
+                    fileData.details = image
                     var params = ["resize":"25%"]
                     image.loadFileWithParameters( params as [NSObject : AnyObject], completion: {(data:NSData!, error:NSError!) -> () in
                         if data != nil {
-                        self.downloadedImages.append(UIImage(data: data)!)
-                        self.cvGallery.insertItemsAtIndexPaths([NSIndexPath(forItem: self.downloadedImages.count - 1, inSection: 0)])
+                            fileData.image = UIImage(data: data)!
+                            self.downloadedImages.append(fileData)
+                            self.cvGallery.insertItemsAtIndexPaths([NSIndexPath(forItem: self.downloadedImages.count - 1, inSection: 0)])
                         } else {
                             println("error downloading gallery image")
                         }
