@@ -120,7 +120,7 @@ class EventVC: UIViewController, UINavigationControllerDelegate, UIImagePickerCo
         singleimagevc.SingleImage = eventGallery[indexPath.row][1] as? UIImage
         singleimagevc.SingleComment = eventGallery[indexPath.row][0] as! String
         
-        BAAUser.loadCurrentUserWithCompletion({(object:AnyObject!, error: NSError!) -> () in
+        BAAUser.loadUserDetails(eventGallery[indexPath.row][2] as! String, completion:{(object:AnyObject!, error: NSError!) -> () in
             
             var currentUser = object as! BAAUser
             singleimagevc.User = currentUser.username()
@@ -234,22 +234,24 @@ class EventVC: UIViewController, UINavigationControllerDelegate, UIImagePickerCo
                         var commentdata = downloadDataClass()
                         if eventAndComment.comment != nil {
                             commentdata.comment = eventAndComment.comment.comment as String
+                            commentdata.author = eventAndComment.comment.author
                         } else {
                             commentdata.comment = ""
                         }
                         if eventAndComment.file == nil {
                             commentdata.image = UIImage(named: "white.jpg")!
                             self.downloadData.append(commentdata)
-                            self.eventGallery.append([commentdata.comment, commentdata.image])
+                            self.eventGallery.append([commentdata.comment, commentdata.image, commentdata.author])
                             self.cvEventGallery.insertItemsAtIndexPaths([NSIndexPath(forItem: self.eventGallery.count - 1, inSection: 0)])
                         } else {
                             self.spinner.startAnimating()
                             var params = ["resize":"25%"]
                             eventAndComment.file.loadFileWithParameters( params as [NSObject : AnyObject], completion: {(data:NSData!, error:NSError!) -> () in
                                 if data != nil {
+                                    commentdata.author = eventAndComment.file.author
                                     commentdata.image = UIImage(data: data)!
                                     self.downloadData.append(commentdata)
-                                    self.eventGallery.insert([commentdata.comment, commentdata.image], atIndex: index)
+                                    self.eventGallery.insert([commentdata.comment, commentdata.image, commentdata.author], atIndex: index)
                                     self.cvEventGallery.insertItemsAtIndexPaths([NSIndexPath(forItem: index, inSection: 0)])
                                     self.spinner.stopAnimating()
                                 }
@@ -273,6 +275,7 @@ class EventVC: UIViewController, UINavigationControllerDelegate, UIImagePickerCo
         var comment = String()
         var image = UIImage()
         var date = NSDate()
+        var author = String()
     }
     
     var downloadData: [downloadDataClass] = []

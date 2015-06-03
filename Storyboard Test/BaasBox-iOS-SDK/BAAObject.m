@@ -33,6 +33,7 @@
     if (self) {
     
         _objectId = dictionary[@"id"];
+        _author = dictionary[@"_author"];
         _version = [dictionary[@"@version"] intValue];
         _creationDate = [[BaasBox dateFormatter] dateFromString:dictionary[@"_creation_date"]];
 

@@ -19,6 +19,7 @@
 @interface BAAObject : NSObject
 
 @property (nonatomic, copy, readonly) NSString *objectId;
+@property (nonatomic, copy) NSString *author;
 @property (nonatomic, assign, readonly) NSInteger version;
 @property (nonatomic, strong, readonly) NSDate *creationDate;
 @property (nonatomic, strong, readonly) NSDictionary *acl;
