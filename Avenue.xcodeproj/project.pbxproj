@@ -56,6 +56,7 @@
 		848687AF1B1A8E5700A2C329 /* TransitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848687921B1A8E5700A2C329 /* TransitionManager.swift */; };
 		848687B01B1A8E5700A2C329 /* TransitionZoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848687931B1A8E5700A2C329 /* TransitionZoom.swift */; };
 		848687B11B1A8E5700A2C329 /* UnwindSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848687941B1A8E5700A2C329 /* UnwindSegue.swift */; };
+		848687B31B204D9C00A2C329 /* cvProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848687B21B204D9C00A2C329 /* cvProfileCell.swift */; };
 		849880DF1ADEB55D00188146 /* BAAClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 849880D11ADEB55D00188146 /* BAAClient.m */; };
 		849880E01ADEB55D00188146 /* BAAFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 849880D31ADEB55D00188146 /* BAAFile.m */; };
 		849880E11ADEB55D00188146 /* BAAGlobals.m in Sources */ = {isa = PBXBuildFile; fileRef = 849880D51ADEB55D00188146 /* BAAGlobals.m */; };
@@ -164,6 +165,7 @@
 		848687921B1A8E5700A2C329 /* TransitionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionManager.swift; sourceTree = "<group>"; };
 		848687931B1A8E5700A2C329 /* TransitionZoom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionZoom.swift; sourceTree = "<group>"; };
 		848687941B1A8E5700A2C329 /* UnwindSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnwindSegue.swift; sourceTree = "<group>"; };
+		848687B21B204D9C00A2C329 /* cvProfileCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = cvProfileCell.swift; sourceTree = "<group>"; };
 		849880D01ADEB55D00188146 /* BAAClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BAAClient.h; sourceTree = "<group>"; };
 		849880D11ADEB55D00188146 /* BAAClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BAAClient.m; sourceTree = "<group>"; };
 		849880D21ADEB55D00188146 /* BAAFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BAAFile.h; sourceTree = "<group>"; };
@@ -316,6 +318,7 @@
 				842A53FC1A2A92FB0031FF58 /* CloseEventSideBarVC.swift */,
 				849C0E691A1F64C200542AAA /* LoginVC.swift */,
 				849C0E6B1A1F64FF00542AAA /* ProfileVC.swift */,
+				848687B21B204D9C00A2C329 /* cvProfileCell.swift */,
 				849C0E6D1A1F651000542AAA /* GalleryVC.swift */,
 				8474D2F41A37064B00CE7AC8 /* cvGalleryCell.swift */,
 				84B240711AEC308700BBDDFA /* SingleImageVC.swift */,
@@ -547,6 +550,7 @@
 				84C0BBDF1A2FC7DB00398E45 /* GigNC.swift in Sources */,
 				848687B01B1A8E5700A2C329 /* TransitionZoom.swift in Sources */,
 				84D885421AFD73FA00A1B853 /* LinkedVenueEvents.swift in Sources */,
+				848687B31B204D9C00A2C329 /* cvProfileCell.swift in Sources */,
 				842A53FF1A2A93C50031FF58 /* ArchiveEventSideBarVC.swift in Sources */,
 				84A46ED91A39AFCD00EDC940 /* AltEventContentVC.swift in Sources */,
 				84C93C501AE84393001558F9 /* Comments.swift in Sources */,
