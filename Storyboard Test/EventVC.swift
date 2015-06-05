@@ -44,6 +44,10 @@ class EventVC: UIViewController, UINavigationControllerDelegate, UIImagePickerCo
                 if object != nil {
                     self.btnSend.enabled = true
                     println("Object: \(object)")
+                    
+                    //grant access to all registered users
+                    object.grantAccessToRole(kAclRegisteredRole, ofType: kAclReadPermission, completion:{(object:AnyObject!, error: NSError!) -> Void in })
+                    
                     createBaasLink(object.objectId, selectedEvent!.event.objectId)
                     self.eventGallery.append([comment, UIImage(named: "white.jpg")!])
                     self.cvEventGallery.insertItemsAtIndexPaths([NSIndexPath(forItem: self.eventGallery.count-1, inSection: 0)])
@@ -191,6 +195,8 @@ class EventVC: UIViewController, UINavigationControllerDelegate, UIImagePickerCo
         file.uploadFileWithPermissions(nil, completion:{(uploadedFile: AnyObject!, error: NSError!) -> Void in
             if uploadedFile != nil {
                 println("Object: \(uploadedFile)")
+                //grant access to all registered users
+                uploadedFile.grantAccessToRole(kAclRegisteredRole, ofType: kAclReadPermission, completion:{(object:AnyObject!, error: NSError!) -> Void in })
                 createBaasLink(uploadedFile.fileId, selectedEvent!.event.objectId)
                 //self.photoGallery.append(photo)
                 //self.cellComment.append("")

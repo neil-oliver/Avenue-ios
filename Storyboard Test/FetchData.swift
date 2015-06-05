@@ -423,4 +423,27 @@ class FetchData: NSObject, NSURLConnectionDelegate {
             })
         }
     }
+    
+    func getCommentsTest(){
+        
+            println("all comments:")
+        
+        var path: NSString = "document/Comments"
+        var params: NSDictionary = ["" : ""]
+        
+        var c = BAAClient.sharedClient()
+        
+        c.getPath(path as String, parameters: params as [NSObject : AnyObject], success:{(success: AnyObject!) -> Void in
+            println(success)
+            var data: NSDictionary = success as! NSDictionary
+            var dataArray: [AnyObject] = data["data"] as! [AnyObject]
+
+            
+            }, failure:{(failure: NSError!) -> Void in
+                
+                println(failure)
+                
+        })
+
+    }
 }

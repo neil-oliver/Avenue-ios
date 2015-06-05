@@ -56,8 +56,10 @@ class ProfileVC: UIViewController {
             self.username = currentUser.username()
             self.getEventComments()
             })
+        
+        FetchData().getCommentsTest() //testing permissions
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
