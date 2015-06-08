@@ -17,17 +17,26 @@ class SingleImageVC: UIViewController {
     
     @IBOutlet var imgSingle: UIImageView!
     @IBOutlet var lblComment: UILabel!
-    @IBOutlet var lblUser: UILabel!
+    @IBOutlet var btnUser: UIButton!
+    
+    @IBAction func btnUserSelect(sender: AnyObject) {
+        var profilevc : ProfileVC = storyboard?.instantiateViewControllerWithIdentifier("ProfileVC") as! ProfileVC
+        profilevc.selectedUser = User
+        //Programmatically push to associated VC
+        self.navigationController?.pushViewController(profilevc, animated: true)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         imgSingle.image = SingleImage!
         lblComment.text = SingleComment
-        lblUser.text = User
+        btnUser.setTitle(User, forState: UIControlState.Normal)
         self.view.backgroundColor = UIColor.blackColor()
+
         // Do any additional setup after loading the view.
         
     }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

@@ -616,6 +616,8 @@
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <tabBarItem key="tabBarItem" title="Profile" id="4Df-at-lUN"/>
                     <connections>
+                        <outlet property="btnLogOut" destination="hWj-oO-WCl" id="0lt-U3-n1C"/>
+                        <outlet property="btnSettings" destination="ghO-MQ-O53" id="efS-P9-OJA"/>
                         <outlet property="cvProfileGallery" destination="83a-sT-htR" id="2G5-NB-U7p"/>
                         <outlet property="lblEmail" destination="GlT-FG-tMZ" id="R64-gc-C1V"/>
                         <outlet property="lblUsername" destination="HJx-Sa-uTv" id="hl8-Qb-PwQ"/>
@@ -853,44 +855,81 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BPf-kx-HCn">
-                                <rect key="frame" x="16" y="486" width="343" height="21"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7SR-d9-eeI">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="njs-CN-cs0"/>
+                                    <constraint firstAttribute="height" constant="30" id="7fO-JS-BC2"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                                <state key="normal" title="User">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="7fO-JS-BC2"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="7fO-JS-BC2"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <action selector="btnUserSelect:" destination="QP7-lw-5MM" eventType="touchUpInside" id="Pxu-Fw-4DI"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Y3a-Wu-f4b" firstAttribute="trailing" secondItem="BPf-kx-HCn" secondAttribute="trailing" id="5eQ-2Z-Uf1"/>
+                            <constraint firstItem="7SR-d9-eeI" firstAttribute="centerX" secondItem="ZSD-b6-QLr" secondAttribute="centerX" id="4tL-w1-jbt"/>
+                            <constraint firstItem="qXd-gj-y9W" firstAttribute="top" secondItem="7SR-d9-eeI" secondAttribute="bottom" constant="39" id="9gO-xj-YyE"/>
                             <constraint firstItem="Y3a-Wu-f4b" firstAttribute="top" secondItem="FA2-Ag-lr3" secondAttribute="bottom" constant="105" id="APx-BW-bEZ"/>
                             <constraint firstAttribute="trailing" secondItem="ZSD-b6-QLr" secondAttribute="trailing" id="EOS-1i-ypZ"/>
                             <constraint firstItem="ZSD-b6-QLr" firstAttribute="leading" secondItem="VIH-kC-mLg" secondAttribute="leading" id="FPy-rC-EH5"/>
-                            <constraint firstItem="Y3a-Wu-f4b" firstAttribute="leading" secondItem="BPf-kx-HCn" secondAttribute="leading" id="HcW-7I-Su1"/>
-                            <constraint firstItem="BPf-kx-HCn" firstAttribute="top" secondItem="Y3a-Wu-f4b" secondAttribute="bottom" constant="38" id="Tyl-Uk-ZBJ"/>
+                            <constraint firstItem="7SR-d9-eeI" firstAttribute="top" secondItem="Y3a-Wu-f4b" secondAttribute="bottom" constant="37" id="MAe-sE-Ice"/>
+                            <constraint firstItem="7SR-d9-eeI" firstAttribute="trailing" secondItem="Y3a-Wu-f4b" secondAttribute="trailing" id="UrC-ur-EQ6"/>
+                            <constraint firstItem="7SR-d9-eeI" firstAttribute="leading" secondItem="Y3a-Wu-f4b" secondAttribute="leading" id="e5b-kL-PK0"/>
                             <constraint firstItem="ZSD-b6-QLr" firstAttribute="top" secondItem="FA2-Ag-lr3" secondAttribute="bottom" id="ksX-ZW-LTY"/>
-                            <constraint firstItem="BPf-kx-HCn" firstAttribute="centerX" secondItem="ZSD-b6-QLr" secondAttribute="centerX" id="mI6-NT-kCh"/>
-                            <constraint firstItem="qXd-gj-y9W" firstAttribute="top" secondItem="BPf-kx-HCn" secondAttribute="bottom" constant="47" id="rL7-Ak-uHv"/>
                             <constraint firstItem="ZSD-b6-QLr" firstAttribute="bottom" secondItem="qXd-gj-y9W" secondAttribute="top" id="t7y-Cd-HI9"/>
                             <constraint firstItem="Y3a-Wu-f4b" firstAttribute="leading" secondItem="VIH-kC-mLg" secondAttribute="leadingMargin" id="w2e-Kb-zi7"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="7SR-d9-eeI"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="4tL-w1-jbt"/>
+                                <exclude reference="MAe-sE-Ice"/>
+                                <exclude reference="UrC-ur-EQ6"/>
+                                <exclude reference="e5b-kL-PK0"/>
+                                <exclude reference="9gO-xj-YyE"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="7SR-d9-eeI"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="4tL-w1-jbt"/>
+                                <include reference="MAe-sE-Ice"/>
+                                <include reference="UrC-ur-EQ6"/>
+                                <include reference="e5b-kL-PK0"/>
+                                <include reference="9gO-xj-YyE"/>
+                            </mask>
+                        </variation>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" id="8iV-jx-JOc"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="667"/>
                     <connections>
+                        <outlet property="btnUser" destination="7SR-d9-eeI" id="d6c-0c-zKS"/>
                         <outlet property="imgSingle" destination="ZSD-b6-QLr" id="ECw-r3-fam"/>
                         <outlet property="lblComment" destination="Y3a-Wu-f4b" id="gIw-gQ-NjR"/>
-                        <outlet property="lblUser" destination="BPf-kx-HCn" id="tUA-5w-Sou"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T6E-v6-QVx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2157.1875" y="-1534.3309859154929"/>
+            <point key="canvasLocation" x="2156.25" y="-1534.875"/>
         </scene>
         <!--GalleryVC-->
         <scene sceneID="50f-xo-M9V">

@@ -9,8 +9,13 @@
 import UIKit
 import CoreData
 class ProfileVC: UIViewController {
+    
+    var selectedUser: String = ""
 
-
+    @IBOutlet var btnLogOut: UIButton!
+    
+    @IBOutlet var btnSettings: UIButton!
+    
     @IBAction func btnSettings(sender: AnyObject) {
         
     }
@@ -46,18 +51,37 @@ class ProfileVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        btnLogOut.hidden = false
+        btnSettings.hidden = false
+        
         
         // Do any additional setup after loading the view.
         
-        BAAUser.loadCurrentUserWithCompletion({(object:AnyObject!, error: NSError!) -> () in
+        if selectedUser != "" {
             
-            var currentUser = object as! BAAUser
-            self.lblUsername.text = currentUser.username()
-            self.username = currentUser.username()
-            self.getEventComments()
+            BAAUser.loadUserDetails(selectedUser, completion:{(object:AnyObject!, error: NSError!) -> () in
+                
+                var currentUser = object as! BAAUser
+                self.lblUsername.text = currentUser.username()
+                self.username = currentUser.username()
+                self.getEventComments()
+                self.btnLogOut.hidden = true
+                self.btnSettings.hidden = true
             })
+            
+        } else {
         
-        FetchData().getCommentsTest() //testing permissions
+            BAAUser.loadCurrentUserWithCompletion({(object:AnyObject!, error: NSError!) -> () in
+                
+                var currentUser = object as! BAAUser
+                self.lblUsername.text = currentUser.username()
+                self.username = currentUser.username()
+                self.getEventComments()
+                self.btnLogOut.hidden = false
+                self.btnSettings.hidden = false
+            })
+        }
+        
     }
     
     override func didReceiveMemoryWarning() {

@@ -84,8 +84,6 @@
 		84B240701AE9309D00BBDDFA /* cvEventGalleryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B2406F1AE9309D00BBDDFA /* cvEventGalleryCell.swift */; };
 		84B240721AEC308700BBDDFA /* SingleImageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B240711AEC308700BBDDFA /* SingleImageVC.swift */; };
 		84B5E38A1A24F50400F637DB /* PersistenceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B5E3851A24F50400F637DB /* PersistenceHelper.swift */; };
-		84B5E38B1A24F50400F637DB /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B5E3861A24F50400F637DB /* LocationManager.swift */; };
-		84B5E38C1A24F50400F637DB /* EventManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B5E3871A24F50400F637DB /* EventManager.swift */; };
 		84B5E38D1A24F50400F637DB /* FetchData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B5E3881A24F50400F637DB /* FetchData.swift */; };
 		84B5E3901A24F5AC00F637DB /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B5E38F1A24F5AC00F637DB /* Globals.swift */; };
 		84B5E3941A24F60100F637DB /* Bristol Academy.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 84B5E3911A24F60100F637DB /* Bristol Academy.gpx */; };
@@ -98,7 +96,6 @@
 		84D885421AFD73FA00A1B853 /* LinkedVenueEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D885411AFD73FA00A1B853 /* LinkedVenueEvents.swift */; };
 		84F109F11A2607E80079F9B8 /* Events2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F109F01A2607E80079F9B8 /* Events2.swift */; };
 		84F109F31A2607FB0079F9B8 /* Locations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F109F21A2607FB0079F9B8 /* Locations.swift */; };
-		84F109F51A26336F0079F9B8 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F109F41A26336F0079F9B8 /* UserManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -214,8 +211,6 @@
 		84B2406F1AE9309D00BBDDFA /* cvEventGalleryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = cvEventGalleryCell.swift; sourceTree = "<group>"; };
 		84B240711AEC308700BBDDFA /* SingleImageVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleImageVC.swift; sourceTree = "<group>"; };
 		84B5E3851A24F50400F637DB /* PersistenceHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistenceHelper.swift; sourceTree = "<group>"; };
-		84B5E3861A24F50400F637DB /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
-		84B5E3871A24F50400F637DB /* EventManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventManager.swift; sourceTree = "<group>"; };
 		84B5E3881A24F50400F637DB /* FetchData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchData.swift; sourceTree = "<group>"; };
 		84B5E38F1A24F5AC00F637DB /* Globals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Globals.swift; sourceTree = "<group>"; };
 		84B5E3911A24F60100F637DB /* Bristol Academy.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Bristol Academy.gpx"; sourceTree = "<group>"; };
@@ -228,7 +223,6 @@
 		84D885411AFD73FA00A1B853 /* LinkedVenueEvents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinkedVenueEvents.swift; sourceTree = "<group>"; };
 		84F109F01A2607E80079F9B8 /* Events2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Events2.swift; sourceTree = "<group>"; };
 		84F109F21A2607FB0079F9B8 /* Locations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Locations.swift; sourceTree = "<group>"; };
-		84F109F41A26336F0079F9B8 /* UserManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		84F4F70E1ADEB63600D3637A /* Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -281,9 +275,6 @@
 				849C0E801A237B5900542AAA /* SwiftyJSON.swift */,
 				8416B1CC1A1E016C00106879 /* AppDelegate.swift */,
 				84B5E3851A24F50400F637DB /* PersistenceHelper.swift */,
-				84B5E3861A24F50400F637DB /* LocationManager.swift */,
-				84F109F41A26336F0079F9B8 /* UserManager.swift */,
-				84B5E3871A24F50400F637DB /* EventManager.swift */,
 				84B5E3881A24F50400F637DB /* FetchData.swift */,
 				842A54391A2DE0C20031FF58 /* Functions.swift */,
 				840C548E1ADFDCAF00F98F29 /* Images.xcassets */,
@@ -564,7 +555,6 @@
 				843BA4F21B20A365002EA46A /* DesignableImageView.swift in Sources */,
 				84B5E38A1A24F50400F637DB /* PersistenceHelper.swift in Sources */,
 				8474D2F51A37064B00CE7AC8 /* cvGalleryCell.swift in Sources */,
-				84B5E38B1A24F50400F637DB /* LocationManager.swift in Sources */,
 				8463C9151AE43DD70074BBA7 /* Events.swift in Sources */,
 				84A8DE9D1B0CA47400F93F21 /* cvArchiveEventCell.swift in Sources */,
 				843BA4FE1B20A365002EA46A /* SoundPlayer.swift in Sources */,
@@ -574,7 +564,6 @@
 				843BA5071B20A365002EA46A /* TransitionManager.swift in Sources */,
 				849C0E761A1F65C500542AAA /* AltEventVC.swift in Sources */,
 				8416B1CD1A1E016C00106879 /* AppDelegate.swift in Sources */,
-				84F109F51A26336F0079F9B8 /* UserManager.swift in Sources */,
 				84444A1E1AF9769300BDA347 /* Artists.swift in Sources */,
 				843BA4F01B20A365002EA46A /* BlurView.swift in Sources */,
 				8463C9131AE43B450074BBA7 /* Venues.swift in Sources */,
@@ -583,7 +572,6 @@
 				842A543A1A2DE0C20031FF58 /* Functions.swift in Sources */,
 				843BA4EF1B20A365002EA46A /* AutoTextView.swift in Sources */,
 				843BA4EE1B20A365002EA46A /* AsyncImageView.swift in Sources */,
-				84B5E38C1A24F50400F637DB /* EventManager.swift in Sources */,
 				849C0E6A1A1F64C200542AAA /* LoginVC.swift in Sources */,
 				841D8FAF1A934A700087149A /* ScanVC.swift in Sources */,
 				843BA4F41B20A365002EA46A /* DesignableTabBarController.swift in Sources */,
