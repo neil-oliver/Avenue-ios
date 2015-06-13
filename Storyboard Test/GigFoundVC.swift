@@ -23,7 +23,7 @@ class GigFoundVC: UIViewController {
     }
     
     @IBAction func btnMenu(sender: AnyObject) {
-        var menutbc : MenuTBC = storyboard?.instantiateViewControllerWithIdentifier("MenuTBC") as! MenuTBC
+        let menutbc : MenuTBC = storyboard?.instantiateViewControllerWithIdentifier("MenuTBC") as! MenuTBC
         menutbc.selectedIndex = 0
         let navigationController = UINavigationController(rootViewController: menutbc)
         self.presentViewController(navigationController, animated: true, completion: nil)
@@ -35,13 +35,13 @@ class GigFoundVC: UIViewController {
         if closeVenueEvents.count != 0 {
             // nested if statement to work out where the user is and if there is an event listed. println() statements describe each condition of the if statement.
             if closeVenueEvents[0].distance <= 1 {
-                println("The Nearest venue to you is \(closeVenueEvents[0].venue.displayName) and you are within 1000m")
+                print("The Nearest venue to you is \(closeVenueEvents[0].venue.displayName) and you are within 1000m")
                 
-                if dateComparison(closeVenueEvents[0].event.start.datetime as! String, closeVenueEvents[0].event.end.datetime as! String) == 1 {
+                if dateComparison(closeVenueEvents[0].event.start.datetime as! String, endDateString: closeVenueEvents[0].event.end.datetime as! String) == 1 {
                     lblTitle.text = ("\(closeVenueEvents[0].venue.displayName) has the event \(closeVenueEvents[0].event.displayName) listed but is in the future")
                     btnSelect.hidden = false
                     
-                } else if dateComparison(closeVenueEvents[0].event.start.datetime as! String, closeVenueEvents[0].event.end.datetime as! String) == 0 {
+                } else if dateComparison(closeVenueEvents[0].event.start.datetime as! String, endDateString: closeVenueEvents[0].event.end.datetime as! String) == 0 {
                     lblTitle.text = ("The event \(closeVenueEvents[0].event.displayName) is currently happening at \(closeVenueEvents[0].venue.displayName)")
                     btnContinue.hidden = false
                     btnSelect.hidden = false
@@ -49,9 +49,9 @@ class GigFoundVC: UIViewController {
                 
                 
             } else if closeVenueEvents[0].distance > 1 {
-                println("The Nearest venue to you is \(closeVenueEvents[0].venue.displayName) and you are not within 1000m")
+                print("The Nearest venue to you is \(closeVenueEvents[0].venue.displayName) and you are not within 1000m")
                 
-                if dateComparison(closeVenueEvents[0].event.start.datetime as! String, closeVenueEvents[0].event.end.datetime as! String) == 1 {
+                if dateComparison(closeVenueEvents[0].event.start.datetime as! String, endDateString: closeVenueEvents[0].event.end.datetime as! String) == 1 {
                     lblTitle.text = ("\(closeVenueEvents[0].venue.displayName) has the event \(closeVenueEvents[0].event.displayName) listed but is in the future")
                     btnSelect.hidden = false
                 }

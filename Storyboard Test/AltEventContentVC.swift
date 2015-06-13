@@ -38,13 +38,13 @@ class AltEventContentVC: UIViewController {
         //self.backgroundImageView.image = UIImage(named: self.imagePath!)
         //self.titleLabel.text = self.titleText
         
-        var span = MKCoordinateSpanMake(0.01, 0.01)
-        var region = MKCoordinateRegion(center: location, span: span)
-        var annotation = MKPointAnnotation()
+        let span = MKCoordinateSpanMake(0.01, 0.01)
+        let region = MKCoordinateRegion(center: location, span: span)
+        let annotation = MKPointAnnotation()
         annotation.coordinate = location
         annotation.title = locname
         map.addAnnotation(annotation)
-        println("region \(region.center.latitude)")
+        print("region \(region.center.latitude)")
         map.setRegion(region, animated: true)
         
     }

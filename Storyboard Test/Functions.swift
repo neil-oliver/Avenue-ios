@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import CoreData
 import CoreLocation
 import CoreImage
 import Foundation
@@ -44,7 +43,7 @@ func dateComparison(startDateString: String, endDateString: String ) ->Int {
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "yyy-MM-dd'T'HH:mm:ss.SSSZZZZZ"
         let startDate = dateFormatter.dateFromString(startDateString)!
-        println(startDate)
+        print(startDate)
     
         var startResult: Int!
         var endResult: Int!
@@ -53,25 +52,25 @@ func dateComparison(startDateString: String, endDateString: String ) ->Int {
         if closeVenueEvents.count != 0 {
             
             //variable for current time
-            var currentDateTime = NSDate()
+            let currentDateTime = NSDate()
             //time comparison outputs an NSCompareResult object
-            var startDateComparisonResult : NSComparisonResult = currentDateTime.compare(startDate)
+            let startDateComparisonResult : NSComparisonResult = currentDateTime.compare(startDate)
             
             //uses NSCompareResult to assign a value to date to dateComparison variable. 1 = future, 0 = exact time to second, -1 = past
             if startDateComparisonResult == NSComparisonResult.OrderedAscending {
                 // Current date is smaller than start date. (gig is in the future)
                 startResult = 1
-                println("startResult: \(startResult)")
+                print("startResult: \(startResult)")
                 
             } else if startDateComparisonResult == NSComparisonResult.OrderedDescending {
                 // Current date is greater than start date. (gig has started or gig is in the past)
                 startResult = -1
-                println("startResult: \(startResult)")
+                print("startResult: \(startResult)")
 
             } else if startDateComparisonResult == NSComparisonResult.OrderedSame {
                 // Current date and end date are same.
                 startResult = 0
-                println("startResult: \(startResult)")
+                print("startResult: \(startResult)")
 
             }
             
@@ -79,24 +78,24 @@ func dateComparison(startDateString: String, endDateString: String ) ->Int {
             let dateFormatter = NSDateFormatter()
             dateFormatter.dateFormat = "yyy-MM-dd'T'HH:mm:ss.SSSZZZZZ"
             let endDate = dateFormatter.dateFromString(endDateString)!
-            println(endDate)
+            print(endDate)
             
             //no end date currently stored so using midnight of the day of the gig
-            var endDateComparisonResult : NSComparisonResult = currentDateTime.compare(endDate)
+            let endDateComparisonResult : NSComparisonResult = currentDateTime.compare(endDate)
             
             if endDateComparisonResult == NSComparisonResult.OrderedAscending {
                 // Current date is smaller than end date. (gig is in the future or has not finished yet)
                 endResult = 1
-                println("endResult: \(endResult)")
+                print("endResult: \(endResult)")
             } else if endDateComparisonResult == NSComparisonResult.OrderedDescending {
                 // Current date is greater than end date. (gig is in the past)
                 endResult = -1
-                println("endResult: \(endResult)")
+                print("endResult: \(endResult)")
 
             } else if endDateComparisonResult == NSComparisonResult.OrderedSame {
                 // Current date and end date are same.
                 endResult = 0
-                println("endResult: \(endResult)")
+                print("endResult: \(endResult)")
 
             }
             
@@ -105,19 +104,19 @@ func dateComparison(startDateString: String, endDateString: String ) ->Int {
                 //gig is happening now
                 
                 returnResult = 0
-                println("returnResult: \(returnResult)")
+                print("returnResult: \(returnResult)")
                 
             } else if startResult == 1 {
                 //gig is in the future
                 
                 returnResult = 1
-                println("returnResult: \(returnResult)")
+                print("returnResult: \(returnResult)")
                 
             } else if endResult <= 0 {
                 //gig in the past
                 
                 returnResult = -1
-                println("returnResult: \(returnResult)")
+                print("returnResult: \(returnResult)")
             }
             
 
@@ -127,23 +126,18 @@ func dateComparison(startDateString: String, endDateString: String ) ->Int {
     }
 
 func createBaasLink(inLink: String, outLink: String){
-    
-    var Success: AnyObject!
-    var Error: NSError!
 
-    var path: NSString = "link/\(inLink)/event_object/\(outLink)"
-    var params: NSDictionary = ["" : ""]
-    var c = BAAClient.sharedClient()
+    let path: NSString = "link/\(inLink)/event_object/\(outLink)"
+    let params: NSDictionary = ["" : ""]
+    let c = BAAClient.sharedClient()
     
     c.postPath(path as String, parameters: params as [NSObject : AnyObject], success:{(success: AnyObject!) -> Void in
     
-        println(success)
-        Success = success
+        print(success)
         
         }, failure:{(failure: NSError!) -> Void in
             
-            println(failure)
-            Error = failure
+            print(failure)
     })
     
     
@@ -154,11 +148,11 @@ func checkLocationServices(delegate: UIViewController) {
     
     
     if CLLocationManager.locationServicesEnabled() == false {
-        println("location services check")
+        print("location services check")
         
         switch UIDevice.currentDevice().systemVersion.compare("8.0.0", options: NSStringCompareOptions.NumericSearch) {
         case .OrderedSame, .OrderedDescending:
-            println("iOS >= 8.0")
+            print("iOS >= 8.0")
             let alertController = UIAlertController(title: "This app does not have access to Location service", message:
                 "You can enable access in Settings->Privacy->Location->Location Services", preferredStyle: UIAlertControllerStyle.Alert)
             alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
@@ -173,7 +167,7 @@ func checkLocationServices(delegate: UIViewController) {
             
             
         case .OrderedAscending:
-            println("iOS < 8.0")
+            print("iOS < 8.0")
             let alertController = UIAlertController(title: "This app does not have access to Location service", message:
                 "You can enable access in Settings->Privacy->Location->Location Services", preferredStyle: UIAlertControllerStyle.Alert)
             alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))

@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Spring
+//import Spring
 
 class ArchiveEventVC: UIViewController, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     
@@ -74,13 +74,13 @@ class ArchiveEventVC: UIViewController, UICollectionViewDelegateFlowLayout, UICo
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath)
     {
-        var cell = collectionView.cellForItemAtIndexPath(indexPath)
-        var singleimagevc:SingleImageVC = storyboard?.instantiateViewControllerWithIdentifier("SingleImageVC") as! SingleImageVC
+        //var cell = collectionView.cellForItemAtIndexPath(indexPath)
+        let singleimagevc:SingleImageVC = storyboard?.instantiateViewControllerWithIdentifier("SingleImageVC") as! SingleImageVC
         singleimagevc.SingleImage = eventGallery[indexPath.row][1] as? UIImage
         singleimagevc.SingleComment = eventGallery[indexPath.row][0] as! String
         BAAUser.loadUserDetails(eventGallery[indexPath.row][2] as! String, completion:{(object:AnyObject!, error: NSError!) -> () in
             
-            var currentUser = object as! BAAUser
+            let currentUser = object as! BAAUser
             singleimagevc.User = currentUser.username()
             //Programmatically push to associated VC
             self.navigationController?.pushViewController(singleimagevc, animated: true)
@@ -95,24 +95,24 @@ class ArchiveEventVC: UIViewController, UICollectionViewDelegateFlowLayout, UICo
         
         //checks to see if the current location is set before starting connection. if its not it calls LocationManager
         if latValue != 0 && lonValue != 0 {
-            println("getting linked comments")
-            var path: NSString = "link"
-            var params: NSDictionary = ["where": "in.event_id = \(selectedArchive!.event.event_id) and label=\"event_object\""]
-            var c = BAAClient.sharedClient()
+            print("getting linked comments")
+            let path: NSString = "link"
+            let params: NSDictionary = ["where": "in.event_id = \(selectedArchive!.event.event_id) and label=\"event_object\""]
+            let c = BAAClient.sharedClient()
             
             c.getPath(path as String, parameters: params as [NSObject : AnyObject], success:{(success: AnyObject!) -> Void in
                 
                 if success != nil {
-                    println(success)
-                    var data: NSDictionary = success as! NSDictionary
-                    var dataArray: [AnyObject] = data["data"] as! [AnyObject]
+                    print(success)
+                    let data: NSDictionary = success as! NSDictionary
+                    let dataArray: [AnyObject] = data["data"] as! [AnyObject]
                     
                     
-                    for (index, item) in enumerate(dataArray) {
+                    for (index, item) in dataArray.enumerate() {
                         
-                        var eventAndComment = BAALinkedEventComments(dictionary: item as! [NSObject : AnyObject])
+                        let eventAndComment = BAALinkedEventComments(dictionary: item as! [NSObject : AnyObject])
                         eventComments.append(eventAndComment)
-                        var commentdata = downloadDataClass()
+                        let commentdata = downloadDataClass()
                         if eventAndComment.comment != nil {
                             commentdata.comment = eventAndComment.comment.comment as String
                             commentdata.author = eventAndComment.comment.author
@@ -126,7 +126,7 @@ class ArchiveEventVC: UIViewController, UICollectionViewDelegateFlowLayout, UICo
                             self.cvArchiveGallery.insertItemsAtIndexPaths([NSIndexPath(forItem: self.eventGallery.count - 1, inSection: 0)])
                         } else {
                             self.spinner.startAnimating()
-                            var params = ["resize":"25%"]
+                            let params = ["resize":"25%"]
                             eventAndComment.file.loadFileWithParameters( params as [NSObject : AnyObject], completion: {(data:NSData!, error:NSError!) -> () in
                                 if data != nil {
                                     commentdata.author = eventAndComment.file.author
@@ -145,7 +145,7 @@ class ArchiveEventVC: UIViewController, UICollectionViewDelegateFlowLayout, UICo
                 
                 }, failure:{(failure: NSError!) -> Void in
                     
-                    println(failure)
+                    print(failure)
                     
             })
         }
@@ -163,9 +163,9 @@ class ArchiveEventVC: UIViewController, UICollectionViewDelegateFlowLayout, UICo
     
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if let ArchiveEventSideBarVC = segue.destinationViewController as? ArchiveEventSideBarVC {
+        //if let ArchiveEventSideBarVC = segue.destinationViewController as? ArchiveEventSideBarVC {
             //ArchiveEventSideBarVC.data = ballView
-        }
+        //}
     }
     
 

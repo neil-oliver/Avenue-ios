@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import CoreData
 
 class LoginVC: UIViewController, NSURLConnectionDelegate, UITextFieldDelegate {
     
@@ -21,7 +20,6 @@ class LoginVC: UIViewController, NSURLConnectionDelegate, UITextFieldDelegate {
     let spinner = UIActivityIndicatorView()
 
     
-    var persistenceHelper: PersistenceHelper = PersistenceHelper()
 
     @IBOutlet weak var txtUsername: UITextField!
     @IBOutlet weak var txtPassword: UITextField!
@@ -35,46 +33,32 @@ class LoginVC: UIViewController, NSURLConnectionDelegate, UITextFieldDelegate {
     }
     
     @IBAction func btnSignup(sender: AnyObject) {
-        var signupvc:SignupVC = self.storyboard?.instantiateViewControllerWithIdentifier("SignupVC") as! SignupVC
+        let signupvc:SignupVC = self.storyboard?.instantiateViewControllerWithIdentifier("SignupVC") as! SignupVC
         let navigationController = UINavigationController(rootViewController: signupvc)
         self.presentViewController(navigationController, animated: true, completion: nil)
     }
     @IBAction func btnLogin(sender: AnyObject) {
         //self.spinner.startAnimating()
-        println("login button pushed")
+        print("login button pushed")
         BAAUser.loginWithUsername(txtUsername.text, password:txtPassword.text, completion: { (success: Bool, error: NSError!) -> () in
             
-            println("BAAUser login called")
+            print("BAAUser login called")
             if (success) {
                 
-                println("successful log in")
+                print("successful log in")
                 //move past login screen to either the main menu or the gig found screen.
-                if closeEvents.count != 0 {
-                    if closeEvents[0].locations.distance < 100 {
-                        println("close event found")
-                        var gigfoundvc:GigFoundVC = self.storyboard?.instantiateViewControllerWithIdentifier("GigFoundVC") as! GigFoundVC
-                        let navigationController = UINavigationController(rootViewController: gigfoundvc)
-                        self.presentViewController(navigationController, animated: true, completion: nil)
-                    } else {
-                        println("event found but not close")
-                        var menutbc : MenuTBC = self.storyboard?.instantiateViewControllerWithIdentifier("MenuTBC") as! MenuTBC
-                        menutbc.selectedIndex = 0
-                        let navigationController = UINavigationController(rootViewController: menutbc)
-                        self.presentViewController(navigationController, animated: true, completion: nil)
-                    }
-                } else {
-                    println("no events found")
-                    var menutbc : MenuTBC = self.storyboard?.instantiateViewControllerWithIdentifier("MenuTBC") as! MenuTBC
+
+                    let menutbc : MenuTBC = self.storyboard?.instantiateViewControllerWithIdentifier("MenuTBC") as! MenuTBC
                     menutbc.selectedIndex = 0
                     let navigationController = UINavigationController(rootViewController: menutbc)
                     self.presentViewController(navigationController, animated: true, completion: nil)
-                }
+                
                 
                 
                 
             } else {
                 
-                println("log in error \(error.localizedDescription)")
+                print("log in error \(error.localizedDescription)")
                 let alertController = UIAlertController(title: "Sign In Error", message:
                     "log in error \(error.localizedDescription)", preferredStyle: UIAlertControllerStyle.Alert)
                 alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
@@ -98,11 +82,11 @@ class LoginVC: UIViewController, NSURLConnectionDelegate, UITextFieldDelegate {
         
         if client.isAuthenticated() {
             
-            println("Logged in")
+            print("Logged in")
             
         } else {
             
-            println("Not logged in")
+            print("Not logged in")
         }
         // Do any additional setup after loading the view.
         
@@ -117,23 +101,12 @@ class LoginVC: UIViewController, NSURLConnectionDelegate, UITextFieldDelegate {
         super.viewDidAppear(animated)        
         // automatically moves past the login screen if user is authenticated.
         if client.isAuthenticated(){
-            if closeEvents.count != 0 {
-                if closeEvents[0].locations.distance < 100 {
-                    var gigfoundvc:GigFoundVC = storyboard?.instantiateViewControllerWithIdentifier("GigFoundVC") as! GigFoundVC
-                    let navigationController = UINavigationController(rootViewController: gigfoundvc)
-                    self.presentViewController(navigationController, animated: true, completion: nil)
-                } else {
-                    var menutbc : MenuTBC = storyboard?.instantiateViewControllerWithIdentifier("MenuTBC") as! MenuTBC
-                    menutbc.selectedIndex = 0
-                    let navigationController = UINavigationController(rootViewController: menutbc)
-                    self.presentViewController(navigationController, animated: true, completion: nil)
-                }
-            } else {
-                var menutbc : MenuTBC = storyboard?.instantiateViewControllerWithIdentifier("MenuTBC") as! MenuTBC
+
+                let menutbc : MenuTBC = storyboard?.instantiateViewControllerWithIdentifier("MenuTBC") as! MenuTBC
                 menutbc.selectedIndex = 0
                 let navigationController = UINavigationController(rootViewController: menutbc)
                 self.presentViewController(navigationController, animated: true, completion: nil)
-            }
+            
         }
         
     }

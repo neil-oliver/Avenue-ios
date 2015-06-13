@@ -9,7 +9,6 @@
 import UIKit
 import AssetsLibrary
 import CoreLocation
-import CoreData
 
 
 class ScanVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
@@ -54,8 +53,8 @@ class ScanVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
         }
         
         
-        var image = self.matchedPhotos[self.activePhotoIndex!]
-        var photo = image.0
+        let image = self.matchedPhotos[self.activePhotoIndex!]
+        let photo = image.0
         self.imgScanImageBox.image = photo
         self.lblMatchedEvent.text = image.1.event.displayName as? String
         self.btnConfirm.enabled = true
@@ -74,25 +73,25 @@ class ScanVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
             self.btnNext.enabled = true
         }
         
-        var image = self.matchedPhotos[self.activePhotoIndex!]
-        var photo = image.0
+        let image = self.matchedPhotos[self.activePhotoIndex!]
+        let photo = image.0
         self.imgScanImageBox.image = photo
         self.lblMatchedEvent.text = image.1.event.displayName as? String
         self.btnConfirm.enabled = true
     }
     
     @IBAction func btnConfirm(sender: AnyObject) {
-        var data = UIImageJPEGRepresentation(self.matchedPhotos[self.activePhotoIndex!].0, 1.0)
-        var file: BAAFile = BAAFile(data: data)
+        let data = UIImageJPEGRepresentation(self.matchedPhotos[self.activePhotoIndex!].0, 1.0)
+        let file: BAAFile = BAAFile(data: data)
         file.contentType = "image/jpeg"
-        println("Uploading Image")
+        print("Uploading Image")
         file.uploadFileWithPermissions(nil, completion:{(uploadedFile: AnyObject!, error: NSError!) -> Void in
             if uploadedFile != nil {
-                println("Object: \(uploadedFile)")
-                createBaasLink(uploadedFile.fileId, self.matchedPhotos[self.activePhotoIndex!].1.event.objectId)
+                print("Object: \(uploadedFile)")
+                createBaasLink(uploadedFile.fileId, outLink: self.matchedPhotos[self.activePhotoIndex!].1.event.objectId)
             }
             if error != nil {
-                println("Upload Error: \(error)")
+                print("Upload Error: \(error)")
                 let alertController = UIAlertController(title: "Upload Error", message:
                     "Upload Error: \(error)", preferredStyle: UIAlertControllerStyle.Alert)
                 alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
@@ -117,17 +116,17 @@ class ScanVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
         imagePicker.allowsEditing = false
         self.presentViewController(imagePicker, animated: true, completion: nil)
     }
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]){
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String: AnyObject]){
     
         var lat: CLLocationDegrees?
         var long: CLLocationDegrees?
-        var timestamp: NSDate?
+        //var timestamp: NSDate?
         var image: UIImage?
-        var resEvents = [Events]()
+        //var resEvents = [Events]()
         var resBaasEvents = [BAALinkedVenueEvents]()
         
         let library = ALAssetsLibrary()
-        var url: NSURL = info[UIImagePickerControllerReferenceURL] as! NSURL
+        let url: NSURL = info[UIImagePickerControllerReferenceURL] as! NSURL
         
         library.assetForURL(url, resultBlock: {
             (asset: ALAsset!) in
@@ -137,15 +136,15 @@ class ScanVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
                     {
                         if photoType == ALAssetTypePhoto
                         {
-                            var orientation = UIImageOrientation(rawValue: asset.defaultRepresentation().orientation().rawValue)
-                            var scale = CGFloat(asset.defaultRepresentation().scale())
+                            let orientation = UIImageOrientation(rawValue: asset.defaultRepresentation().orientation().rawValue)
+                            let scale = CGFloat(asset.defaultRepresentation().scale())
                             
-                            if let photoFull =  UIImage(CGImage:(asset.defaultRepresentation().fullResolutionImage().takeUnretainedValue()), scale: scale, orientation: orientation!)
-                            {
+                            let photoFull = UIImage(CGImage:(asset.defaultRepresentation().fullResolutionImage().takeUnretainedValue()), scale: scale, orientation: orientation!)
+                            
                                 image = photoFull
                                 //self.imgScanImageBox.image = photoFull
                                 //self.dismissViewControllerAnimated(true, completion: nil)
-                            }
+                            
                         }
                     }
                 
@@ -153,34 +152,33 @@ class ScanVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
                 {
                     lat = location.coordinate.latitude
                     long = location.coordinate.longitude
-                    println("photo coordinates: \(lat!) , \(long!)")
+                    print("photo coordinates: \(lat!) , \(long!)")
                     
                     if let photoDate: NSDate = asset.valueForProperty(ALAssetPropertyDate) as! NSDate!
                     {
-                        timestamp = photoDate
                         let dateFormatter = NSDateFormatter()
                         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:MM:ss.FFFZ"
                         self.baasTime = dateFormatter.stringFromDate(photoDate as NSDate)
-                        println("photo date in baas format: \(self.baasTime)")
+                        print("photo date in baas format: \(self.baasTime)")
                     }
                     
                     if OnlineSearch == true {
                         //FetchData().startConnection(lat: lat!, lon: long!)
                     }
                     
-                    var path: NSString = "link"
-                    var params: NSDictionary = ["fields" : "out,in, distance(out.lat,out.lng,\(lat!),\(long!)) as distance", "where" : "distance(out.lat,out.lng,\(lat!),\(long!)) < 0.1 and in.start.datetime < date('\(self.baasTime)') and in.end.datetime > date('\(self.baasTime)') and label=\"venue_event\"", "orderBy": "distance asc"]
-                    var c = BAAClient.sharedClient()
+                    let path: NSString = "link"
+                    let params: NSDictionary = ["fields" : "out,in, distance(out.lat,out.lng,\(lat!),\(long!)) as distance", "where" : "distance(out.lat,out.lng,\(lat!),\(long!)) < 0.1 and in.start.datetime < date('\(self.baasTime)') and in.end.datetime > date('\(self.baasTime)') and label=\"venue_event\"", "orderBy": "distance asc"]
+                    let c = BAAClient.sharedClient()
                     
                     c.getPath(path as String, parameters: params as [NSObject : AnyObject], success:{(success: AnyObject!) -> Void in
-                        println("event search results for photo: \(success)")
-                        var data: NSDictionary = success as! NSDictionary
-                        var dataArray: [AnyObject] = data["data"] as! [AnyObject]
+                        print("event search results for photo: \(success)")
+                        let data: NSDictionary = success as! NSDictionary
+                        let dataArray: [AnyObject] = data["data"] as! [AnyObject]
                         if dataArray.count != 0 {
                             for item in dataArray {
-                                var venueAndEvent = BAALinkedVenueEvents(dictionary: item as! [NSObject : AnyObject])
-                                println("scanned event found: \(venueAndEvent.event.displayName)")
-                                println("Distance: \(venueAndEvent.distance)")
+                                let venueAndEvent = BAALinkedVenueEvents(dictionary: item as! [NSObject : AnyObject])
+                                print("scanned event found: \(venueAndEvent.event.displayName)")
+                                print("Distance: \(venueAndEvent.distance)")
                                 resBaasEvents.append(venueAndEvent)
                             }
                             
@@ -189,17 +187,17 @@ class ScanVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
                                 self.lblMatchedEvent.text = resBaasEvents[0].event.displayName as? String
                                 self.spinner.startAnimating()
                                 //add selected image to BAAS
-                                var data = UIImageJPEGRepresentation(image, 1.0)
-                                var file: BAAFile = BAAFile(data: data)
+                                let data = UIImageJPEGRepresentation(image!, 1.0)
+                                let file: BAAFile = BAAFile(data: data)
                                 file.contentType = "image/jpeg"
-                                println("Uploading Image")
+                                print("Uploading Image")
                                 file.uploadFileWithPermissions(nil, completion:{(uploadedFile: AnyObject!, error: NSError!) -> Void in
                                     if uploadedFile != nil {
-                                        println("Object: \(uploadedFile)")
-                                        createBaasLink(uploadedFile.fileId, resBaasEvents[0].event.objectId)
+                                        print("Object: \(uploadedFile)")
+                                        createBaasLink(uploadedFile.fileId, outLink: resBaasEvents[0].event.objectId)
                                     }
                                     if error != nil {
-                                        println("Upload Error: \(error)")
+                                        print("Upload Error: \(error)")
                                         let alertController = UIAlertController(title: "Upload Error", message:
                                             "Upload Error: \(error)", preferredStyle: UIAlertControllerStyle.Alert)
                                         alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
@@ -210,14 +208,14 @@ class ScanVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
                                 })
                             }
                         } else {
-                            println("No event matched with photo")
+                            print("No event matched with photo")
                             self.imgScanImageBox.image = image
                             self.lblMatchedEvent.text = "No Event Found"
                             self.dismissViewControllerAnimated(true, completion: nil)
                         }
                         
                     }, failure:{(failure: NSError!) -> Void in
-                        println(failure)
+                        print(failure)
                     })
                 } else {
                     self.imgScanImageBox.image = image
@@ -265,11 +263,11 @@ class ScanVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
 
         matchedPhotos = [(UIImage,BAALinkedVenueEvents)]()
         
-        var library = ALAssetsLibrary()
+        let library = ALAssetsLibrary()
         library.enumerateGroupsWithTypes(ALAssetsGroupAll, usingBlock: { (group, stop) -> Void in
             if (group != nil) {
             
-                println("Group \((group.valueForProperty(ALAssetsGroupPropertyName))) is not nil")
+                print("Group \((group.valueForProperty(ALAssetsGroupPropertyName))) is not nil")
                 if group.valueForProperty(ALAssetsGroupPropertyName) as! NSString == "All Photos" {
                     group.enumerateAssetsUsingBlock { (asset, index, stop) in
                         if asset != nil
@@ -286,16 +284,10 @@ class ScanVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
                                     let dateFormatter = NSDateFormatter()
                                     dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:MM:ss.FFFZ"
                                     self.baasTime = dateFormatter.stringFromDate(photoDate as NSDate)
-                                    println("photo date in baas format: \(self.baasTime)")
+                                    print("photo date in baas format: \(self.baasTime)")
                                     //println("date: \(photoDate)")
                                 }
                                 
-                                if let photoURL: NSURL = asset.valueForProperty(ALAssetPropertyAssetURL) as! NSURL!
-                                {
-                                    self.URL = photoURL
-                                    let absoluteURL = photoURL.absoluteString!
-                                    //println("URL: \(absoluteURL)")
-                                }
                                 
                                 if let photoThumb: UIImage = UIImage(CGImage: asset.thumbnail().takeUnretainedValue()) as UIImage!
                                 {
@@ -306,49 +298,42 @@ class ScanVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
                                 {
                                     if photoType == ALAssetTypePhoto
                                     {
-                                        var orientation = UIImageOrientation(rawValue: asset.defaultRepresentation().orientation().rawValue)
-                                        var scale = CGFloat(asset.defaultRepresentation().scale())
+                                        let orientation = UIImageOrientation(rawValue: asset.defaultRepresentation().orientation().rawValue)
+                                        let scale = CGFloat(asset.defaultRepresentation().scale())
                                         
-                                        if let photoFull =  UIImage(CGImage:(asset.defaultRepresentation().fullResolutionImage().takeUnretainedValue()), scale: scale, orientation: orientation!)
-                                        {
+                                        let photoFull =  UIImage(CGImage:(asset.defaultRepresentation().fullResolutionImage().takeUnretainedValue()), scale: scale, orientation: orientation!)
+                                        
                                             self.image = photoFull
-
-                                        }
                                     }
                                 }
                                 
-                                if let photoOrientation: ALAssetOrientation = asset.defaultRepresentation().orientation() as ALAssetOrientation!
-                                {
-                                    
-                                }
                                 
-                                var resEvents = [Events]()
                                 var resBaasEvents = [BAALinkedVenueEvents]()
                                 
-                                var path: NSString = "link"
-                                var params: NSDictionary = ["fields" : "out,in, distance(out.lat,out.lng,\(self.lat!),\(self.long!)) as distance", "where" : "distance(out.lat,out.lng,\(self.lat!),\(self.long!)) < 0.1 and in.start.datetime < date('\(self.baasTime)') and in.end.datetime > date('\(self.baasTime)') and label=\"venue_event\"", "orderBy": "distance asc"]
-                                var c = BAAClient.sharedClient()
+                                let path: NSString = "link"
+                                let params: NSDictionary = ["fields" : "out,in, distance(out.lat,out.lng,\(self.lat!),\(self.long!)) as distance", "where" : "distance(out.lat,out.lng,\(self.lat!),\(self.long!)) < 0.1 and in.start.datetime < date('\(self.baasTime)') and in.end.datetime > date('\(self.baasTime)') and label=\"venue_event\"", "orderBy": "distance asc"]
+                                let c = BAAClient.sharedClient()
                                 
                                 c.getPath(path as String, parameters: params as [NSObject : AnyObject], success:{(success: AnyObject!) -> Void in
                                     if success != nil {
-                                        println("event search results for photo: \(success)")
-                                        var data: NSDictionary = success as! NSDictionary
-                                        var dataArray: [AnyObject] = data["data"] as! [AnyObject]
+                                        print("event search results for photo: \(success)")
+                                        let data: NSDictionary = success as! NSDictionary
+                                        let dataArray: [AnyObject] = data["data"] as! [AnyObject]
                                         if dataArray.count != 0 {
                                             for item in dataArray {
-                                                var venueAndEvent = BAALinkedVenueEvents(dictionary: item as! [NSObject : AnyObject])
-                                                println("scanned event found: \(venueAndEvent.event.displayName)")
-                                                println("Distance: \(venueAndEvent.distance)")
+                                                let venueAndEvent = BAALinkedVenueEvents(dictionary: item as! [NSObject : AnyObject])
+                                                print("scanned event found: \(venueAndEvent.event.displayName)")
+                                                print("Distance: \(venueAndEvent.distance)")
                                                 resBaasEvents.append(venueAndEvent)
                                             }
                                         }
-                                        self.matchedPhotos.append((self.image!,resBaasEvents[0]))
+                                        //self.matchedPhotos.append(self.image!,resBaasEvents[0])
                                         self.spinner.stopAnimating()
                                     } else {
                                        self.spinner.stopAnimating()
                                     }
                                     }, failure:{(failure: NSError!) -> Void in
-                                        println(failure)
+                                        print(failure)
                                 })
                                 
                             }
@@ -358,27 +343,27 @@ class ScanVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
             } else {
                 self.btnScan.setTitle("Scan", forState: UIControlState.Normal)
                 
-                println("The group is empty!")
-                println("No. of matched photo \(self.matchedPhotos.count)")
+                print("The group is empty!")
+                print("No. of matched photo \(self.matchedPhotos.count)")
                 if self.matchedPhotos.count != 0 {
                     self.activePhotoIndex = 0
-                    var image = self.matchedPhotos[self.activePhotoIndex!]
-                    var photo = image.0
+                    let image = self.matchedPhotos[self.activePhotoIndex!]
+                    let photo = image.0
                     self.imgScanImageBox.image = photo
                     self.lblMatchedEvent.text = image.1.event.displayName as? String
                     self.btnConfirm.enabled = true
                     
                     //add scanned image to BAAS
                     self.spinner.startAnimating()
-                    var data = UIImageJPEGRepresentation(photo, 1.0)
-                    var file: BAAFile = BAAFile(data: data)
+                    let data = UIImageJPEGRepresentation(photo, 1.0)
+                    let file: BAAFile = BAAFile(data: data)
                     file.contentType = "image/jpeg"
                     file.uploadFileWithPermissions(nil, completion:{(uploadedFile: AnyObject!, error: NSError!) -> Void in
                     if uploadedFile != nil {
-                    println("Object: \(uploadedFile)")
+                    print("Object: \(uploadedFile)")
                     }
                     if error != nil {
-                    println("Upload Error: \(error)")
+                    print("Upload Error: \(error)")
                     }
                     })
                     self.spinner.stopAnimating()
@@ -397,7 +382,7 @@ class ScanVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
             }
             })
             { (error) -> Void in
-                println("problem loading albums: \(error)")
+                print("problem loading albums: \(error)")
                 self.spinner.stopAnimating()
         }
         

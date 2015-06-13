@@ -21,22 +21,22 @@ class CloseEventSideBarVC: UIViewController {
         
         lblVenueTitle.text = selectedEvent?.venue.displayName as? String
         
-        var lat = selectedEvent?.venue.lat as! Double
-        var lon = selectedEvent?.venue.lng as! Double
+        let lat = selectedEvent?.venue.lat as! Double
+        let lon = selectedEvent?.venue.lng as! Double
         
-        var location = CLLocationCoordinate2D(
+        let location = CLLocationCoordinate2D(
             latitude: lat,
             longitude: lon
         )
         
-        var span = MKCoordinateSpanMake(0.01, 0.01)
-        var region = MKCoordinateRegion(center: location, span: span)
+        let span = MKCoordinateSpanMake(0.01, 0.01)
+        let region = MKCoordinateRegion(center: location, span: span)
         
         map.setRegion(region, animated: true)
         
-        var annotation = MKPointAnnotation()
+        let annotation = MKPointAnnotation()
         annotation.coordinate = location
-        annotation.title = selectedEvent?.venue.displayName as! String
+        annotation.title = selectedEvent?.venue.displayName as? String
         map.addAnnotation(annotation)
     }
 

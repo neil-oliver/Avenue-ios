@@ -21,7 +21,7 @@ class SignupVC: UIViewController {
     
     @IBAction func btnCancel(sender: AnyObject) {
         
-        var loginvc:LoginVC = self.storyboard?.instantiateViewControllerWithIdentifier("LoginVC") as! LoginVC
+        let loginvc:LoginVC = self.storyboard?.instantiateViewControllerWithIdentifier("LoginVC") as! LoginVC
         let navigationController = UINavigationController(rootViewController: loginvc)
         self.presentViewController(navigationController, animated: true, completion: nil)
         
@@ -45,36 +45,24 @@ class SignupVC: UIViewController {
                 
                 if (success) {
                     
-                    println("created")
+                    print("created")
                     
                     self.txtUsername.resignFirstResponder()
                     
                     self.txtPassword.resignFirstResponder()
                     
-                    if closeEvents.count != 0 {
-                        if closeEvents[0].locations.distance < 100 {
-                            var gigfoundvc:GigFoundVC = self.storyboard?.instantiateViewControllerWithIdentifier("GigFoundVC") as! GigFoundVC
-                            let navigationController = UINavigationController(rootViewController: gigfoundvc)
-                            self.presentViewController(navigationController, animated: true, completion: nil)
-                        } else {
-                            var menutbc : MenuTBC = self.storyboard?.instantiateViewControllerWithIdentifier("MenuTBC") as! MenuTBC
-                            menutbc.selectedIndex = 0
-                            let navigationController = UINavigationController(rootViewController: menutbc)
-                            self.presentViewController(navigationController, animated: true, completion: nil)
-                        }
-                        
-                    } else {
-                        var menutbc : MenuTBC = self.storyboard?.instantiateViewControllerWithIdentifier("MenuTBC") as! MenuTBC
+
+                        let menutbc : MenuTBC = self.storyboard?.instantiateViewControllerWithIdentifier("MenuTBC") as! MenuTBC
                         menutbc.selectedIndex = 0
                         let navigationController = UINavigationController(rootViewController: menutbc)
                         self.presentViewController(navigationController, animated: true, completion: nil)
-                    }
+                    
                     
                     
                     
                 } else {
                     
-                    println(error.localizedDescription)
+                    print(error.localizedDescription)
                     let alertController = UIAlertController(title: "Sign Up Error", message:
                         error.localizedDescription, preferredStyle: UIAlertControllerStyle.Alert)
                     alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))

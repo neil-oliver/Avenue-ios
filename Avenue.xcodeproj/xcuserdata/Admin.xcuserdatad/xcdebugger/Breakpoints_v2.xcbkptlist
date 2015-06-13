@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Storyboard Test/ScanVC.swift"
-            timestampString = "454085349.734252"
+            timestampString = "455744525.02009"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "249"
-            endingLineNumber = "249"
+            startingLineNumber = "247"
+            endingLineNumber = "247"
             landmarkName = "btnScan(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Storyboard Test/ScanVC.swift"
-            timestampString = "454088902.797319"
+            timestampString = "455744525.02009"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "260"
-            endingLineNumber = "260"
+            startingLineNumber = "258"
+            endingLineNumber = "258"
             landmarkName = "ScanVC"
             landmarkType = "3">
             <Locations>
@@ -74,7 +74,22 @@
                   moduleName = "Avenue"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Admin/Documents/Programming/avenue-ios/Storyboard%20Test/ScanVC.swift"
-                  timestampString = "455494433.29009"
+                  timestampString = "455904523.466075"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "8">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Avenue.ScanVC.activePhotoIndex.materializeForSet : Swift.Optional&lt;Swift.Int&gt;"
+                  moduleName = "Avenue"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Admin/Documents/Programming/avenue-ios/Storyboard%20Test/ScanVC.swift"
+                  timestampString = "455904523.466358"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "0"
@@ -85,30 +100,15 @@
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "Avenue.ScanVC.activePhotoIndex.materializeForSet : Swift.Optional&lt;Swift.Int&gt;"
-                  moduleName = "Avenue"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Admin/Documents/Programming/avenue-ios/Storyboard%20Test/ScanVC.swift"
-                  timestampString = "455494433.29036"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "0"
-                  endingLineNumber = "0"
-                  offsetFromSymbolStart = "16">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
                   symbolName = "Avenue.ScanVC.init (Avenue.ScanVC.Type)(nibName : Swift.Optional&lt;Swift.String&gt;, bundle : Swift.Optional&lt;ObjectiveC.NSBundle&gt;) -&gt; Avenue.ScanVC"
                   moduleName = "Avenue"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Admin/Documents/Programming/avenue-ios/Storyboard%20Test/ScanVC.swift"
-                  timestampString = "455494433.290703"
+                  timestampString = "455904523.466512"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "260"
-                  endingLineNumber = "260"
+                  startingLineNumber = "258"
+                  endingLineNumber = "258"
                   offsetFromSymbolStart = "637">
                </Location>
                <Location
@@ -119,11 +119,11 @@
                   moduleName = "Avenue"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Admin/Documents/Programming/avenue-ios/Storyboard%20Test/ScanVC.swift"
-                  timestampString = "455494433.290862"
+                  timestampString = "455904523.466649"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "260"
-                  endingLineNumber = "260"
+                  startingLineNumber = "258"
+                  endingLineNumber = "258"
                   offsetFromSymbolStart = "589">
                </Location>
             </Locations>
@@ -136,11 +136,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Storyboard Test/ScanVC.swift"
-            timestampString = "454088902.797319"
+            timestampString = "455744525.02009"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "269"
-            endingLineNumber = "269"
+            startingLineNumber = "267"
+            endingLineNumber = "267"
             landmarkName = "scanImages()"
             landmarkType = "5">
             <Locations>
@@ -152,12 +152,12 @@
                   moduleName = "Avenue"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Admin/Documents/Programming/avenue-ios/Storyboard%20Test/ScanVC.swift"
-                  timestampString = "455494433.292103"
+                  timestampString = "455904523.468456"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "269"
-                  endingLineNumber = "269"
-                  offsetFromSymbolStart = "212">
+                  startingLineNumber = "267"
+                  endingLineNumber = "267"
+                  offsetFromSymbolStart = "135">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -167,12 +167,12 @@
                   moduleName = "Avenue"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Admin/Documents/Programming/avenue-ios/Storyboard%20Test/ScanVC.swift"
-                  timestampString = "455494433.29228"
+                  timestampString = "455904523.468623"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "0"
                   endingLineNumber = "0"
-                  offsetFromSymbolStart = "15">
+                  offsetFromSymbolStart = "4">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -184,11 +184,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Storyboard Test/LoginVC.swift"
-            timestampString = "452518001.689589"
+            timestampString = "455642045.063095"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "45"
-            endingLineNumber = "45"
+            startingLineNumber = "44"
+            endingLineNumber = "44"
             landmarkName = "btnLogin(_:)"
             landmarkType = "5">
             <Locations>
@@ -312,12 +312,12 @@
                   moduleName = "Avenue"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Admin/Documents/Programming/avenue-ios/Storyboard%20Test/EventVC.swift"
-                  timestampString = "455494433.294154"
+                  timestampString = "455904523.471024"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "265"
                   endingLineNumber = "265"
-                  offsetFromSymbolStart = "6793">
+                  offsetFromSymbolStart = "6033">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -327,12 +327,12 @@
                   moduleName = "Avenue"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Admin/Documents/Programming/avenue-ios/Storyboard%20Test/EventVC.swift"
-                  timestampString = "455494433.294397"
+                  timestampString = "455904523.471156"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "265"
                   endingLineNumber = "265"
-                  offsetFromSymbolStart = "6844">
+                  offsetFromSymbolStart = "6084">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -414,6 +414,563 @@
             startingLineNumber = "245"
             endingLineNumber = "245"
             landmarkName = "getEventComments()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Storyboard Test/BaasBox-iOS-SDK/BAAClient.m"
+            timestampString = "455665753.819027"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "194"
+            endingLineNumber = "194"
+            landmarkName = "-authenticateUser:password:completion:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Storyboard Test/BaasBox-iOS-SDK/BAAClient.m"
+            timestampString = "455665788.681014"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "196"
+            endingLineNumber = "196"
+            landmarkName = "-authenticateUser:password:completion:"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[BAAClient authenticateUser:password:completion:]"
+                  moduleName = "Avenue"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Admin/Documents/Programming/avenue-ios/Storyboard%20Test/BaasBox-iOS-SDK/BAAClient.m"
+                  timestampString = "455904523.474777"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "196"
+                  endingLineNumber = "196"
+                  offsetFromSymbolStart = "375">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__50-[BAAClient authenticateUser:password:completion:]_block_invoke"
+                  moduleName = "Avenue"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Admin/Documents/Programming/avenue-ios/Storyboard%20Test/BaasBox-iOS-SDK/BAAClient.m"
+                  timestampString = "455904523.47489"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "196"
+                  endingLineNumber = "196"
+                  offsetFromSymbolStart = "46">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Storyboard Test/BaasBox-iOS-SDK/BAAClient.m"
+            timestampString = "455665791.149027"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "198"
+            endingLineNumber = "198"
+            landmarkName = "-authenticateUser:password:completion:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Storyboard Test/BaasBox-iOS-SDK/BAAClient.m"
+            timestampString = "455665792.559227"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "200"
+            endingLineNumber = "200"
+            landmarkName = "-authenticateUser:password:completion:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Storyboard Test/BaasBox-iOS-SDK/BAAClient.m"
+            timestampString = "455665793.628988"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "202"
+            endingLineNumber = "202"
+            landmarkName = "-authenticateUser:password:completion:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Storyboard Test/BaasBox-iOS-SDK/BAAClient.m"
+            timestampString = "455665795.783023"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "209"
+            endingLineNumber = "209"
+            landmarkName = "-authenticateUser:password:completion:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Storyboard Test/BaasBox-iOS-SDK/BAAClient.m"
+            timestampString = "455665797.096971"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "210"
+            endingLineNumber = "210"
+            landmarkName = "-authenticateUser:password:completion:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Storyboard Test/BaasBox-iOS-SDK/BAAClient.m"
+            timestampString = "455666318.917101"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "220"
+            endingLineNumber = "220"
+            landmarkName = "-authenticateUser:password:completion:"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[BAAClient authenticateUser:password:completion:]"
+                  moduleName = "Avenue"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Admin/Documents/Programming/avenue-ios/Storyboard%20Test/BaasBox-iOS-SDK/BAAClient.m"
+                  timestampString = "455904523.477598"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "220"
+                  endingLineNumber = "220"
+                  offsetFromSymbolStart = "477">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__50-[BAAClient authenticateUser:password:completion:]_block_invoke"
+                  moduleName = "Avenue"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Admin/Documents/Programming/avenue-ios/Storyboard%20Test/BaasBox-iOS-SDK/BAAClient.m"
+                  timestampString = "455904523.477701"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "220"
+                  endingLineNumber = "220"
+                  offsetFromSymbolStart = "739">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__copy_helper_block_"
+                  moduleName = "Avenue"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Admin/Documents/Programming/avenue-ios/Storyboard%20Test/BaasBox-iOS-SDK/BAAClient.m"
+                  timestampString = "455904523.477795"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "16">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__destroy_helper_block_"
+                  moduleName = "Avenue"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Admin/Documents/Programming/avenue-ios/Storyboard%20Test/BaasBox-iOS-SDK/BAAClient.m"
+                  timestampString = "455904523.477884"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "16">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__50-[BAAClient authenticateUser:password:completion:]_block_invoke178"
+                  moduleName = "Avenue"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Admin/Documents/Programming/avenue-ios/Storyboard%20Test/BaasBox-iOS-SDK/BAAClient.m"
+                  timestampString = "455904523.477969"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "220"
+                  endingLineNumber = "220"
+                  offsetFromSymbolStart = "38">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Storyboard Test/BaasBox-iOS-SDK/BAAClient.m"
+            timestampString = "455665816.033082"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "222"
+            endingLineNumber = "222"
+            landmarkName = "-authenticateUser:password:completion:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Storyboard Test/BaasBox-iOS-SDK/BAAClient.m"
+            timestampString = "455665833.407799"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "213"
+            endingLineNumber = "213"
+            landmarkName = "-authenticateUser:password:completion:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Storyboard Test/BaasBox-iOS-SDK/BAAClient.m"
+            timestampString = "455665835.785737"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "216"
+            endingLineNumber = "216"
+            landmarkName = "-authenticateUser:password:completion:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Storyboard Test/BaasBox-iOS-SDK/BAAClient.m"
+            timestampString = "455744948.999886"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1522"
+            endingLineNumber = "1522"
+            landmarkName = "-postPath:parameters:success:failure:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Storyboard Test/BaasBox-iOS-SDK/BAAClient.m"
+            timestampString = "455745018.339819"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1539"
+            endingLineNumber = "1539"
+            landmarkName = "-postPath:parameters:success:failure:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Storyboard Test/BaasBox-iOS-SDK/BAAClient.m"
+            timestampString = "455745020.294145"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1549"
+            endingLineNumber = "1549"
+            landmarkName = "-postPath:parameters:success:failure:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Storyboard Test/BaasBox-iOS-SDK/BAAClient.m"
+            timestampString = "455745022.130121"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1553"
+            endingLineNumber = "1553"
+            landmarkName = "-postPath:parameters:success:failure:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Storyboard Test/BaasBox-iOS-SDK/BAAClient.m"
+            timestampString = "455745125.668403"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1531"
+            endingLineNumber = "1531"
+            landmarkName = "-postPath:parameters:success:failure:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Storyboard Test/BaasBox-iOS-SDK/BAAClient.m"
+            timestampString = "455745126.430441"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1532"
+            endingLineNumber = "1532"
+            landmarkName = "-postPath:parameters:success:failure:"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[BAAClient postPath:parameters:success:failure:]"
+                  moduleName = "Avenue"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Admin/Documents/Programming/avenue-ios/Storyboard%20Test/BaasBox-iOS-SDK/BAAClient.m"
+                  timestampString = "455904523.482061"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1532"
+                  endingLineNumber = "1532"
+                  offsetFromSymbolStart = "284">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__49-[BAAClient postPath:parameters:success:failure:]_block_invoke"
+                  moduleName = "Avenue"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Admin/Documents/Programming/avenue-ios/Storyboard%20Test/BaasBox-iOS-SDK/BAAClient.m"
+                  timestampString = "455904523.48216"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1532"
+                  endingLineNumber = "1532"
+                  offsetFromSymbolStart = "101">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Storyboard Test/BaasBox-iOS-SDK/BAAClient.m"
+            timestampString = "455745127.232464"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1535"
+            endingLineNumber = "1535"
+            landmarkName = "-postPath:parameters:success:failure:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Storyboard Test/BaasBox-iOS-SDK/BAAClient.m"
+            timestampString = "455745128.106473"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1534"
+            endingLineNumber = "1534"
+            landmarkName = "-postPath:parameters:success:failure:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Storyboard Test/BaasBox-iOS-SDK/BAAClient.m"
+            timestampString = "455745130.236363"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1540"
+            endingLineNumber = "1540"
+            landmarkName = "-postPath:parameters:success:failure:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Storyboard Test/BaasBox-iOS-SDK/BAAClient.m"
+            timestampString = "455745130.97438"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1541"
+            endingLineNumber = "1541"
+            landmarkName = "-postPath:parameters:success:failure:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Storyboard Test/BaasBox-iOS-SDK/BAAClient.m"
+            timestampString = "455745131.608376"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1542"
+            endingLineNumber = "1542"
+            landmarkName = "-postPath:parameters:success:failure:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Storyboard Test/BaasBox-iOS-SDK/BAAClient.m"
+            timestampString = "455745132.274329"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1543"
+            endingLineNumber = "1543"
+            landmarkName = "-postPath:parameters:success:failure:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Storyboard Test/BaasBox-iOS-SDK/BAAClient.m"
+            timestampString = "455745134.39604"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1545"
+            endingLineNumber = "1545"
+            landmarkName = "-postPath:parameters:success:failure:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Storyboard Test/BaasBox-iOS-SDK/BAAClient.m"
+            timestampString = "455745136.224335"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1551"
+            endingLineNumber = "1551"
+            landmarkName = "-postPath:parameters:success:failure:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Storyboard Test/BaasBox-iOS-SDK/BAAClient.m"
+            timestampString = "455745137.752304"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1555"
+            endingLineNumber = "1555"
+            landmarkName = "-postPath:parameters:success:failure:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

@@ -20,7 +20,7 @@ class AltEventVC: UIViewController, UIPageViewControllerDataSource  {
     func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
         
 
-        var currentVC = viewController as! AltEventContentVC
+        let currentVC = viewController as! AltEventContentVC
         var index = currentVC.pageIndex
         
         if index == 0 || index != nil {
@@ -34,11 +34,11 @@ class AltEventVC: UIViewController, UIPageViewControllerDataSource  {
     
     func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
         
-        var currentVC = viewController as! AltEventContentVC
+        let currentVC = viewController as! AltEventContentVC
         var index = currentVC.pageIndex
 
         if index == nil {
-            println("returning nil")
+            print("returning nil")
             return nil
         }
         index = index! + 1
@@ -64,7 +64,7 @@ class AltEventVC: UIViewController, UIPageViewControllerDataSource  {
             return nil
         }
         
-        var pageContentViewController = self.storyboard?.instantiateViewControllerWithIdentifier("AltEventContentVC") as! AltEventContentVC
+        let pageContentViewController = self.storyboard?.instantiateViewControllerWithIdentifier("AltEventContentVC") as! AltEventContentVC
         pageContentViewController.titleText = closeVenueEvents[index].event.displayName as? String
         pageContentViewController.location = CLLocationCoordinate2D(
             latitude: closeVenueEvents[index].venue.lat as! Double,
@@ -79,7 +79,7 @@ class AltEventVC: UIViewController, UIPageViewControllerDataSource  {
             "The current gig in the selectedEvent Variable is: \(closeVenueEvents[index].event.displayName)", preferredStyle: UIAlertControllerStyle.Alert)
         alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
         self.presentViewController(alertController, animated: true, completion: nil)
-        println(selectedEvent!.event.displayName)
+        print(selectedEvent!.event.displayName)
         
         return pageContentViewController
     }
@@ -92,10 +92,10 @@ class AltEventVC: UIViewController, UIPageViewControllerDataSource  {
         self.pageViewController = self.storyboard?.instantiateViewControllerWithIdentifier("AltEventPVC") as! UIPageViewController
         self.pageViewController.dataSource = self
         
-        var startingViewController = self.viewControllerAtIndex(0) as AltEventContentVC
-        var viewControllers = [startingViewController] as NSArray
-        self.pageViewController.setViewControllers(viewControllers as [AnyObject], direction: UIPageViewControllerNavigationDirection.Forward, animated: false, completion: nil)
-        
+        let startingViewController = self.viewControllerAtIndex(0) as AltEventContentVC
+        let viewControllers = [startingViewController] as NSArray
+        self.pageViewController.setViewControllers(viewControllers as? [UIViewController], direction: UIPageViewControllerNavigationDirection.Forward, animated: false, completion: nil)
+
         //Size of the VC
         self.pageViewController.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 30)
         

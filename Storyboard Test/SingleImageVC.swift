@@ -20,7 +20,7 @@ class SingleImageVC: UIViewController {
     @IBOutlet var btnUser: UIButton!
     
     @IBAction func btnUserSelect(sender: AnyObject) {
-        var profilevc : ProfileVC = storyboard?.instantiateViewControllerWithIdentifier("ProfileVC") as! ProfileVC
+        let profilevc : ProfileVC = storyboard?.instantiateViewControllerWithIdentifier("ProfileVC") as! ProfileVC
         profilevc.selectedUser = User
         //Programmatically push to associated VC
         self.navigationController?.pushViewController(profilevc, animated: true)

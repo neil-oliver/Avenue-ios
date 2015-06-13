@@ -32,7 +32,9 @@ class GalleryVC: UIViewController, UICollectionViewDelegateFlowLayout, UICollect
         self.refreshControl.attributedTitle = NSAttributedString(string: "Pull to refersh")
         self.refreshControl.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
         self.cvGallery.addSubview(refreshControl)
+        
         getBaasImages()
+        
         // Do any additional setup after loading the view
     }
 
@@ -47,8 +49,8 @@ class GalleryVC: UIViewController, UICollectionViewDelegateFlowLayout, UICollect
     }
     
     func refresh(sender:AnyObject){
-        println("refresh")
-        println("No. of Images \(downloadedImages.count)")
+        print("refresh")
+        print("No. of Images \(downloadedImages.count)")
         sleep(1)
         dispatch_async(dispatch_get_main_queue(), { () -> Void in
             self.getBaasImages()
@@ -79,8 +81,8 @@ class GalleryVC: UIViewController, UICollectionViewDelegateFlowLayout, UICollect
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath)
     {
-        var cell = collectionView.cellForItemAtIndexPath(indexPath)
-        var singleimagevc:SingleImageVC = storyboard?.instantiateViewControllerWithIdentifier("SingleImageVC") as! SingleImageVC
+        //var cell = collectionView.cellForItemAtIndexPath(indexPath)
+        let singleimagevc:SingleImageVC = storyboard?.instantiateViewControllerWithIdentifier("SingleImageVC") as! SingleImageVC
         singleimagevc.SingleImage = downloadedImages[indexPath.row].image
         singleimagevc.User = downloadedImages[indexPath.row].details.author
 
@@ -99,21 +101,21 @@ class GalleryVC: UIViewController, UICollectionViewDelegateFlowLayout, UICollect
     
     func getBaasImages(){
         BAAFile.loadFilesAndDetailsWithCompletion({(files: [AnyObject]!, error: NSError!) -> () in
-            println("files are \(files)")
+            print("files are \(files)")
             if files != nil {
                 for file in files {
-                    var fileData = File()
+                    let fileData = File()
                     self.spinner.startAnimating()
-                    var image : BAAFile = file as! BAAFile // instance or subclass of BAAFile, previously saved on the server
+                    let image : BAAFile = file as! BAAFile // instance or subclass of BAAFile, previously saved on the server
                     fileData.details = image
-                    var params = ["resize":"25%"]
+                    let params = ["resize":"25%"]
                     image.loadFileWithParameters( params as [NSObject : AnyObject], completion: {(data:NSData!, error:NSError!) -> () in
                         if data != nil {
                             fileData.image = UIImage(data: data)!
                             self.downloadedImages.append(fileData)
                             self.cvGallery.insertItemsAtIndexPaths([NSIndexPath(forItem: self.downloadedImages.count - 1, inSection: 0)])
                         } else {
-                            println("error downloading gallery image")
+                            print("error downloading gallery image")
                         }
                         if self.downloadedImages.count == files.count {
                             self.spinner.stopAnimating()

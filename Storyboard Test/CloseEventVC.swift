@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import CoreData
 
 class CloseEventVC: UIViewController {
     
@@ -44,7 +43,7 @@ class CloseEventVC: UIViewController {
     }
     
     func refresh(sender:AnyObject){
-        println("refresh")
+        print("refresh")
         //FetchData().getBassVenuesEvents()
         
         dispatch_async(dispatch_get_main_queue(), { () -> Void in
@@ -86,7 +85,7 @@ class CloseEventVC: UIViewController {
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        var closeeventdetailvc:CloseEventDetailVC = storyboard?.instantiateViewControllerWithIdentifier("CloseEventDetailVC") as! CloseEventDetailVC
+        let closeeventdetailvc:CloseEventDetailVC = storyboard?.instantiateViewControllerWithIdentifier("CloseEventDetailVC") as! CloseEventDetailVC
         //Reference DetailVC's var "cellName" and assign it to DetailVC's var "items"
         closeeventdetailvc.eventTitle = closeVenueEvents[indexPath.row].event.displayName as! String
         closeeventdetailvc.startDate = "Start Date: \(closeVenueEvents[indexPath.row].event.start.date)"

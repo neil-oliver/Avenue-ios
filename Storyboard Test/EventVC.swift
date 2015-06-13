@@ -32,23 +32,23 @@ class EventVC: UIViewController, UINavigationControllerDelegate, UIImagePickerCo
     var eventGallery: [[AnyObject]] = []
     
     @IBAction func btnSend(sender: AnyObject) {
-        sendComment(txtComment.text)
+        sendComment(txtComment.text!)
     }
     
     func sendComment(comment: String) {
         btnSend.enabled = false
-        var newComment : BAAComment = BAAComment()
+        let newComment : BAAComment = BAAComment()
         newComment.comment = comment
         if newComment.comment != "" {
             newComment.saveObjectWithCompletion({(object:AnyObject!, error: NSError!) -> Void in
                 if object != nil {
                     self.btnSend.enabled = true
-                    println("Object: \(object)")
+                    print("Object: \(object)")
                     
                     //grant access to all registered users
                     object.grantAccessToRole(kAclRegisteredRole, ofType: kAclReadPermission, completion:{(object:AnyObject!, error: NSError!) -> Void in })
                     
-                    createBaasLink(object.objectId, selectedEvent!.event.objectId)
+                    createBaasLink(object.objectId, outLink: selectedEvent!.event.objectId)
                     self.eventGallery.append([comment, UIImage(named: "white.jpg")!])
                     self.cvEventGallery.insertItemsAtIndexPaths([NSIndexPath(forItem: self.eventGallery.count-1, inSection: 0)])
                     self.txtComment.text = ""
@@ -56,7 +56,7 @@ class EventVC: UIViewController, UINavigationControllerDelegate, UIImagePickerCo
                 }
                 if error != nil {
                     self.btnSend.enabled = true
-                    println("Error: \(error)")
+                    print("Error: \(error)")
                     let alertController = UIAlertController(title: "Error", message:
                         "Message Send Error: \(error)", preferredStyle: UIAlertControllerStyle.Alert)
                     alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
@@ -119,14 +119,14 @@ class EventVC: UIViewController, UINavigationControllerDelegate, UIImagePickerCo
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath)
     {
-        var cell = collectionView.cellForItemAtIndexPath(indexPath)
-        var singleimagevc:SingleImageVC = storyboard?.instantiateViewControllerWithIdentifier("SingleImageVC") as! SingleImageVC
+        //var cell = collectionView.cellForItemAtIndexPath(indexPath)
+        let singleimagevc:SingleImageVC = storyboard?.instantiateViewControllerWithIdentifier("SingleImageVC") as! SingleImageVC
         singleimagevc.SingleImage = eventGallery[indexPath.row][1] as? UIImage
         singleimagevc.SingleComment = eventGallery[indexPath.row][0] as! String
         
         BAAUser.loadUserDetails(eventGallery[indexPath.row][2] as! String, completion:{(object:AnyObject!, error: NSError!) -> () in
             
-            var currentUser = object as! BAAUser
+            let currentUser = object as! BAAUser
             singleimagevc.User = currentUser.username()
             //Programmatically push to associated VC
             self.navigationController?.pushViewController(singleimagevc, animated: true)
@@ -139,7 +139,7 @@ class EventVC: UIViewController, UINavigationControllerDelegate, UIImagePickerCo
         
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)
         {
-            var imag = UIImagePickerController()
+            let imag = UIImagePickerController()
             imag.delegate = self
             imag.allowsEditing = true
             imag.sourceType = UIImagePickerControllerSourceType.Camera;
@@ -151,14 +151,14 @@ class EventVC: UIViewController, UINavigationControllerDelegate, UIImagePickerCo
     
     let insertIndexPath = NSIndexPath(forItem: 0, inSection: 0)
     
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject])
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String: AnyObject])
     {
-        println("photo taken")
+        print("photo taken")
         picker.dismissViewControllerAnimated(true, completion: nil)
         
-        var photo: UIImage = info[UIImagePickerControllerOriginalImage] as! UIImage
+        let photo: UIImage = info[UIImagePickerControllerOriginalImage] as! UIImage
         let metadata = info[UIImagePickerControllerMediaMetadata] as? NSDictionary
-        var exif: NSDictionary = metadata?.objectForKey("{Exif}") as! NSDictionary
+        let exif: NSDictionary = metadata?.objectForKey("{Exif}") as! NSDictionary
         
         if latValue != 0 && lonValue != 0 {
             exif.setValue(latValue, forKey: "Lat")
@@ -168,8 +168,8 @@ class EventVC: UIViewController, UINavigationControllerDelegate, UIImagePickerCo
             manager!.fetchWithCompletion {location, error in
                 
                 // fetch location or an error
-                if var loc = location {
-                    println(location)
+                if let loc = location {
+                    print(location)
                     //assigns values to variables for current latitude and logitude
                     latValue = loc.coordinate.latitude
                     lonValue = loc.coordinate.longitude
@@ -180,24 +180,24 @@ class EventVC: UIViewController, UINavigationControllerDelegate, UIImagePickerCo
                     exif.setValue(lonValue, forKey: "Lon")
                     
                     
-                } else if var err = error {
-                    println(err.localizedDescription)
+                } else if let err = error {
+                    print(err.localizedDescription)
                 }
             }
         }
         
-        var attachedExif: NSMutableDictionary = exif.mutableCopy() as! NSMutableDictionary
+        let attachedExif: NSMutableDictionary = exif.mutableCopy() as! NSMutableDictionary
         spinner.startAnimating()
-        var data = UIImageJPEGRepresentation(photo, 1.0)
-        var file: BAAFile = BAAFile(data: data)
+        let data = UIImageJPEGRepresentation(photo, 1.0)
+        let file: BAAFile = BAAFile(data: data)
         file.contentType = "image/jpeg"
         file.attachedData = attachedExif
         file.uploadFileWithPermissions(nil, completion:{(uploadedFile: AnyObject!, error: NSError!) -> Void in
             if uploadedFile != nil {
-                println("Object: \(uploadedFile)")
+                print("Object: \(uploadedFile)")
                 //grant access to all registered users
                 uploadedFile.grantAccessToRole(kAclRegisteredRole, ofType: kAclReadPermission, completion:{(object:AnyObject!, error: NSError!) -> Void in })
-                createBaasLink(uploadedFile.fileId, selectedEvent!.event.objectId)
+                createBaasLink(uploadedFile.fileId, outLink: selectedEvent!.event.objectId)
                 //self.photoGallery.append(photo)
                 //self.cellComment.append("")
                 self.eventGallery.append(["", photo])
@@ -205,7 +205,7 @@ class EventVC: UIViewController, UINavigationControllerDelegate, UIImagePickerCo
                 self.spinner.stopAnimating()
             }
             if error != nil {
-                println("Upload Error: \(error)")
+                print("Upload Error: \(error)")
                 self.spinner.stopAnimating()
                 let alertController = UIAlertController(title: "Upload Error", message:
                     "Upload Error: \(error)", preferredStyle: UIAlertControllerStyle.Alert)
@@ -220,24 +220,24 @@ class EventVC: UIViewController, UINavigationControllerDelegate, UIImagePickerCo
         
         //checks to see if the current location is set before starting connection. if its not it calls LocationManager
         if latValue != 0 && lonValue != 0 {
-            println("getting linked comments")
-            var path: NSString = "link"
-            var params: NSDictionary = ["where": "in.event_id = \(selectedEvent!.event.event_id) and label=\"event_object\""]
-            var c = BAAClient.sharedClient()
+            print("getting linked comments")
+            let path: NSString = "link"
+            let params: NSDictionary = ["where": "in.event_id = \(selectedEvent!.event.event_id) and label=\"event_object\""]
+            let c = BAAClient.sharedClient()
             
             c.getPath(path as String, parameters: params as [NSObject : AnyObject], success:{(success: AnyObject!) -> Void in
                 
                 if success != nil {
-                    println(success)
-                    var data: NSDictionary = success as! NSDictionary
-                    var dataArray: [AnyObject] = data["data"] as! [AnyObject]
+                    print(success)
+                    let data: NSDictionary = success as! NSDictionary
+                    let dataArray: [AnyObject] = data["data"] as! [AnyObject]
                     
                     
-                    for (index, item) in enumerate(dataArray) {
+                    for (index, item) in dataArray.enumerate() {
                     
-                        var eventAndComment = BAALinkedEventComments(dictionary: item as! [NSObject : AnyObject])
+                        let eventAndComment = BAALinkedEventComments(dictionary: item as! [NSObject : AnyObject])
                         eventComments.append(eventAndComment)
-                        var commentdata = downloadDataClass()
+                        let commentdata = downloadDataClass()
                         if eventAndComment.comment != nil {
                             commentdata.comment = eventAndComment.comment.comment as String
                             commentdata.author = eventAndComment.comment.author
@@ -251,7 +251,7 @@ class EventVC: UIViewController, UINavigationControllerDelegate, UIImagePickerCo
                             self.cvEventGallery.insertItemsAtIndexPaths([NSIndexPath(forItem: self.eventGallery.count - 1, inSection: 0)])
                         } else {
                             self.spinner.startAnimating()
-                            var params = ["resize":"25%"]
+                            let params = ["resize":"25%"]
                             eventAndComment.file.loadFileWithParameters( params as [NSObject : AnyObject], completion: {(data:NSData!, error:NSError!) -> () in
                                 if data != nil {
                                     commentdata.author = eventAndComment.file.author
@@ -270,7 +270,7 @@ class EventVC: UIViewController, UINavigationControllerDelegate, UIImagePickerCo
                 
             }, failure:{(failure: NSError!) -> Void in
                     
-                    println(failure)
+                    print(failure)
                     
             })
         }

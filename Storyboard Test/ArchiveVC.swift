@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import CoreData
 
 class ArchiveVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -34,7 +33,7 @@ class ArchiveVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     func refresh(sender:AnyObject){
-        println("refresh")
+        print("refresh")
         self.ArchiveTable.reloadData()
         self.refreshControl.endRefreshing()
         
@@ -57,18 +56,18 @@ class ArchiveVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     func getArchiveEvents(){
         
-            var path: NSString = "link"
-            var params: NSDictionary = ["where": "in.end.datetime < date('\(formattedDateTime)') and label=\"event_object\""]
-            var c = BAAClient.sharedClient()
+            let path: NSString = "link"
+            let params: NSDictionary = ["where": "in.end.datetime < date('\(formattedDateTime)') and label=\"event_object\""]
+            let c = BAAClient.sharedClient()
             
             c.getPath(path as String, parameters: params as [NSObject : AnyObject], success:{(success: AnyObject!) -> Void in
                 
                 if success != nil {
-                    var data: NSDictionary = success as! NSDictionary
-                    var dataArray: [AnyObject] = data["data"] as! [AnyObject]
+                    let data: NSDictionary = success as! NSDictionary
+                    let dataArray: [AnyObject] = data["data"] as! [AnyObject]
                     ArchiveEvents = []
                     for item in dataArray {
-                        var eventAndComment = BAALinkedEventComments(dictionary: item as! [NSObject : AnyObject])
+                        let eventAndComment = BAALinkedEventComments(dictionary: item as! [NSObject : AnyObject])
                         ArchiveEvents.append(eventAndComment)
                     }
                     
@@ -77,7 +76,7 @@ class ArchiveVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 
                 }, failure:{(failure: NSError!) -> Void in
                     
-                    println(failure)
+                    print(failure)
                     
             })
     }
@@ -102,7 +101,7 @@ class ArchiveVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         //Create instance of DetailVC
-        var archiveeventvc:ArchiveEventVC = storyboard?.instantiateViewControllerWithIdentifier("ArchiveEventVC") as! ArchiveEventVC
+        let archiveeventvc:ArchiveEventVC = storyboard?.instantiateViewControllerWithIdentifier("ArchiveEventVC") as! ArchiveEventVC
         archiveeventvc.selectedArchive = ArchiveEvents[indexPath.row]
         archiveeventvc.eventTitle = (ArchiveEvents[indexPath.row].event.displayName as? String)!
         //Programmatically push to associated VC (EventsVC)

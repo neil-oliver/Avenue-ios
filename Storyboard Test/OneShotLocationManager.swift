@@ -40,7 +40,7 @@ class OneShotLocationManager: NSObject, CLLocationManagerDelegate {
     }
     
     //location authorization status changed
-    func locationManager(manager: CLLocationManager!, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
         
         switch status {
         case .AuthorizedWhenInUse:
@@ -54,11 +54,11 @@ class OneShotLocationManager: NSObject, CLLocationManagerDelegate {
         }
     }
     
-    internal func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!) {
+    internal func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
         _didComplete(nil, error: error)
     }
     
-    internal func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
+    internal func locationManager(manager: CLLocationManager, didUpdateLocations locations: [AnyObject]) {
         if let location = locations[0] as? CLLocation {
             _didComplete(location, error: nil)
         } else {

@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import CoreData
 import CoreLocation
 
 
@@ -30,10 +29,9 @@ let dateTime = NSDate()
 
 var formattedDateTime :String!
 
-var loggedInUser: Users?
 //var seletedCloseEvent: Events?
 var selectedEvent: BAALinkedVenueEvents?
-var closeEvents = [Events]()
+var closeEvents = []
 var ArchiveEvents = [BAALinkedEventComments]()
 var closeVenueEvents = [BAALinkedVenueEvents]()
 var eventComments = [BAALinkedEventComments]()

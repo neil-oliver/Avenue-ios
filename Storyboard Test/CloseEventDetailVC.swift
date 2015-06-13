@@ -38,7 +38,7 @@ class CloseEventDetailVC: UIViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         
         // set transition delegate for our menu view controller
-        let menu = segue.destinationViewController as! CloseEventSideBarVC
+        //let menu = segue.destinationViewController as! CloseEventSideBarVC
  
     }
     
