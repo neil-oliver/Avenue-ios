@@ -6,6 +6,10 @@
 //  Copyright (c) 2015 Neil Oliver. All rights reserved.
 //
 
+/*
+
+//This whole document is implemented in an old way which is now depreciated in iOS 9.0 so it is not currently being used.
+
 import UIKit
 import AssetsLibrary
 import CoreLocation
@@ -388,3 +392,5 @@ class ScanVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
         
     }
 }
+*/
+

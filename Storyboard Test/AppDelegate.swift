@@ -18,15 +18,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         BaasBox.setBaseURL("http://api.bethehype.co.uk", appCode: "1234567890")
         //BaasBox.setBaseURL("http://localhost:9000", appCode: "1234567890")
+
         
         FetchData().getLocation(){(locationSet: Bool) in
             FetchData().getNewEvents(){(results: Bool) in
                 FetchData().getBassVenuesEvents() {(getBassVenuesEventsResult: Bool) in
-                    print("\(closeVenueEvents.count) events were found and saved to your device!")
                     let alertController = UIAlertController(title: "Close Events", message:
                         "Events were found and saved to your device!", preferredStyle: UIAlertControllerStyle.Alert)
                     alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
                     self.window?.rootViewController?.presentedViewController?.presentViewController(alertController, animated: true, completion: nil)
+                }
+                FetchData().getVenuesWithLinks() {(getBassVenuesWithLinksResult: Bool) in
                 }
             }
         }

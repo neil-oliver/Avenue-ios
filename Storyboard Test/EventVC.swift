@@ -9,6 +9,8 @@
 import UIKit
 import AVFoundation
 
+
+
 class EventVC: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate, UITextViewDelegate {
 
     @IBAction func GridListSwitch(sender: AnyObject) {
@@ -43,7 +45,7 @@ class EventVC: UIViewController, UINavigationControllerDelegate, UIImagePickerCo
             newComment.saveObjectWithCompletion({(object:AnyObject!, error: NSError!) -> Void in
                 if object != nil {
                     self.btnSend.enabled = true
-                    print("Object: \(object)")
+                    print("Object: \(object)", appendNewline: true)
                     
                     //grant access to all registered users
                     object.grantAccessToRole(kAclRegisteredRole, ofType: kAclReadPermission, completion:{(object:AnyObject!, error: NSError!) -> Void in })
@@ -56,7 +58,7 @@ class EventVC: UIViewController, UINavigationControllerDelegate, UIImagePickerCo
                 }
                 if error != nil {
                     self.btnSend.enabled = true
-                    print("Error: \(error)")
+                    print("Error: \(error)", appendNewline: true)
                     let alertController = UIAlertController(title: "Error", message:
                         "Message Send Error: \(error)", preferredStyle: UIAlertControllerStyle.Alert)
                     alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
@@ -153,7 +155,7 @@ class EventVC: UIViewController, UINavigationControllerDelegate, UIImagePickerCo
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String: AnyObject])
     {
-        print("photo taken")
+        print("photo taken", appendNewline: true)
         picker.dismissViewControllerAnimated(true, completion: nil)
         
         let photo: UIImage = info[UIImagePickerControllerOriginalImage] as! UIImage
@@ -169,7 +171,7 @@ class EventVC: UIViewController, UINavigationControllerDelegate, UIImagePickerCo
                 
                 // fetch location or an error
                 if let loc = location {
-                    print(location)
+                    print(location, appendNewline: true)
                     //assigns values to variables for current latitude and logitude
                     latValue = loc.coordinate.latitude
                     lonValue = loc.coordinate.longitude
@@ -181,7 +183,7 @@ class EventVC: UIViewController, UINavigationControllerDelegate, UIImagePickerCo
                     
                     
                 } else if let err = error {
-                    print(err.localizedDescription)
+                    print(err.localizedDescription, appendNewline: true)
                 }
             }
         }
@@ -194,7 +196,7 @@ class EventVC: UIViewController, UINavigationControllerDelegate, UIImagePickerCo
         file.attachedData = attachedExif
         file.uploadFileWithPermissions(nil, completion:{(uploadedFile: AnyObject!, error: NSError!) -> Void in
             if uploadedFile != nil {
-                print("Object: \(uploadedFile)")
+                print("Object: \(uploadedFile)", appendNewline: true)
                 //grant access to all registered users
                 uploadedFile.grantAccessToRole(kAclRegisteredRole, ofType: kAclReadPermission, completion:{(object:AnyObject!, error: NSError!) -> Void in })
                 createBaasLink(uploadedFile.fileId, outLink: selectedEvent!.event.objectId)
@@ -205,7 +207,7 @@ class EventVC: UIViewController, UINavigationControllerDelegate, UIImagePickerCo
                 self.spinner.stopAnimating()
             }
             if error != nil {
-                print("Upload Error: \(error)")
+                print("Upload Error: \(error)", appendNewline: true)
                 self.spinner.stopAnimating()
                 let alertController = UIAlertController(title: "Upload Error", message:
                     "Upload Error: \(error)", preferredStyle: UIAlertControllerStyle.Alert)
@@ -220,7 +222,7 @@ class EventVC: UIViewController, UINavigationControllerDelegate, UIImagePickerCo
         
         //checks to see if the current location is set before starting connection. if its not it calls LocationManager
         if latValue != 0 && lonValue != 0 {
-            print("getting linked comments")
+            print("getting linked comments", appendNewline: true)
             let path: NSString = "link"
             let params: NSDictionary = ["where": "in.event_id = \(selectedEvent!.event.event_id) and label=\"event_object\""]
             let c = BAAClient.sharedClient()
@@ -228,7 +230,7 @@ class EventVC: UIViewController, UINavigationControllerDelegate, UIImagePickerCo
             c.getPath(path as String, parameters: params as [NSObject : AnyObject], success:{(success: AnyObject!) -> Void in
                 
                 if success != nil {
-                    print(success)
+                    print(success, appendNewline: true)
                     let data: NSDictionary = success as! NSDictionary
                     let dataArray: [AnyObject] = data["data"] as! [AnyObject]
                     
@@ -263,14 +265,14 @@ class EventVC: UIViewController, UINavigationControllerDelegate, UIImagePickerCo
                                 }
                             })
                         }
-                        commentdata.date = eventAndComment.creationDate as NSDate
+                        //commentdata.date = eventAndComment.creationDate as NSDate
                     }
                     
                 }
                 
             }, failure:{(failure: NSError!) -> Void in
                     
-                    print(failure)
+                    print(failure, appendNewline: true)
                     
             })
         }
@@ -354,7 +356,7 @@ class EventVC: UIViewController, UINavigationControllerDelegate, UIImagePickerCo
     }
     */
     
-    //// toolbar experimenting - close but not there yet
+    // toolbar experimenting - close but not there yet
     /*
     
     var toolBar: UIToolbar!
@@ -433,3 +435,6 @@ class EventVC: UIViewController, UINavigationControllerDelegate, UIImagePickerCo
     }
     */
 }
+
+
+

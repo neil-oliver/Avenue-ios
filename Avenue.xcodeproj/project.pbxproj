@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8401C4021B4B0D65009FFA1C /* MBXMapKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 8401C3F71B4B0D65009FFA1C /* MBXMapKit.m */; };
+		8401C4031B4B0D65009FFA1C /* MBXOfflineMapDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 8401C3F91B4B0D65009FFA1C /* MBXOfflineMapDatabase.m */; };
+		8401C4041B4B0D65009FFA1C /* MBXOfflineMapDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 8401C3FB1B4B0D65009FFA1C /* MBXOfflineMapDownloader.m */; };
+		8401C4051B4B0D65009FFA1C /* MBXPointAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8401C3FD1B4B0D65009FFA1C /* MBXPointAnnotation.m */; };
+		8401C4061B4B0D65009FFA1C /* MBXRasterTileOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 8401C3FF1B4B0D65009FFA1C /* MBXRasterTileOverlay.m */; };
+		8401C4071B4B0D65009FFA1C /* MBXRasterTileRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8401C4011B4B0D65009FFA1C /* MBXRasterTileRenderer.m */; };
+		8401C4091B4B0D9F009FFA1C /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8401C4081B4B0D9F009FFA1C /* MapKit.framework */; };
+		8401C40B1B4B0DCF009FFA1C /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 8401C40A1B4B0DCF009FFA1C /* libsqlite3.tbd */; };
 		840C548F1ADFDCAF00F98F29 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 840C548E1ADFDCAF00F98F29 /* Images.xcassets */; };
 		8416B1CD1A1E016C00106879 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8416B1CC1A1E016C00106879 /* AppDelegate.swift */; };
 		841D8FAD1A934A1D0087149A /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841D8FAC1A934A1D0087149A /* SettingsVC.swift */; };
@@ -14,9 +22,11 @@
 		842A53FD1A2A92FB0031FF58 /* CloseEventSideBarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842A53FC1A2A92FB0031FF58 /* CloseEventSideBarVC.swift */; };
 		842A53FF1A2A93C50031FF58 /* ArchiveEventSideBarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842A53FE1A2A93C50031FF58 /* ArchiveEventSideBarVC.swift */; };
 		842A543A1A2DE0C20031FF58 /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842A54391A2DE0C20031FF58 /* Functions.swift */; };
+		84432EDF1B3C0D8D0002D1A1 /* venueEventsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84432EDE1B3C0D8D0002D1A1 /* venueEventsVC.swift */; };
 		84444A1C1AF8D83800BDA347 /* white.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 84444A1B1AF8D83800BDA347 /* white.jpg */; };
 		84444A201AF9771B00BDA347 /* ToDo in Resources */ = {isa = PBXBuildFile; fileRef = 84444A1F1AF9771B00BDA347 /* ToDo */; };
 		844E16D11ADFE0DD0057FAAD /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 844E16D01ADFE0DD0057FAAD /* LaunchScreen.xib */; };
+		84621CA61B3AB18A00BA5167 /* PoiMapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84621CA51B3AB18A00BA5167 /* PoiMapVC.swift */; };
 		8474D2F51A37064B00CE7AC8 /* cvGalleryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8474D2F41A37064B00CE7AC8 /* cvGalleryCell.swift */; };
 		847B7F5D1AE55B270071901C /* SignupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847B7F5C1AE55B270071901C /* SignupVC.swift */; };
 		848687B31B204D9C00A2C329 /* cvProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848687B21B204D9C00A2C329 /* cvProfileCell.swift */; };
@@ -46,7 +56,6 @@
 		849C4A501B2C61D7001F1A9A /* LinkedEventComments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849C4A431B2C61D7001F1A9A /* LinkedEventComments.swift */; };
 		849C4A511B2C61D7001F1A9A /* LinkedVenueEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849C4A441B2C61D7001F1A9A /* LinkedVenueEvents.swift */; };
 		849C4A521B2C61D7001F1A9A /* Venues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849C4A451B2C61D7001F1A9A /* Venues.swift */; };
-		849C4A541B2C9221001F1A9A /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 849C4A531B2C9221001F1A9A /* Default-568h@2x.png */; };
 		84A46ED91A39AFCD00EDC940 /* AltEventContentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A46ED81A39AFCD00EDC940 /* AltEventContentVC.swift */; };
 		84A8DE9D1B0CA47400F93F21 /* cvArchiveEventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A8DE9C1B0CA47400F93F21 /* cvArchiveEventCell.swift */; };
 		84B240701AE9309D00BBDDFA /* cvEventGalleryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B2406F1AE9309D00BBDDFA /* cvEventGalleryCell.swift */; };
@@ -59,6 +68,7 @@
 		84C0BBDD1A2FBD9700398E45 /* MenuNC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C0BBDC1A2FBD9700398E45 /* MenuNC.swift */; };
 		84C0BBDF1A2FC7DB00398E45 /* GigNC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C0BBDE1A2FC7DB00398E45 /* GigNC.swift */; };
 		84C0BBE11A2FCA1F00398E45 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84C0BBE01A2FCA1F00398E45 /* Main.storyboard */; };
+		84E120381B3C11E400FC9D6D /* venueEventsNC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E120371B3C11E400FC9D6D /* venueEventsNC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,6 +95,21 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		8401C3F51B4B0D65009FFA1C /* MBXConstantsAndTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBXConstantsAndTypes.h; sourceTree = "<group>"; };
+		8401C3F61B4B0D65009FFA1C /* MBXMapKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBXMapKit.h; sourceTree = "<group>"; };
+		8401C3F71B4B0D65009FFA1C /* MBXMapKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBXMapKit.m; sourceTree = "<group>"; };
+		8401C3F81B4B0D65009FFA1C /* MBXOfflineMapDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBXOfflineMapDatabase.h; sourceTree = "<group>"; };
+		8401C3F91B4B0D65009FFA1C /* MBXOfflineMapDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBXOfflineMapDatabase.m; sourceTree = "<group>"; };
+		8401C3FA1B4B0D65009FFA1C /* MBXOfflineMapDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBXOfflineMapDownloader.h; sourceTree = "<group>"; };
+		8401C3FB1B4B0D65009FFA1C /* MBXOfflineMapDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBXOfflineMapDownloader.m; sourceTree = "<group>"; };
+		8401C3FC1B4B0D65009FFA1C /* MBXPointAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBXPointAnnotation.h; sourceTree = "<group>"; };
+		8401C3FD1B4B0D65009FFA1C /* MBXPointAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBXPointAnnotation.m; sourceTree = "<group>"; };
+		8401C3FE1B4B0D65009FFA1C /* MBXRasterTileOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBXRasterTileOverlay.h; sourceTree = "<group>"; };
+		8401C3FF1B4B0D65009FFA1C /* MBXRasterTileOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBXRasterTileOverlay.m; sourceTree = "<group>"; };
+		8401C4001B4B0D65009FFA1C /* MBXRasterTileRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBXRasterTileRenderer.h; sourceTree = "<group>"; };
+		8401C4011B4B0D65009FFA1C /* MBXRasterTileRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBXRasterTileRenderer.m; sourceTree = "<group>"; };
+		8401C4081B4B0D9F009FFA1C /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		8401C40A1B4B0DCF009FFA1C /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		840C548E1ADFDCAF00F98F29 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		8416B1C71A1E016C00106879 /* Avenue.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Avenue.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8416B1CB1A1E016C00106879 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -95,9 +120,12 @@
 		842A53FC1A2A92FB0031FF58 /* CloseEventSideBarVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloseEventSideBarVC.swift; sourceTree = "<group>"; };
 		842A53FE1A2A93C50031FF58 /* ArchiveEventSideBarVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArchiveEventSideBarVC.swift; sourceTree = "<group>"; };
 		842A54391A2DE0C20031FF58 /* Functions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
+		843AE5591B441038001616FB /* Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
+		84432EDE1B3C0D8D0002D1A1 /* venueEventsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = venueEventsVC.swift; sourceTree = "<group>"; };
 		84444A1B1AF8D83800BDA347 /* white.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = white.jpg; sourceTree = "<group>"; };
 		84444A1F1AF9771B00BDA347 /* ToDo */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ToDo; sourceTree = "<group>"; };
 		844E16D01ADFE0DD0057FAAD /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
+		84621CA51B3AB18A00BA5167 /* PoiMapVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PoiMapVC.swift; sourceTree = "<group>"; };
 		8474D2F41A37064B00CE7AC8 /* cvGalleryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = cvGalleryCell.swift; sourceTree = "<group>"; };
 		847B7F5C1AE55B270071901C /* SignupVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupVC.swift; sourceTree = "<group>"; };
 		848687B21B204D9C00A2C329 /* cvProfileCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = cvProfileCell.swift; sourceTree = "<group>"; };
@@ -129,13 +157,11 @@
 		849C4A3D1B2C61D7001F1A9A /* BaasBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaasBox.m; sourceTree = "<group>"; };
 		849C4A3E1B2C61D7001F1A9A /* BAAUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BAAUser.h; sourceTree = "<group>"; };
 		849C4A3F1B2C61D7001F1A9A /* BAAUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BAAUser.m; sourceTree = "<group>"; };
-		849C4A401B2C61D7001F1A9A /* Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		849C4A411B2C61D7001F1A9A /* Comments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comments.swift; sourceTree = "<group>"; };
 		849C4A421B2C61D7001F1A9A /* Events.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Events.swift; sourceTree = "<group>"; };
 		849C4A431B2C61D7001F1A9A /* LinkedEventComments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinkedEventComments.swift; sourceTree = "<group>"; };
 		849C4A441B2C61D7001F1A9A /* LinkedVenueEvents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinkedVenueEvents.swift; sourceTree = "<group>"; };
 		849C4A451B2C61D7001F1A9A /* Venues.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Venues.swift; sourceTree = "<group>"; };
-		849C4A531B2C9221001F1A9A /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		84A46ED81A39AFCD00EDC940 /* AltEventContentVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AltEventContentVC.swift; sourceTree = "<group>"; };
 		84A8DE9C1B0CA47400F93F21 /* cvArchiveEventCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = cvArchiveEventCell.swift; sourceTree = "<group>"; };
 		84B2406F1AE9309D00BBDDFA /* cvEventGalleryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = cvEventGalleryCell.swift; sourceTree = "<group>"; };
@@ -148,6 +174,7 @@
 		84C0BBDC1A2FBD9700398E45 /* MenuNC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuNC.swift; sourceTree = "<group>"; };
 		84C0BBDE1A2FC7DB00398E45 /* GigNC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GigNC.swift; sourceTree = "<group>"; };
 		84C0BBE01A2FCA1F00398E45 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		84E120371B3C11E400FC9D6D /* venueEventsNC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = venueEventsNC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,6 +182,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8401C40B1B4B0DCF009FFA1C /* libsqlite3.tbd in Frameworks */,
+				8401C4091B4B0D9F009FFA1C /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -168,10 +197,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8401C3F41B4B0D65009FFA1C /* MBXMapKit */ = {
+			isa = PBXGroup;
+			children = (
+				8401C3F51B4B0D65009FFA1C /* MBXConstantsAndTypes.h */,
+				8401C3F61B4B0D65009FFA1C /* MBXMapKit.h */,
+				8401C3F71B4B0D65009FFA1C /* MBXMapKit.m */,
+				8401C3F81B4B0D65009FFA1C /* MBXOfflineMapDatabase.h */,
+				8401C3F91B4B0D65009FFA1C /* MBXOfflineMapDatabase.m */,
+				8401C3FA1B4B0D65009FFA1C /* MBXOfflineMapDownloader.h */,
+				8401C3FB1B4B0D65009FFA1C /* MBXOfflineMapDownloader.m */,
+				8401C3FC1B4B0D65009FFA1C /* MBXPointAnnotation.h */,
+				8401C3FD1B4B0D65009FFA1C /* MBXPointAnnotation.m */,
+				8401C3FE1B4B0D65009FFA1C /* MBXRasterTileOverlay.h */,
+				8401C3FF1B4B0D65009FFA1C /* MBXRasterTileOverlay.m */,
+				8401C4001B4B0D65009FFA1C /* MBXRasterTileRenderer.h */,
+				8401C4011B4B0D65009FFA1C /* MBXRasterTileRenderer.m */,
+			);
+			path = MBXMapKit;
+			sourceTree = "<group>";
+		};
 		8416B1BE1A1E016C00106879 = {
 			isa = PBXGroup;
 			children = (
-				849C4A531B2C9221001F1A9A /* Default-568h@2x.png */,
+				8401C40A1B4B0DCF009FFA1C /* libsqlite3.tbd */,
+				8401C4081B4B0D9F009FFA1C /* MapKit.framework */,
 				8416B1C91A1E016C00106879 /* Avenue */,
 				8416B1C81A1E016C00106879 /* Products */,
 			);
@@ -189,6 +239,8 @@
 		8416B1C91A1E016C00106879 /* Avenue */ = {
 			isa = PBXGroup;
 			children = (
+				8401C3F41B4B0D65009FFA1C /* MBXMapKit */,
+				843AE5591B441038001616FB /* Bridging-Header.h */,
 				849C4A301B2C61D7001F1A9A /* BaasBox-iOS-SDK */,
 				84B5E38F1A24F5AC00F637DB /* Globals.swift */,
 				849C0E7F1A237B5900542AAA /* OneShotLocationManager.swift */,
@@ -246,6 +298,9 @@
 				841D8FAC1A934A1D0087149A /* SettingsVC.swift */,
 				841D8FAE1A934A700087149A /* ScanVC.swift */,
 				847B7F5C1AE55B270071901C /* SignupVC.swift */,
+				84621CA51B3AB18A00BA5167 /* PoiMapVC.swift */,
+				84432EDE1B3C0D8D0002D1A1 /* venueEventsVC.swift */,
+				84E120371B3C11E400FC9D6D /* venueEventsNC.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -268,7 +323,6 @@
 				849C4A3D1B2C61D7001F1A9A /* BaasBox.m */,
 				849C4A3E1B2C61D7001F1A9A /* BAAUser.h */,
 				849C4A3F1B2C61D7001F1A9A /* BAAUser.m */,
-				849C4A401B2C61D7001F1A9A /* Bridging-Header.h */,
 				849C4A411B2C61D7001F1A9A /* Comments.swift */,
 				849C4A421B2C61D7001F1A9A /* Events.swift */,
 				849C4A431B2C61D7001F1A9A /* LinkedEventComments.swift */,
@@ -323,12 +377,18 @@
 		8416B1BF1A1E016C00106879 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftMigration = 0700;
 				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = "Neil Oliver";
 				TargetAttributes = {
 					8416B1C61A1E016C00106879 = {
 						CreatedOnToolsVersion = 6.1.1;
 						DevelopmentTeam = YDRLXFL86F;
+						SystemCapabilities = {
+							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 					8416B1DE1A1E016C00106879 = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -362,7 +422,6 @@
 			files = (
 				844E16D11ADFE0DD0057FAAD /* LaunchScreen.xib in Resources */,
 				84B5E3951A24F60100F637DB /* The Fleece.gpx in Resources */,
-				849C4A541B2C9221001F1A9A /* Default-568h@2x.png in Resources */,
 				84444A201AF9771B00BDA347 /* ToDo in Resources */,
 				840C548F1ADFDCAF00F98F29 /* Images.xcassets in Resources */,
 				84C0BBE11A2FCA1F00398E45 /* Main.storyboard in Resources */,
@@ -387,14 +446,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				842A53FD1A2A92FB0031FF58 /* CloseEventSideBarVC.swift in Sources */,
+				84E120381B3C11E400FC9D6D /* venueEventsNC.swift in Sources */,
 				84C0BBDD1A2FBD9700398E45 /* MenuNC.swift in Sources */,
 				849C0E7A1A1F741900542AAA /* ArchiveEventVC.swift in Sources */,
+				8401C4021B4B0D65009FFA1C /* MBXMapKit.m in Sources */,
 				849C0E6C1A1F64FF00542AAA /* ProfileVC.swift in Sources */,
+				8401C4041B4B0D65009FFA1C /* MBXOfflineMapDownloader.m in Sources */,
+				8401C4051B4B0D65009FFA1C /* MBXPointAnnotation.m in Sources */,
 				849C4A4F1B2C61D7001F1A9A /* Events.swift in Sources */,
+				8401C4061B4B0D65009FFA1C /* MBXRasterTileOverlay.m in Sources */,
 				84B5E38D1A24F50400F637DB /* FetchData.swift in Sources */,
+				84432EDF1B3C0D8D0002D1A1 /* venueEventsVC.swift in Sources */,
 				849C4A4E1B2C61D7001F1A9A /* Comments.swift in Sources */,
 				849C4A4B1B2C61D7001F1A9A /* BAAObject.m in Sources */,
 				849C4A461B2C61D7001F1A9A /* Artists.swift in Sources */,
+				8401C4071B4B0D65009FFA1C /* MBXRasterTileRenderer.m in Sources */,
 				849C0E741A1F659000542AAA /* GigFoundVC.swift in Sources */,
 				84B240721AEC308700BBDDFA /* SingleImageVC.swift in Sources */,
 				849C0E781A1F65FB00542AAA /* EventSideBarVC.swift in Sources */,
@@ -422,6 +488,7 @@
 				849C4A4A1B2C61D7001F1A9A /* BAAMutableURLRequest.m in Sources */,
 				849C0E811A237B5900542AAA /* OneShotLocationManager.swift in Sources */,
 				847B7F5D1AE55B270071901C /* SignupVC.swift in Sources */,
+				84621CA61B3AB18A00BA5167 /* PoiMapVC.swift in Sources */,
 				849C0E681A1F647800542AAA /* CloseEventVC.swift in Sources */,
 				849C0E7E1A1F7B1900542AAA /* CloseEventDetailVC.swift in Sources */,
 				84B240701AE9309D00BBDDFA /* cvEventGalleryCell.swift in Sources */,
@@ -429,6 +496,7 @@
 				841D8FAD1A934A1D0087149A /* SettingsVC.swift in Sources */,
 				849C4A481B2C61D7001F1A9A /* BAAFile.m in Sources */,
 				849C4A521B2C61D7001F1A9A /* Venues.swift in Sources */,
+				8401C4031B4B0D65009FFA1C /* MBXOfflineMapDatabase.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -535,13 +603,17 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "Storyboard Test/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "$(OTHER_LDFLAGS)";
 				PRODUCT_NAME = Avenue;
+				SDKROOT = iphoneos;
 				SWIFT_INSTALL_OBJC_HEADER = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "/Users/Admin/Documents/Programming/avenue-ios/Storyboard Test/BaasBox-iOS-SDK/Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/Admin/Documents/Programming/avenue-ios/Storyboard Test/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = 1;
+				VALID_ARCHS = "armv7 arm64 armv7s";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -554,12 +626,17 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "Storyboard Test/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = "$(OTHER_LDFLAGS)";
+				"OTHER_LDFLAGS[arch=*]" = "$(OTHER_LDFLAGS)";
 				PRODUCT_NAME = Avenue;
+				SDKROOT = iphoneos;
 				SWIFT_INSTALL_OBJC_HEADER = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "/Users/Admin/Documents/Programming/avenue-ios/Storyboard Test/BaasBox-iOS-SDK/Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/Admin/Documents/Programming/avenue-ios/Storyboard Test/Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
+				VALID_ARCHS = "armv7 arm64 armv7s";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;

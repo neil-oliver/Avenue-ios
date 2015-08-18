@@ -64,7 +64,7 @@
       <AdditionalOptions>
       </AdditionalOptions>
       <LocationScenarioReference
-         identifier = "../../Storyboard Test/The Fleece.gpx"
+         identifier = "../../Storyboard Test/Bristol Academy.gpx"
          referenceType = "0">
       </LocationScenarioReference>
    </LaunchAction>

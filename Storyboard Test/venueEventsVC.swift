@@ -1,16 +1,37 @@
 //
-//  CloseEventVC.swift
-//  Storyboard Test
+//  venueEventsVC.swift
+//  Avenue
 //
-//  Created by Neil Oliver on 21/11/2014.
-//  Copyright (c) 2014 Neil Oliver. All rights reserved.
+//  Created by Neil Oliver on 25/06/2015.
+//  Copyright © 2015 Neil Oliver. All rights reserved.
 //
+
 
 import UIKit
 
-class CloseEventVC: UIViewController {
+class venueEventsVC: UIViewController {
     
     var manager: OneShotLocationManager?
+    var selectedVenueName: String!
+    
+    @IBAction func btnDismiss(sender: AnyObject) {
+        //self.navigationController?.popViewControllerAnimated(true)
+        self.dismissViewControllerAnimated(true, completion: nil)
+        
+    }
+    
+    var venueEvents = [BAAEvent]()
+    
+    func onlyEvents(){
+        for single in closeVenueEvents {
+            print("selectedVenueName \(selectedVenueName)", appendNewline: true)
+            print("close event name \(single.event.displayName)", appendNewline: true)
+            if (single.venue.displayName as! String) == selectedVenueName! {
+                venueEvents.append(single.event as BAAEvent)
+                print("added", appendNewline: true)
+             }
+        }
+    }
     
     //variable for refreshing table data
     var refreshControl:UIRefreshControl!
@@ -30,12 +51,10 @@ class CloseEventVC: UIViewController {
         self.refreshControl.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
         self.EventTable.addSubview(refreshControl)
         checkLocationServices(self)
-        FetchData().getBassVenuesEvents() {(getBassVenuesEventsResult: Bool) in
-            self.EventTable.reloadData()
-        }
-
+        onlyEvents()
+        
     }
-
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -62,22 +81,22 @@ class CloseEventVC: UIViewController {
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return closeVenueEvents.count
+        return venueEvents.count
         
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell { let cell:UITableViewCell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "TableView")
         
         var bestGuess: String = ""
-        if closeVenueEvents[indexPath.row].event.start.is_estimate == true {
+        if venueEvents[indexPath.row].start.is_estimate == true {
             bestGuess = "- Estimate Start Time"
         } else {
             
         }
         
         //Assign the contents of our var "items" to the textLabel of each cell
-        cell.textLabel?.text = closeVenueEvents[indexPath.row].event.displayName as? String
-        cell.detailTextLabel?.text = "Start Time: \(closeVenueEvents[indexPath.row].event.start.time) \(bestGuess)"
+        cell.textLabel?.text = venueEvents[indexPath.row].displayName as? String
+        cell.detailTextLabel?.text = "Start Time: \(venueEvents[indexPath.row].start.time) \(bestGuess)"
         
         return cell
         
@@ -87,14 +106,14 @@ class CloseEventVC: UIViewController {
         
         let closeeventdetailvc:CloseEventDetailVC = storyboard?.instantiateViewControllerWithIdentifier("CloseEventDetailVC") as! CloseEventDetailVC
         //Reference DetailVC's var "cellName" and assign it to DetailVC's var "items"
-        closeeventdetailvc.eventTitle = closeVenueEvents[indexPath.row].event.displayName as! String
-        closeeventdetailvc.startDate = "Start Date: \(closeVenueEvents[indexPath.row].event.start.date)"
-        closeeventdetailvc.startTime = "Start Time: \(closeVenueEvents[indexPath.row].event.start.time)"
-        closeeventdetailvc.venueId = "Venue Name: \(closeVenueEvents[indexPath.row].venue.displayName)"
+        closeeventdetailvc.eventTitle = venueEvents[indexPath.row].displayName as! String
+        closeeventdetailvc.startDate = "Start Date: \(venueEvents[indexPath.row].start.date)"
+        closeeventdetailvc.startTime = "Start Time: \(venueEvents[indexPath.row].start.time)"
         
         //Programmatically push to associated VC (EventsVC)
         self.navigationController?.pushViewController(closeeventdetailvc, animated: true)
     }
-
+    
 }
+
 

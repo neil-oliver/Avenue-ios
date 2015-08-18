@@ -12,61 +12,57 @@ import Foundation
 
 
 class BAAVenue: BAAObject {
-    
-    struct MetroArea {
-        var uri: AnyObject!
-        var id: AnyObject!
-        var country = Country()
 
+    
+    struct Address{
+        var street: AnyObject!
+        var postcode: AnyObject!
+        var city: AnyObject!
+        var country: AnyObject!
+        var lat: AnyObject!
+        var lng: AnyObject!
     }
     
-    struct Country{
-        var displayName: AnyObject!
+    struct Info{
+        var phone: AnyObject!
+        var capacity: AnyObject!
+        var website: AnyObject!
     }
     
-    struct City{
-        var displayName: AnyObject!
-        var country = Country()
+    struct Geometry{
+        var osm_id: AnyObject!
+        var points: AnyObject!
     }
 
-    var metroArea = MetroArea()
-    var city = City()
-    var lat: AnyObject! //Done
-    var lng: AnyObject! // Done
-    var displayName: AnyObject! // Done
-    var zip: AnyObject! // Done
-    var venue_town: AnyObject!
-    var capacity: AnyObject! //Done
-    var uri: AnyObject! //Done
-    var venue_id: AnyObject! //Done
-    var street: AnyObject! //Done
-    var website: AnyObject! //Done
-    var phone: AnyObject! //Done
-    var venue_description: AnyObject! //Done
-    
+    var address = Address()
+    var info = Info()
+    var displayName: AnyObject!
+    var sk_id: AnyObject!
+    var venue_description: AnyObject!
+    var geometry = Geometry()
+
     override init!(dictionary: [NSObject : AnyObject]!) {
         // Just an idea on how to solve the NSNull problem
         // if dictionary["venue_address"]?.type != NSNull() {venue_address = dictionary["venue_address"] as! NSString!}
         
-        metroArea.id = dictionary["metroArea"]?.objectForKey("id")
-        metroArea.uri = dictionary["metroArea"]?.objectForKey("uri")
-        metroArea.country.displayName = dictionary["metroArea"]?.objectForKey("coutry")?.objectForKey("displayName")
+        address.street = dictionary["address"]?.objectForKey("street")
+        address.postcode = dictionary["address"]?.objectForKey("postcode")
+        address.city = dictionary["address"]?.objectForKey("city")
+        address.country = dictionary["address"]?.objectForKey("country")
+        address.lat = dictionary["address"]?.objectForKey("lat")
+        address.lng = dictionary["address"]?.objectForKey("lng")
         
-        city.displayName = dictionary["city"]?.objectForKey("displayName")
-        city.country.displayName = dictionary["city"]?.objectForKey("coutry")?.objectForKey("displayName")
+        info.phone = dictionary["info"]?.objectForKey("phone")
+        info.capacity = dictionary["info"]?.objectForKey("capacity")
+        info.website = dictionary["info"]?.objectForKey("website")
         
-        lat = dictionary["lat"]
-        lng = dictionary["lng"]
+        geometry.osm_id = dictionary["geometry"]?.objectForKey("osm_id")
+        geometry.points = dictionary["geometry"]?.objectForKey("points")
+
         displayName = dictionary["displayName"]
-        zip = dictionary["zip"]
-        venue_town = dictionary["venue_town"]
-        capacity = dictionary["capacity"]
-        uri = dictionary["uri"]
-        venue_id = dictionary["venue_id"]
-        street = dictionary["street"]
-        website = dictionary["website"]
-        phone = dictionary["phone"]
+        sk_id = dictionary["sk_id"]
         venue_description = dictionary["description"]
+
 
         super.init(dictionary: dictionary)
 
@@ -80,35 +76,41 @@ class BAAVenue: BAAObject {
     /*
     
     Example Data Set for Venue
+
     
     {
-        "street": "Tatton Park",
-        "metroArea": {
-            "uri": "http://www.songkick.com/metro_areas/24475-uk-manchester?utm_source=14198&utm_medium=partner",
-            "id": 24475,
-            "country": {
-                "displayName": "UK"
-            },
-            "displayName": "Manchester"
-        },
-        "website": "http://www.tattonpark.org.uk/",
-        "city": {
-            "country": {
-                "displayName": "UK"
-            },
-            "displayName": "Knutsford"
-        },
-        "zip": "WA16 6QN",
-        "phone": null,
         "description": "",
-        "lat": 53.33033,
-        "capacity": null,
-        "lng": -2.3881333,
-        "uri": "http://www.songkick.com/venues/28931-tatton-park?utm_source=14198&utm_medium=partner",
-        "displayName": "Tatton Park",
-        "venue_id": 28931
+        "sk_id": 508206,
+        "display_name": "Leeds University Union",
+        "address": {
+            "street": "Lifton Place, off Clarendon Road",
+            "postcode": "LS2 9JT",
+            "city": "Leeds",
+            "country": "UK",
+            "lat": "53.8065644",
+            "lng": "-1.55586033267473"
+            },
+        "info": {
+            "phone": "0113 3801 400,",
+            "capacity": null,
+            "website": "http://www.leedsuniversityunion.org.uk/"
+            },
+        "geometry": {
+            "osm_id": "175997919",
+            "points": [
+                [
+                    [
+                        -1.5563989,
+                        53.80639
+                    ],
+                    [
+                        -1.5563989,
+                        53.80639
+                    ]
+                ]
+            ]
+        }
     }
-
 
     */
     

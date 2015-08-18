@@ -38,7 +38,7 @@ class AltEventVC: UIViewController, UIPageViewControllerDataSource  {
         var index = currentVC.pageIndex
 
         if index == nil {
-            print("returning nil")
+            print("returning nil", appendNewline: true)
             return nil
         }
         index = index! + 1
@@ -67,8 +67,8 @@ class AltEventVC: UIViewController, UIPageViewControllerDataSource  {
         let pageContentViewController = self.storyboard?.instantiateViewControllerWithIdentifier("AltEventContentVC") as! AltEventContentVC
         pageContentViewController.titleText = closeVenueEvents[index].event.displayName as? String
         pageContentViewController.location = CLLocationCoordinate2D(
-            latitude: closeVenueEvents[index].venue.lat as! Double,
-            longitude: closeVenueEvents[index].venue.lng as! Double
+            latitude: closeVenueEvents[index].venue.address.lat as! Double,
+            longitude: closeVenueEvents[index].venue.address.lng as! Double
         )
         pageContentViewController.locname = closeVenueEvents[index].venue.displayName as! String
         pageContentViewController.StartDate = "Start Date: \(closeVenueEvents[index].event.start.date as! String)"
@@ -79,7 +79,7 @@ class AltEventVC: UIViewController, UIPageViewControllerDataSource  {
             "The current gig in the selectedEvent Variable is: \(closeVenueEvents[index].event.displayName)", preferredStyle: UIAlertControllerStyle.Alert)
         alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
         self.presentViewController(alertController, animated: true, completion: nil)
-        print(selectedEvent!.event.displayName)
+        print(selectedEvent!.event.displayName, appendNewline: true)
         
         return pageContentViewController
     }

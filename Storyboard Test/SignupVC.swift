@@ -36,8 +36,7 @@ class SignupVC: UIViewController {
         
             spinner.startAnimating()
             
-            client.createUserWithUsername(txtUsername.text, password:txtPassword.text, completion: { (success: Bool, error: NSError!) -> () in
-                
+            client.createUserWithUsername(txtUsername.text, password: txtPassword.text, completion: { (success: ObjCBool, error: NSError!) -> () in
                 
                 self.spinner.stopAnimating()
                 
@@ -45,7 +44,7 @@ class SignupVC: UIViewController {
                 
                 if (success) {
                     
-                    print("created")
+                    print("created", appendNewline: true)
                     
                     self.txtUsername.resignFirstResponder()
                     
@@ -62,7 +61,7 @@ class SignupVC: UIViewController {
                     
                 } else {
                     
-                    print(error.localizedDescription)
+                    print(error.localizedDescription, appendNewline: true)
                     let alertController = UIAlertController(title: "Sign Up Error", message:
                         error.localizedDescription, preferredStyle: UIAlertControllerStyle.Alert)
                     alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))

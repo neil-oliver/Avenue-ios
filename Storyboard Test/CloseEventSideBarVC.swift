@@ -21,8 +21,8 @@ class CloseEventSideBarVC: UIViewController {
         
         lblVenueTitle.text = selectedEvent?.venue.displayName as? String
         
-        let lat = selectedEvent?.venue.lat as! Double
-        let lon = selectedEvent?.venue.lng as! Double
+        let lat = selectedEvent?.venue.address.lat as! Double
+        let lon = selectedEvent?.venue.address.lng as! Double
         
         let location = CLLocationCoordinate2D(
             latitude: lat,

@@ -23,14 +23,14 @@ class ProfileVC: UIViewController {
 
     @IBAction func btnLogOut(sender: AnyObject) {
         
-        BAAUser.logoutWithCompletion( {(success: Bool, error: NSError!) -> () in
+        BAAUser.logoutWithCompletion( {(success: ObjCBool, error: NSError!) -> () in
             
             if (success) {
                 let loginvc:LoginVC = self.storyboard?.instantiateViewControllerWithIdentifier("LoginVC") as! LoginVC
                 self.presentViewController(loginvc, animated: true, completion: nil)
             }else {
                 
-                print("log out error \(error.localizedDescription)")
+                print("log out error \(error.localizedDescription)", appendNewline: true)
                 
             }
             
@@ -139,7 +139,7 @@ class ProfileVC: UIViewController {
         
         //checks to see if the current location is set before starting connection. if its not it calls LocationManager
         if latValue != 0 && lonValue != 0 {
-            print("getting linked comments")
+            print("getting linked comments", appendNewline: true)
             let path: NSString = "link"
             let params: NSDictionary = ["where": "_author = \"\(self.username)\" and label=\"event_object\""]
             let c = BAAClient.sharedClient()
@@ -147,7 +147,7 @@ class ProfileVC: UIViewController {
             c.getPath(path as String, parameters: params as [NSObject : AnyObject], success:{(success: AnyObject!) -> Void in
                 
                 if success != nil {
-                    print(success)
+                    print(success, appendNewline: true)
                     let data: NSDictionary = success as! NSDictionary
                     let dataArray: [AnyObject] = data["data"] as! [AnyObject]
                     
@@ -182,14 +182,14 @@ class ProfileVC: UIViewController {
                                 }
                             })
                         }
-                        commentdata.date = eventAndComment.creationDate as NSDate
+                        //commentdata.date = eventAndComment.creationDate as NSDate
                     }
                     
                 }
                 
                 }, failure:{(failure: NSError!) -> Void in
                     
-                    print(failure)
+                    print(failure, appendNewline: true)
                     
             })
         }

@@ -33,7 +33,7 @@ class ArchiveVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     func refresh(sender:AnyObject){
-        print("refresh")
+        print("refresh", appendNewline: true)
         self.ArchiveTable.reloadData()
         self.refreshControl.endRefreshing()
         
@@ -76,7 +76,7 @@ class ArchiveVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 
                 }, failure:{(failure: NSError!) -> Void in
                     
-                    print(failure)
+                    print(failure, appendNewline: true)
                     
             })
     }

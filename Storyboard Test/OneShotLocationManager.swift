@@ -58,8 +58,9 @@ class OneShotLocationManager: NSObject, CLLocationManagerDelegate {
         _didComplete(nil, error: error)
     }
     
-    internal func locationManager(manager: CLLocationManager, didUpdateLocations locations: [AnyObject]) {
-        if let location = locations[0] as? CLLocation {
+
+    internal func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if let location: CLLocation = locations[0] {
             _didComplete(location, error: nil)
         } else {
             _didComplete(nil, error: NSError(domain: self.classForCoder.description(),
