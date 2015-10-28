@@ -29,7 +29,7 @@ class BAAVenue: BAAObject {
         var website: AnyObject!
     }
     
-    struct Geometry{
+    struct Blueprint{
         var osm_id: AnyObject!
         var points: AnyObject!
     }
@@ -39,7 +39,7 @@ class BAAVenue: BAAObject {
     var displayName: AnyObject!
     var sk_id: AnyObject!
     var venue_description: AnyObject!
-    var geometry = Geometry()
+    var blueprint = Blueprint()
 
     override init!(dictionary: [NSObject : AnyObject]!) {
         // Just an idea on how to solve the NSNull problem
@@ -56,10 +56,10 @@ class BAAVenue: BAAObject {
         info.capacity = dictionary["info"]?.objectForKey("capacity")
         info.website = dictionary["info"]?.objectForKey("website")
         
-        geometry.osm_id = dictionary["geometry"]?.objectForKey("osm_id")
-        geometry.points = dictionary["geometry"]?.objectForKey("points")
+        blueprint.osm_id = dictionary["blueprint"]?.objectForKey("osm_id")
+        blueprint.points = dictionary["blueprint"]?.objectForKey("points")
 
-        displayName = dictionary["displayName"]
+        displayName = dictionary["display_name"]
         sk_id = dictionary["sk_id"]
         venue_description = dictionary["description"]
 

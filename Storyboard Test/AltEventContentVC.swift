@@ -44,7 +44,7 @@ class AltEventContentVC: UIViewController {
         annotation.coordinate = location
         annotation.title = locname
         map.addAnnotation(annotation)
-        print("region \(region.center.latitude)", appendNewline: true)
+        print("region \(region.center.latitude)", terminator: "\n")
         map.setRegion(region, animated: true)
         
     }

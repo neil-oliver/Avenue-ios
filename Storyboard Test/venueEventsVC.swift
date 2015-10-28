@@ -24,11 +24,11 @@ class venueEventsVC: UIViewController {
     
     func onlyEvents(){
         for single in closeVenueEvents {
-            print("selectedVenueName \(selectedVenueName)", appendNewline: true)
-            print("close event name \(single.event.displayName)", appendNewline: true)
+            print("selectedVenueName \(selectedVenueName)", terminator: "\n")
+            print("close event name \(single.event.displayName)", terminator: "\n")
             if (single.venue.displayName as! String) == selectedVenueName! {
                 venueEvents.append(single.event as BAAEvent)
-                print("added", appendNewline: true)
+                print("added", terminator: "\n")
              }
         }
     }
@@ -62,7 +62,7 @@ class venueEventsVC: UIViewController {
     }
     
     func refresh(sender:AnyObject){
-        print("refresh", appendNewline: true)
+        print("refresh", terminator: "\n")
         //FetchData().getBassVenuesEvents()
         
         dispatch_async(dispatch_get_main_queue(), { () -> Void in

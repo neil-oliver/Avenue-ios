@@ -37,13 +37,13 @@ class FetchData: NSObject, NSURLConnectionDelegate {
             BAAVenue.getObjectsWithParams(parameters as [NSObject : AnyObject], completion:{(venues:[AnyObject]!, error:NSError!) -> Void in
                 if venues != nil {
                     for venue in venues {
-                        print(venue, appendNewline: true)
+                        print(venue, terminator: "\n")
                         let singlevenue: BAAVenue = venue as! BAAVenue
-                        print("Venue Name: \(singlevenue.displayName)", appendNewline: true)
+                        print("Venue Name: \(singlevenue.displayName)", terminator: "\n")
                     }
                 }
                 if error != nil {
-                    print("Error: \(error)", appendNewline: true)
+                    print("Error: \(error)", terminator: "\n")
                 }
             })
 
@@ -54,7 +54,7 @@ class FetchData: NSObject, NSURLConnectionDelegate {
                 
                 // fetch location or an error
                 if let loc = location {
-                    print(location, appendNewline: true)
+                    print(location, terminator: "\n")
                     //assigns values to variables for current latitude and logitude
                     latValue = loc.coordinate.latitude
                     lonValue = loc.coordinate.longitude
@@ -67,21 +67,22 @@ class FetchData: NSObject, NSURLConnectionDelegate {
                     BAAVenue.getObjectsWithParams(parameters as [NSObject : AnyObject], completion:{(venues:[AnyObject]!, error:NSError!) -> Void in
                         if venues != nil {
                             for venue in venues {
-                                print(venue, appendNewline: true)
+                                print(venue, terminator: "\n")
                                 let singlevenue: BAAVenue = venue as! BAAVenue
-                                print("Venue Name: \(singlevenue.displayName)", appendNewline: true)
+                                closeVenues.append(singlevenue)
+                                print("Venue Name: \(singlevenue.displayName)", terminator: "\n")
                                 
                             }
                         }
                         if error != nil {
-                            print("Error: \(error)", appendNewline: true)
+                            print("Error: \(error)", terminator: "\n")
                         }
                     })
                     
                     
                     
                 } else if let err = error {
-                    print(err.localizedDescription, appendNewline: true)
+                    print(err.localizedDescription, terminator: "\n")
                     let alertController = UIAlertController(title: "Failed to find location", message:
                         "Location error \(err.localizedDescription)", preferredStyle: UIAlertControllerStyle.Alert)
                     alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
@@ -99,7 +100,7 @@ class FetchData: NSObject, NSURLConnectionDelegate {
                 
                 // fetch location or an error
                 if let loc = location {
-                    print(location, appendNewline: true)
+                    print(location, terminator: "\n")
                     //assigns values to variables for current latitude and logitude
                     latValue = loc.coordinate.latitude
                     lonValue = loc.coordinate.longitude
@@ -110,7 +111,7 @@ class FetchData: NSObject, NSURLConnectionDelegate {
                     completion(locationSet: true)
                     
                 } else if let err = error {
-                    print(err.localizedDescription, appendNewline: true)
+                    print(err.localizedDescription, terminator: "\n")
                     let alertController = UIAlertController(title: "Failed to find location", message:
                         "Location error \(err.localizedDescription)", preferredStyle: UIAlertControllerStyle.Alert)
                     alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
@@ -125,14 +126,14 @@ class FetchData: NSObject, NSURLConnectionDelegate {
     func getBassVenuesEvents(completion: (getBassVenuesEventsResult: Bool) -> Void){
         //checks to see if the current location is set before starting connection. if its not it calls LocationManager
         if latValue != 0 && lonValue != 0 {
-            print("getting linked venues and events", appendNewline: true)
+            print("getting linked venues and events", terminator: "\n")
             let path: NSString = "link"
             let params: NSDictionary = ["fields" : "out, in, distance(out.address.lat,out.address.lng,\(latValue),\(lonValue)) as distance", "where" : "distance(out.address.lat,out.address.lng,\(latValue),\(lonValue)) < 5 and in.start.datetime > date('\(formattedDateTime)') and label=\"venue_event\"", "orderBy": "distance asc"]
             
             let c = BAAClient.sharedClient()
             
             c.getPath(path as String, parameters: params as [NSObject : AnyObject], success:{(success: AnyObject!) -> Void in
-                print(success, appendNewline: true)
+                print(success, terminator: "\n")
                 let data: NSDictionary = success as! NSDictionary
                 let dataArray: [AnyObject] = data["data"] as! [AnyObject]
                 closeVenueEvents = []
@@ -141,23 +142,23 @@ class FetchData: NSObject, NSURLConnectionDelegate {
                     
                     let venueAndEvent = BAALinkedVenueEvents(dictionary: item as! [NSObject : AnyObject])
                     closeVenueEvents.append(venueAndEvent)
-                    print(venueAndEvent.event.displayName, appendNewline: true)
-                    print(venueAndEvent.event.start.datetime, appendNewline: true)
-                    print("Distance: \(venueAndEvent.distance)", appendNewline: true)
-                    print("\(closeVenueEvents.count) events were found and saved to your device!", appendNewline: true)
+                    print(venueAndEvent.event.displayName, terminator: "\n")
+                    print(venueAndEvent.event.start.datetime, terminator: "\n")
+                    print("Distance: \(venueAndEvent.distance)", terminator: "\n")
+                    print("\(closeVenueEvents.count) events were found and saved to your device!", terminator: "\n")
                     completion(getBassVenuesEventsResult: true)
                 }
                 
                 }, failure:{(failure: NSError!) -> Void in
                     
-                    print(failure, appendNewline: true)
+                    print(failure, terminator: "\n")
                     
             })
         }
     }
     
     func getVenuesWithLinks(completion: (getBassVenuesWithLinksResult: Bool) -> Void){
-        print("getting venues with links", appendNewline: true)
+        print("getting venues with links", terminator: "\n")
         //checks to see if the current location is set before starting connection. if its not it calls LocationManager
         if latValue != 0 && lonValue != 0 {
             let path: NSString = "link"
@@ -166,7 +167,7 @@ class FetchData: NSObject, NSURLConnectionDelegate {
             let c = BAAClient.sharedClient()
             
             c.getPath(path as String, parameters: params as [NSObject : AnyObject], success:{(success: AnyObject!) -> Void in
-                print(success, appendNewline: true)
+                print(success, terminator: "\n")
                 let data: NSDictionary = success as! NSDictionary
                 let dataArray: [AnyObject] = data["data"] as! [AnyObject]
                 venuesWithLinks = []
@@ -180,7 +181,7 @@ class FetchData: NSObject, NSURLConnectionDelegate {
                 
                 }, failure:{(failure: NSError!) -> Void in
                     
-                    print(failure, appendNewline: true)
+                    print(failure, terminator: "\n")
                     
             })
         }
@@ -198,14 +199,14 @@ class FetchData: NSObject, NSURLConnectionDelegate {
             
             c.postPath(path as String, parameters: params as [NSObject : AnyObject], success:{(success: AnyObject!) -> Void in
                 
-                    print("new events successfully added by baasbox plugin", appendNewline: true)
-                    print(success, appendNewline: true)
+                    print("new events successfully added by baasbox plugin", terminator: "\n")
+                    //print(success, appendNewline: true)
                 
                 completion(result: true)
                 
                 }, failure:{(failure: NSError!) -> Void in
                     
-                    print(failure, appendNewline: true)
+                    print(failure, terminator: "\n")
                     
             })
         }

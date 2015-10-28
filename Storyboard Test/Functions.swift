@@ -43,7 +43,7 @@ func dateComparison(startDateString: String, endDateString: String ) ->Int {
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "yyy-MM-dd'T'HH:mm:ss.SSSZZZZZ"
         let startDate = dateFormatter.dateFromString(startDateString)!
-        print(startDate, appendNewline: true)
+        print(startDate, terminator: "\n")
     
         var startResult: Int!
         var endResult: Int!
@@ -60,17 +60,17 @@ func dateComparison(startDateString: String, endDateString: String ) ->Int {
             if startDateComparisonResult == NSComparisonResult.OrderedAscending {
                 // Current date is smaller than start date. (gig is in the future)
                 startResult = 1
-                print("startResult: \(startResult)", appendNewline: true)
+                print("startResult: \(startResult)", terminator: "\n")
                 
             } else if startDateComparisonResult == NSComparisonResult.OrderedDescending {
                 // Current date is greater than start date. (gig has started or gig is in the past)
                 startResult = -1
-                print("startResult: \(startResult)", appendNewline: true)
+                print("startResult: \(startResult)", terminator: "\n")
 
             } else if startDateComparisonResult == NSComparisonResult.OrderedSame {
                 // Current date and end date are same.
                 startResult = 0
-                print("startResult: \(startResult)", appendNewline: true)
+                print("startResult: \(startResult)", terminator: "\n")
 
             }
             
@@ -78,7 +78,7 @@ func dateComparison(startDateString: String, endDateString: String ) ->Int {
             let dateFormatter = NSDateFormatter()
             dateFormatter.dateFormat = "yyy-MM-dd'T'HH:mm:ss.SSSZZZZZ"
             let endDate = dateFormatter.dateFromString(endDateString)!
-            print(endDate, appendNewline: true)
+            print(endDate, terminator: "\n")
             
             //no end date currently stored so using midnight of the day of the gig
             let endDateComparisonResult : NSComparisonResult = currentDateTime.compare(endDate)
@@ -86,16 +86,16 @@ func dateComparison(startDateString: String, endDateString: String ) ->Int {
             if endDateComparisonResult == NSComparisonResult.OrderedAscending {
                 // Current date is smaller than end date. (gig is in the future or has not finished yet)
                 endResult = 1
-                print("endResult: \(endResult)", appendNewline: true)
+                print("endResult: \(endResult)", terminator: "\n")
             } else if endDateComparisonResult == NSComparisonResult.OrderedDescending {
                 // Current date is greater than end date. (gig is in the past)
                 endResult = -1
-                print("endResult: \(endResult)", appendNewline: true)
+                print("endResult: \(endResult)", terminator: "\n")
 
             } else if endDateComparisonResult == NSComparisonResult.OrderedSame {
                 // Current date and end date are same.
                 endResult = 0
-                print("endResult: \(endResult)", appendNewline: true)
+                print("endResult: \(endResult)", terminator: "\n")
 
             }
             
@@ -104,19 +104,19 @@ func dateComparison(startDateString: String, endDateString: String ) ->Int {
                 //gig is happening now
                 
                 returnResult = 0
-                print("returnResult: \(returnResult)", appendNewline: true)
+                print("returnResult: \(returnResult)", terminator: "\n")
                 
             } else if startResult == 1 {
                 //gig is in the future
                 
                 returnResult = 1
-                print("returnResult: \(returnResult)", appendNewline: true)
+                print("returnResult: \(returnResult)", terminator: "\n")
                 
             } else if endResult <= 0 {
                 //gig in the past
                 
                 returnResult = -1
-                print("returnResult: \(returnResult)", appendNewline: true)
+                print("returnResult: \(returnResult)", terminator: "\n")
             }
             
 
@@ -133,11 +133,11 @@ func createBaasLink(inLink: String, outLink: String){
     
     c.postPath(path as String, parameters: params as [NSObject : AnyObject], success:{(success: AnyObject!) -> Void in
     
-        print(success, appendNewline: true)
+        print(success, terminator: "\n")
         
         }, failure:{(failure: NSError!) -> Void in
             
-            print(failure, appendNewline: true)
+            print(failure, terminator: "\n")
     })
     
     
@@ -148,11 +148,11 @@ func checkLocationServices(delegate: UIViewController) {
     
     
     if CLLocationManager.locationServicesEnabled() == false {
-        print("location services check", appendNewline: true)
+        print("location services check", terminator: "\n")
         
         switch UIDevice.currentDevice().systemVersion.compare("8.0.0", options: NSStringCompareOptions.NumericSearch) {
         case .OrderedSame, .OrderedDescending:
-            print("iOS >= 8.0", appendNewline: true)
+            print("iOS >= 8.0", terminator: "\n")
             let alertController = UIAlertController(title: "This app does not have access to Location service", message:
                 "You can enable access in Settings->Privacy->Location->Location Services", preferredStyle: UIAlertControllerStyle.Alert)
             alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
@@ -167,7 +167,7 @@ func checkLocationServices(delegate: UIViewController) {
             
             
         case .OrderedAscending:
-            print("iOS < 8.0", appendNewline: true)
+            print("iOS < 8.0", terminator: "\n")
             let alertController = UIAlertController(title: "This app does not have access to Location service", message:
                 "You can enable access in Settings->Privacy->Location->Location Services", preferredStyle: UIAlertControllerStyle.Alert)
             alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
@@ -178,6 +178,39 @@ func checkLocationServices(delegate: UIViewController) {
     
 }
 
+func JSONPolygon(jsonData: NSDictionary!) -> MKPolygon {
+    var polygon : MKPolygon!
+        // Load the `features` array for iteration
+                    if let geometry = jsonData["geometry"] as? NSDictionary {
+                        if geometry["type"] as? String == "Polygon" {
+                            // Create an array to hold the formatted coordinates for our polygon
+                            var coordinates: [CLLocationCoordinate2D] = []
+                            
+                            if let locations = geometry["coordinates"] as? NSArray {
+                                for loc in locations {
+                                    if let locArray = loc as? NSArray {
+                                    if locArray.count > 2 {
+                                        for single in locArray {
+                                            let coords = single as! NSArray
+
+                                                // Make a CLLocationCoordinate2D with the lat, lng
+                                                let coordinate = CLLocationCoordinate2DMake(coords[1].doubleValue, coords[0].doubleValue)
+                                                
+                                                // Add coordinate to coordinates array
+                                                coordinates.append(coordinate)
+                                        }
+                                    }
+                                    }
+                                }
+                            }
+
+                            polygon = MKPolygon(coordinates: &coordinates, count: coordinates.count)
+                            return polygon
+                        }
+                    }
+
+    return polygon
+}
 
 
 

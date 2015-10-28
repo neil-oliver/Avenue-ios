@@ -49,8 +49,8 @@ class GalleryVC: UIViewController, UICollectionViewDelegateFlowLayout, UICollect
     }
     
     func refresh(sender:AnyObject){
-        print("refresh", appendNewline: true)
-        print("No. of Images \(downloadedImages.count)", appendNewline: true)
+        print("refresh", terminator: "\n")
+        print("No. of Images \(downloadedImages.count)", terminator: "\n")
         sleep(1)
         dispatch_async(dispatch_get_main_queue(), { () -> Void in
             self.getBaasImages()
@@ -101,7 +101,7 @@ class GalleryVC: UIViewController, UICollectionViewDelegateFlowLayout, UICollect
     
     func getBaasImages(){
         BAAFile.loadFilesAndDetailsWithCompletion({(files: [AnyObject]!, error: NSError!) -> () in
-            print("files are \(files)", appendNewline: true)
+            print("files are \(files)", terminator: "\n")
             if files != nil {
                 for file in files {
                     let fileData = File()
@@ -115,7 +115,7 @@ class GalleryVC: UIViewController, UICollectionViewDelegateFlowLayout, UICollect
                             self.downloadedImages.append(fileData)
                             self.cvGallery.insertItemsAtIndexPaths([NSIndexPath(forItem: self.downloadedImages.count - 1, inSection: 0)])
                         } else {
-                            print("error downloading gallery image", appendNewline: true)
+                            print("error downloading gallery image", terminator: "\n")
                         }
                         if self.downloadedImages.count == files.count {
                             self.spinner.stopAnimating()

@@ -23,15 +23,15 @@ class ProfileVC: UIViewController {
 
     @IBAction func btnLogOut(sender: AnyObject) {
         
-        BAAUser.logoutWithCompletion( {(success: ObjCBool, error: NSError!) -> () in
+        BAAUser.logoutWithCompletion( {(success: Bool, error: NSError!) -> () in
             
             if (success) {
                 let loginvc:LoginVC = self.storyboard?.instantiateViewControllerWithIdentifier("LoginVC") as! LoginVC
                 self.presentViewController(loginvc, animated: true, completion: nil)
             }else {
                 
-                print("log out error \(error.localizedDescription)", appendNewline: true)
-                
+                print("log out error \(error.localizedDescription)", terminator: "\n")
+
             }
             
         })
@@ -60,24 +60,29 @@ class ProfileVC: UIViewController {
             
             BAAUser.loadUserDetails(selectedUser, completion:{(object:AnyObject!, error: NSError!) -> () in
                 
-                let currentUser = object as! BAAUser
-                self.lblUsername.text = currentUser.username()
-                self.username = currentUser.username()
-                self.getEventComments()
-                self.btnLogOut.hidden = true
-                self.btnSettings.hidden = true
+                if ((object) != nil) {
+                    let currentUser = object as! BAAUser
+                    self.lblUsername.text = currentUser.username()
+                    self.username = currentUser.username()
+                    self.getEventComments()
+                    self.btnLogOut.hidden = true
+                    self.btnSettings.hidden = true
+                }
+
             })
             
         } else {
         
             BAAUser.loadCurrentUserWithCompletion({(object:AnyObject!, error: NSError!) -> () in
                 
-                let currentUser = object as! BAAUser
-                self.lblUsername.text = currentUser.username()
-                self.username = currentUser.username()
-                self.getEventComments()
-                self.btnLogOut.hidden = false
-                self.btnSettings.hidden = false
+                if ((object) != nil) {
+                    let currentUser = object as! BAAUser
+                    self.lblUsername.text = currentUser.username()
+                    self.username = currentUser.username()
+                    self.getEventComments()
+                    self.btnLogOut.hidden = false
+                    self.btnSettings.hidden = false
+                }
             })
         }
         
@@ -139,7 +144,7 @@ class ProfileVC: UIViewController {
         
         //checks to see if the current location is set before starting connection. if its not it calls LocationManager
         if latValue != 0 && lonValue != 0 {
-            print("getting linked comments", appendNewline: true)
+            print("getting linked comments", terminator: "\n")
             let path: NSString = "link"
             let params: NSDictionary = ["where": "_author = \"\(self.username)\" and label=\"event_object\""]
             let c = BAAClient.sharedClient()
@@ -147,7 +152,7 @@ class ProfileVC: UIViewController {
             c.getPath(path as String, parameters: params as [NSObject : AnyObject], success:{(success: AnyObject!) -> Void in
                 
                 if success != nil {
-                    print(success, appendNewline: true)
+                    print(success, terminator: "\n")
                     let data: NSDictionary = success as! NSDictionary
                     let dataArray: [AnyObject] = data["data"] as! [AnyObject]
                     
@@ -189,7 +194,7 @@ class ProfileVC: UIViewController {
                 
                 }, failure:{(failure: NSError!) -> Void in
                     
-                    print(failure, appendNewline: true)
+                    print(failure, terminator: "\n")
                     
             })
         }

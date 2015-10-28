@@ -16,30 +16,6 @@ class PoiMapVC: UIViewController, MKMapViewDelegate, MBXRasterTileOverlayDelegat
     @IBOutlet var annotationButton: UIButton!
     
     var selectVenue: Bool = false
-    /*
-    var bristolAcademy = [CLLocationCoordinate2DMake(51.454219, -2.600308),
-        CLLocationCoordinate2DMake(51.454460, -2.599822),
-        CLLocationCoordinate2DMake(51.454928, -2.600439),
-        CLLocationCoordinate2DMake(51.454687, -2.600917)]
-
-    var hatchett = [CLLocationCoordinate2DMake(51.453864, -2.600512),
-    CLLocationCoordinate2DMake(51.453874, -2.600498),
-    CLLocationCoordinate2DMake(51.453858, -2.600466),
-    CLLocationCoordinate2DMake(51.453894, -2.600408),
-    CLLocationCoordinate2DMake(51.453886, -2.600394),
-    CLLocationCoordinate2DMake(51.453934, -2.600314),
-    CLLocationCoordinate2DMake(51.453944, -2.600328),
-    CLLocationCoordinate2DMake(51.453986, -2.600259),
-    CLLocationCoordinate2DMake(51.454077, -2.600396),
-    CLLocationCoordinate2DMake(51.454045, -2.600455),
-    CLLocationCoordinate2DMake(51.454048, -2.600463),
-    CLLocationCoordinate2DMake(51.453995, -2.600551),
-    CLLocationCoordinate2DMake(51.453987, -2.600546),
-    CLLocationCoordinate2DMake(51.453953, -2.600604),
-    CLLocationCoordinate2DMake(51.453912, -2.600556),
-    CLLocationCoordinate2DMake(51.453904, -2.600567)]
-    */
-    
     
     @IBAction func btnOverlay(sender: AnyObject) {
         
@@ -53,7 +29,7 @@ class PoiMapVC: UIViewController, MKMapViewDelegate, MBXRasterTileOverlayDelegat
                 let annotationLocation: CLLocation = CLLocation(latitude: annotation.coordinate.latitude, longitude: annotation.coordinate.longitude)
                 let userCurrentLocation: CLLocation = CLLocation(latitude: self.PoiMap.userLocation.coordinate.latitude, longitude: self.PoiMap.userLocation.coordinate.longitude)
                 let distance = annotationLocation.distanceFromLocation(userCurrentLocation)
-                print(distance, appendNewline: true)
+                print(distance, terminator: "\n")
                 if distance > 500 {
                     if annotation is MKPointAnnotation {
                         let removeView = self.PoiMap.viewForAnnotation(annotation) as! MKPinAnnotationView
@@ -85,14 +61,17 @@ class PoiMapVC: UIViewController, MKMapViewDelegate, MBXRasterTileOverlayDelegat
         //let hatch: MKPolygon = MKPolygon(coordinates: &hatchett, count: hatchett.count)
         //self.PoiMap.addOverlay(hatch)
         
-        //disabled while i work out geoJSON
-        /*
+        
         for single in closeVenueEvents {
-            let venueOverlay: MKPolygon = MKPolygon(coordinates: &single.venue.geometry.points, count: single.venue.geometry.points.count)
-            self.PoiMap.addOverlay(venueOverlay)
+            print("venue: \(single.venue.displayName)")
+            print("data: \(single.venue.blueprint.points as? NSDictionary)")
+            if let data = single.venue.blueprint.points as? NSDictionary {
+                let venueOverlay: MKPolygon = JSONPolygon(single.venue.blueprint.points as! NSDictionary)
+                self.PoiMap.addOverlay(venueOverlay)
+            }
         }
-        */
-    }
+
+            }
     
     @IBOutlet var PoiMap: MKMapView!
     
@@ -117,23 +96,14 @@ class PoiMapVC: UIViewController, MKMapViewDelegate, MBXRasterTileOverlayDelegat
             let rasterOverlay = MBXRasterTileOverlay(mapID: "neiloliver.5d32c838")
             self.PoiMap.delegate = self
             self.PoiMap.addOverlay(rasterOverlay)
-            /*
-            if closeVenueEvents.count > 0 {
-                self.createAnnotations()
-            } else {
-                let alertController = UIAlertController(title: "Close Events", message:
-                    "No Events Found", preferredStyle: UIAlertControllerStyle.Alert)
-                alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
-                self.presentViewController(alertController, animated: true, completion: nil)
-            }
-            */
+
         }
         
     }
     
     
     func createAnnotations() {
-        print(venuesWithLinks, appendNewline: true)
+        print(venuesWithLinks, terminator: "\n")
 
         for single in venuesWithLinks {
             let venue = single as BAAVenue
@@ -155,7 +125,7 @@ class PoiMapVC: UIViewController, MKMapViewDelegate, MBXRasterTileOverlayDelegat
             //return nil so map draws default view for it (eg. blue dot)...
             return nil
         }
-        print("viewforannotation", appendNewline: true)
+        print("viewforannotation", terminator: "\n")
         let reuseId = "test"
         var anView: MKPinAnnotationView
         if let dequeuedView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId)
@@ -179,7 +149,7 @@ class PoiMapVC: UIViewController, MKMapViewDelegate, MBXRasterTileOverlayDelegat
     
     
     func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-        print("hello", appendNewline: true)
+        print("hello", terminator: "\n")
         if selectVenue == false {
             let venueeventsvc:venueEventsVC = storyboard?.instantiateViewControllerWithIdentifier("venueEventsVC") as! venueEventsVC
             //Programmatically push to associated VC (EventsVC)
@@ -214,9 +184,9 @@ class PoiMapVC: UIViewController, MKMapViewDelegate, MBXRasterTileOverlayDelegat
                 
             } else if overlay is MKPolygon {
                 let polygonRenderer = MKPolygonRenderer(overlay: overlay)
-                polygonRenderer.fillColor = UIColor.blueColor().colorWithAlphaComponent(0.2)
-                //polygonRenderer.strokeColor = UIColor.cyanColor().colorWithAlphaComponent(0.7)
-                //polygonRenderer.lineWidth = 1
+                polygonRenderer.fillColor = UIColor.purpleColor().colorWithAlphaComponent(0.7)
+                polygonRenderer.strokeColor = UIColor.purpleColor().colorWithAlphaComponent(1)
+                polygonRenderer.lineWidth = 5
                 return polygonRenderer
             } else {
                 /// we need to draw overlay on the map in a way when everything except the area in radius of 500 should be grayed
@@ -255,7 +225,7 @@ class PoiMapVC: UIViewController, MKMapViewDelegate, MBXRasterTileOverlayDelegat
     
     func tileOverlay(overlay: MBXRasterTileOverlay!, didLoadMetadata metadata: [NSObject : AnyObject]!, withError error: NSError!) {
         if (error != nil) {
-            print("Failed to load metadata for map ID \(overlay.mapID) - (\(error))", appendNewline: true)
+            print("Failed to load metadata for map ID \(overlay.mapID) - (\(error))", terminator: "\n")
         } else {
             
             self.PoiMap.mbx_setCenterCoordinate(overlay.center, zoomLevel: UInt(overlay.centerZoom), animated: false)
@@ -265,7 +235,7 @@ class PoiMapVC: UIViewController, MKMapViewDelegate, MBXRasterTileOverlayDelegat
     
     func tileOverlay(overlay: MBXRasterTileOverlay!, didLoadMarkers markers: [AnyObject]!, withError error: NSError!) {
         if (error != nil) {
-            print("Failed to load metadata for map ID \(overlay.mapID) - (\(error))", appendNewline: true)
+            print("Failed to load metadata for map ID \(overlay.mapID) - (\(error))", terminator: "\n")
         } else {
             self.PoiMap.addAnnotations(markers as! [MKAnnotation])
             
@@ -318,7 +288,6 @@ class MyMapOverlayRenderer: MKOverlayRenderer {
         CGContextAddPath(context, path.CGPath)
         /// tells the context to fill the path but with regards to even odd rule
         CGContextEOFillPath(context)
-        
         
     }
 }

@@ -39,13 +39,13 @@ class LoginVC: UIViewController, NSURLConnectionDelegate, UITextFieldDelegate {
     }
     @IBAction func btnLogin(sender: AnyObject) {
         //self.spinner.startAnimating()
-        print("login button pushed", appendNewline: true)
-        BAAUser.loginWithUsername(txtUsername.text, password:txtPassword.text, completion: { (success: ObjCBool, error: NSError!) -> () in
+        print("login button pushed", terminator: "\n")
+        BAAUser.loginWithUsername(txtUsername.text, password:txtPassword.text, completion: { (success: Bool, error: NSError!) -> () in
             
-            print("BAAUser login called", appendNewline: true)
+            print("BAAUser login called", terminator: "\n")
             if (success) {
                 
-                print("successful log in", appendNewline: true)
+                print("successful log in", terminator: "\n")
                 //move past login screen to either the main menu or the gig found screen.
 
                     let menutbc : MenuTBC = self.storyboard?.instantiateViewControllerWithIdentifier("MenuTBC") as! MenuTBC
@@ -58,7 +58,7 @@ class LoginVC: UIViewController, NSURLConnectionDelegate, UITextFieldDelegate {
                 
             } else {
                 
-                print("log in error \(error.localizedDescription)", appendNewline: true)
+                print("log in error \(error.localizedDescription)", terminator: "\n")
                 let alertController = UIAlertController(title: "Sign In Error", message:
                     "log in error \(error.localizedDescription)", preferredStyle: UIAlertControllerStyle.Alert)
                 alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
@@ -82,11 +82,11 @@ class LoginVC: UIViewController, NSURLConnectionDelegate, UITextFieldDelegate {
         
         if client.isAuthenticated() {
             
-            print("Logged in", appendNewline: true)
+            print("Logged in", terminator: "\n")
             
         } else {
             
-            print("Not logged in", appendNewline: true)
+            print("Not logged in", terminator: "\n")
         }
         // Do any additional setup after loading the view.
         

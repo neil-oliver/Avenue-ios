@@ -95,7 +95,7 @@ class ArchiveEventVC: UIViewController, UICollectionViewDelegateFlowLayout, UICo
         
         //checks to see if the current location is set before starting connection. if its not it calls LocationManager
         if latValue != 0 && lonValue != 0 {
-            print("getting linked comments", appendNewline: true)
+            print("getting linked comments", terminator: "\n")
             let path: NSString = "link"
             let params: NSDictionary = ["where": "in.event_id = \(selectedArchive!.event.event_id) and label=\"event_object\""]
             let c = BAAClient.sharedClient()
@@ -103,7 +103,7 @@ class ArchiveEventVC: UIViewController, UICollectionViewDelegateFlowLayout, UICo
             c.getPath(path as String, parameters: params as [NSObject : AnyObject], success:{(success: AnyObject!) -> Void in
                 
                 if success != nil {
-                    print(success, appendNewline: true)
+                    print(success, terminator: "\n")
                     let data: NSDictionary = success as! NSDictionary
                     let dataArray: [AnyObject] = data["data"] as! [AnyObject]
                     
@@ -145,7 +145,7 @@ class ArchiveEventVC: UIViewController, UICollectionViewDelegateFlowLayout, UICo
                 
                 }, failure:{(failure: NSError!) -> Void in
                     
-                    print(failure, appendNewline: true)
+                    print(failure, terminator: "\n")
                     
             })
         }

@@ -43,7 +43,7 @@ class CloseEventVC: UIViewController {
     }
     
     func refresh(sender:AnyObject){
-        print("refresh", appendNewline: true)
+        print("refresh", terminator: "\n")
         //FetchData().getBassVenuesEvents()
         
         dispatch_async(dispatch_get_main_queue(), { () -> Void in

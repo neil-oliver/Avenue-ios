@@ -38,7 +38,7 @@ class AltEventVC: UIViewController, UIPageViewControllerDataSource  {
         var index = currentVC.pageIndex
 
         if index == nil {
-            print("returning nil", appendNewline: true)
+            print("returning nil", terminator: "\n")
             return nil
         }
         index = index! + 1
@@ -79,7 +79,7 @@ class AltEventVC: UIViewController, UIPageViewControllerDataSource  {
             "The current gig in the selectedEvent Variable is: \(closeVenueEvents[index].event.displayName)", preferredStyle: UIAlertControllerStyle.Alert)
         alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
         self.presentViewController(alertController, animated: true, completion: nil)
-        print(selectedEvent!.event.displayName, appendNewline: true)
+        print(selectedEvent!.event.displayName, terminator: "\n")
         
         return pageContentViewController
     }

@@ -34,6 +34,7 @@ var selectedEvent: BAALinkedVenueEvents?
 var closeEvents = []
 var ArchiveEvents = [BAALinkedEventComments]()
 var closeVenueEvents = [BAALinkedVenueEvents]()
+var closeVenues = [BAAVenue]()
 var venuesWithLinks = [BAAVenue]()
 var eventComments = [BAALinkedEventComments]()
 var gigFound : Bool = false
