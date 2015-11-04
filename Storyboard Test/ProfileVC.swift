@@ -75,7 +75,7 @@ class ProfileVC: UIViewController {
                     self.username = currentUser.username()
                     self.lblEmail.text = currentUser.email
                     
-                    //self.getEventComments()
+                    self.getEventComments()
                     self.btnLogOut.hidden = true
                     self.btnSettings.hidden = true
                     
@@ -103,7 +103,7 @@ class ProfileVC: UIViewController {
                     self.username = currentUser.username()
                     self.lblEmail.text = currentUser.email
 
-                   // self.getEventComments()
+                    self.getEventComments()
                     self.btnLogOut.hidden = false
                     self.btnSettings.hidden = false
                     
