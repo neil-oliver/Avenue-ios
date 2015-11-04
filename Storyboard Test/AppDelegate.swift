@@ -19,18 +19,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         BaasBox.setBaseURL("http://api.bethehype.co.uk", appCode: "1234567890")
         //BaasBox.setBaseURL("http://localhost:9000", appCode: "1234567890")
         
-        
-        BAAUser.loadCurrentUserWithCompletion({(object:AnyObject!, error: NSError!) -> () in
-        
-            if ((error) != nil) {
-                
-                //let loginvc:LoginVC = storyboard?.instantiateViewControllerWithIdentifier("LoginVC") as! LoginVC
-                //self.presentViewController(loginvc, animated: true, completion: nil)
-                
-            }
-            
-        })
-        
         FetchData().getLocation(){(locationSet: Bool) in
             FetchData().getNewEvents(){(results: Bool) in
                 FetchData().getBassVenuesEvents() {(getBassVenuesEventsResult: Bool) in
@@ -45,7 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:MM:ss.FFFZ"
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSz"
         formattedDateTime = dateFormatter.stringFromDate(NSDate())
         
         return true

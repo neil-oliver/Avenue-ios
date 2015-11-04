@@ -22,6 +22,10 @@
 		842A53FD1A2A92FB0031FF58 /* CloseEventSideBarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842A53FC1A2A92FB0031FF58 /* CloseEventSideBarVC.swift */; };
 		842A53FF1A2A93C50031FF58 /* ArchiveEventSideBarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842A53FE1A2A93C50031FF58 /* ArchiveEventSideBarVC.swift */; };
 		842A543A1A2DE0C20031FF58 /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842A54391A2DE0C20031FF58 /* Functions.swift */; };
+		8439832E1BE2AB0200137272 /* Main2.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8439832D1BE2AB0200137272 /* Main2.storyboard */; };
+		843983301BE2ADF300137272 /* profile.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8439832F1BE2ADF300137272 /* profile.jpg */; };
+		8439836E1BEA999000137272 /* UsersExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8439836D1BEA999000137272 /* UsersExtension.swift */; };
+		843983701BEAA4FA00137272 /* Blank.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8439836F1BEAA4FA00137272 /* Blank.jpg */; };
 		84432EDF1B3C0D8D0002D1A1 /* venueEventsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84432EDE1B3C0D8D0002D1A1 /* venueEventsVC.swift */; };
 		84444A1C1AF8D83800BDA347 /* white.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 84444A1B1AF8D83800BDA347 /* white.jpg */; };
 		84444A201AF9771B00BDA347 /* ToDo in Resources */ = {isa = PBXBuildFile; fileRef = 84444A1F1AF9771B00BDA347 /* ToDo */; };
@@ -120,6 +124,10 @@
 		842A53FC1A2A92FB0031FF58 /* CloseEventSideBarVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloseEventSideBarVC.swift; sourceTree = "<group>"; };
 		842A53FE1A2A93C50031FF58 /* ArchiveEventSideBarVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArchiveEventSideBarVC.swift; sourceTree = "<group>"; };
 		842A54391A2DE0C20031FF58 /* Functions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
+		8439832D1BE2AB0200137272 /* Main2.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main2.storyboard; sourceTree = "<group>"; };
+		8439832F1BE2ADF300137272 /* profile.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = profile.jpg; sourceTree = "<group>"; };
+		8439836D1BEA999000137272 /* UsersExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UsersExtension.swift; path = ../UsersExtension.swift; sourceTree = "<group>"; };
+		8439836F1BEAA4FA00137272 /* Blank.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Blank.jpg; sourceTree = "<group>"; };
 		843AE5591B441038001616FB /* Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		84432EDE1B3C0D8D0002D1A1 /* venueEventsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = venueEventsVC.swift; sourceTree = "<group>"; };
 		84444A1B1AF8D83800BDA347 /* white.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = white.jpg; sourceTree = "<group>"; };
@@ -250,6 +258,9 @@
 				840C548E1ADFDCAF00F98F29 /* Images.xcassets */,
 				84444A1B1AF8D83800BDA347 /* white.jpg */,
 				844E16D01ADFE0DD0057FAAD /* LaunchScreen.xib */,
+				8439832F1BE2ADF300137272 /* profile.jpg */,
+				8439836F1BEAA4FA00137272 /* Blank.jpg */,
+				8439832D1BE2AB0200137272 /* Main2.storyboard */,
 				84C0BBE01A2FCA1F00398E45 /* Main.storyboard */,
 				842A54351A2AC5DD0031FF58 /* View Controllers */,
 				8416B1CA1A1E016C00106879 /* Supporting Files */,
@@ -328,6 +339,7 @@
 				849C4A431B2C61D7001F1A9A /* LinkedEventComments.swift */,
 				849C4A441B2C61D7001F1A9A /* LinkedVenueEvents.swift */,
 				849C4A451B2C61D7001F1A9A /* Venues.swift */,
+				8439836D1BEA999000137272 /* UsersExtension.swift */,
 			);
 			path = "BaasBox-iOS-SDK";
 			sourceTree = "<group>";
@@ -379,7 +391,7 @@
 			attributes = {
 				LastSwiftMigration = 0710;
 				LastSwiftUpdateCheck = 0710;
-				LastUpgradeCheck = 0610;
+				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = "Neil Oliver";
 				TargetAttributes = {
 					8416B1C61A1E016C00106879 = {
@@ -424,11 +436,14 @@
 				844E16D11ADFE0DD0057FAAD /* LaunchScreen.xib in Resources */,
 				84B5E3951A24F60100F637DB /* The Fleece.gpx in Resources */,
 				84444A201AF9771B00BDA347 /* ToDo in Resources */,
+				843983301BE2ADF300137272 /* profile.jpg in Resources */,
 				840C548F1ADFDCAF00F98F29 /* Images.xcassets in Resources */,
 				84C0BBE11A2FCA1F00398E45 /* Main.storyboard in Resources */,
 				84B5E3941A24F60100F637DB /* Bristol Academy.gpx in Resources */,
 				84444A1C1AF8D83800BDA347 /* white.jpg in Resources */,
+				8439832E1BE2AB0200137272 /* Main2.storyboard in Resources */,
 				84B5E3961A24F60100F637DB /* Islington Academy.gpx in Resources */,
+				843983701BEAA4FA00137272 /* Blank.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -462,6 +477,7 @@
 				849C4A4B1B2C61D7001F1A9A /* BAAObject.m in Sources */,
 				849C4A461B2C61D7001F1A9A /* Artists.swift in Sources */,
 				8401C4071B4B0D65009FFA1C /* MBXRasterTileRenderer.m in Sources */,
+				8439836E1BEA999000137272 /* UsersExtension.swift in Sources */,
 				849C0E741A1F659000542AAA /* GigFoundVC.swift in Sources */,
 				84B240721AEC308700BBDDFA /* SingleImageVC.swift in Sources */,
 				849C0E781A1F65FB00542AAA /* EventSideBarVC.swift in Sources */,
@@ -539,6 +555,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -608,6 +625,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "$(OTHER_LDFLAGS)";
+				PRODUCT_BUNDLE_IDENTIFIER = "Neil-Oliver.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = Avenue;
 				SDKROOT = iphoneos;
 				SWIFT_INSTALL_OBJC_HEADER = YES;
@@ -632,6 +650,7 @@
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "$(OTHER_LDFLAGS)";
 				"OTHER_LDFLAGS[arch=*]" = "$(OTHER_LDFLAGS)";
+				PRODUCT_BUNDLE_IDENTIFIER = "Neil-Oliver.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = Avenue;
 				SDKROOT = iphoneos;
 				SWIFT_INSTALL_OBJC_HEADER = YES;

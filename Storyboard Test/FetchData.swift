@@ -43,7 +43,7 @@ class FetchData: NSObject, NSURLConnectionDelegate {
                     }
                 }
                 if error != nil {
-                    print("Error: \(error)", terminator: "\n")
+                    print("getBassVenues Error: \(error)", terminator: "\n")
                 }
             })
 
@@ -75,7 +75,7 @@ class FetchData: NSObject, NSURLConnectionDelegate {
                             }
                         }
                         if error != nil {
-                            print("Error: \(error)", terminator: "\n")
+                            print("getBassVenues Error: \(error)", terminator: "\n")
                         }
                     })
                     
@@ -133,7 +133,7 @@ class FetchData: NSObject, NSURLConnectionDelegate {
             let c = BAAClient.sharedClient()
             
             c.getPath(path as String, parameters: params as [NSObject : AnyObject], success:{(success: AnyObject!) -> Void in
-                print(success, terminator: "\n")
+                print("getBassVenuesEvents success \(success)", terminator: "\n")
                 let data: NSDictionary = success as! NSDictionary
                 let dataArray: [AnyObject] = data["data"] as! [AnyObject]
                 closeVenueEvents = []
@@ -151,7 +151,7 @@ class FetchData: NSObject, NSURLConnectionDelegate {
                 
                 }, failure:{(failure: NSError!) -> Void in
                     
-                    print(failure, terminator: "\n")
+                    print("getBassVenuesEvents error: \(failure)", terminator: "\n")
                     
             })
         }
@@ -167,7 +167,7 @@ class FetchData: NSObject, NSURLConnectionDelegate {
             let c = BAAClient.sharedClient()
             
             c.getPath(path as String, parameters: params as [NSObject : AnyObject], success:{(success: AnyObject!) -> Void in
-                print(success, terminator: "\n")
+                print("getVenuesWithLinks success: \(success)", terminator: "\n")
                 let data: NSDictionary = success as! NSDictionary
                 let dataArray: [AnyObject] = data["data"] as! [AnyObject]
                 venuesWithLinks = []
@@ -181,8 +181,7 @@ class FetchData: NSObject, NSURLConnectionDelegate {
                 
                 }, failure:{(failure: NSError!) -> Void in
                     
-                    print(failure, terminator: "\n")
-                    
+                    print("getVenuesWithLinks error: \(failure)")
             })
         }
     }
@@ -206,7 +205,7 @@ class FetchData: NSObject, NSURLConnectionDelegate {
                 
                 }, failure:{(failure: NSError!) -> Void in
                     
-                    print(failure, terminator: "\n")
+                    print("getNewEvents error: \(failure)", terminator: "\n")
                     
             })
         }

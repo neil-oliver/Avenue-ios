@@ -19,6 +19,9 @@ class ProfileVC: UIViewController {
         
     }
     
+    
+    @IBOutlet var imgProfileImage: UIImageView!
+    
     @IBOutlet var cvProfileGallery: UICollectionView!
 
     @IBAction func btnLogOut(sender: AnyObject) {
@@ -31,11 +34,14 @@ class ProfileVC: UIViewController {
             }else {
                 
                 print("log out error \(error.localizedDescription)", terminator: "\n")
-
+                BAAClient().currentUser = nil
+                BAAClient().saveUserToDisk(BAAClient().currentUser)
+                BAAClient.sharedClient().currentUser.authenticationToken = nil
+                print("authentication token \(BAAClient().currentUser.authenticationToken)")
             }
             
         })
-        
+
         
     }
     
@@ -53,6 +59,9 @@ class ProfileVC: UIViewController {
         btnLogOut.hidden = false
         btnSettings.hidden = false
         
+        imgProfileImage.layer.cornerRadius = imgProfileImage.frame.size.width / 2
+        imgProfileImage.clipsToBounds = true
+        
         
         // Do any additional setup after loading the view.
         
@@ -64,9 +73,22 @@ class ProfileVC: UIViewController {
                     let currentUser = object as! BAAUser
                     self.lblUsername.text = currentUser.username()
                     self.username = currentUser.username()
-                    self.getEventComments()
+                    self.lblEmail.text = currentUser.email
+                    
+                    //self.getEventComments()
                     self.btnLogOut.hidden = true
                     self.btnSettings.hidden = true
+                    
+                    let email: String = currentUser.email
+                    
+                    if email != "" {
+                        if let url = NSURL(string: "http://www.gravatar.com/avatar/\(md5(string: email))?s=200") {
+                            if let data = NSData(contentsOfURL: url){
+                                self.imgProfileImage.contentMode = UIViewContentMode.ScaleAspectFit
+                                self.imgProfileImage.image = UIImage(data: data)
+                            }
+                        }
+                    }
                 }
 
             })
@@ -79,9 +101,22 @@ class ProfileVC: UIViewController {
                     let currentUser = object as! BAAUser
                     self.lblUsername.text = currentUser.username()
                     self.username = currentUser.username()
-                    self.getEventComments()
+                    self.lblEmail.text = currentUser.email
+
+                   // self.getEventComments()
                     self.btnLogOut.hidden = false
                     self.btnSettings.hidden = false
+                    
+                    let email: String = currentUser.email
+                    
+                    if email != "" {
+                        if let url = NSURL(string: "http://www.gravatar.com/avatar/\(md5(string: email))?s=200") {
+                            if let data = NSData(contentsOfURL: url){
+                                self.imgProfileImage.contentMode = UIViewContentMode.ScaleAspectFit
+                                self.imgProfileImage.image = UIImage(data: data)
+                            }
+                        }
+                    }
                 }
             })
         }
@@ -97,6 +132,7 @@ class ProfileVC: UIViewController {
     
     func viewDidAppear() {
         cvProfileGallery.reloadData()
+
     }
     
     
