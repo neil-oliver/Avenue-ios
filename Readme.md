@@ -1,6 +1,6 @@
 # Avenue App
   
-## Social Media for music events.
+### Social Media for music events.
 
 Find events near you, check in, share images and comments with attendees of the event.
 
