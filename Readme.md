@@ -1,4 +1,5 @@
-<title>Avenue App</title>
+Avenue App
+  
 Social Media for music events.
 
 Find events near you and share images and short comments with attendees of the event.
