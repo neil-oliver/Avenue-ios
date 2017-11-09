@@ -2,7 +2,7 @@ Avenue App
   
 Social Media for music events.
 
-Find events near you and share images and short comments with attendees of the event.
+Find events near you, checkin, share images or short comments with attendees of the event.
 
 Re-live past events through a timeline of comments and photos.
 
