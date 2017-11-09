@@ -2,7 +2,7 @@
   
 ### Social Media for music events.
 
-Find events near you, check in, share images and comments with attendees of the event.
+Find events near you, check in, share images and comments **only** with attendees of the event.
 
 Re-live past events through a timeline of comments and photos.
 
