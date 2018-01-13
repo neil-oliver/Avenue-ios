@@ -2,9 +2,9 @@
   
 ### Social Media for music events.
 
-Find events near you, check in, share images and comments **only** with attendees of the event.
+Find events near you, check in, share images and comments **only** with attendees of the event (based on GPS data & time stamps).
 
-Re-live past events through a timeline of comments and photos.
+Re-live past events through a crowdsourced timeline of comments and photos (available to all users of the app).
 
 Written in Swift and maintained to Swift 3.0. Development paused due to similar functionality to Facebook Events App.
 
